@@ -20,6 +20,7 @@ import com.example.bluesystemwithroomdatabase.Cart.Cart;
 import com.example.bluesystemwithroomdatabase.Customer.ViewCustomer;
 import com.example.bluesystemwithroomdatabase.Inventory.Inventory;
 import com.example.bluesystemwithroomdatabase.PaymentMethod.ViewPaymentMethod;
+import com.example.bluesystemwithroomdatabase.Pos.Pos;
 import com.example.bluesystemwithroomdatabase.Products.ViewProducts;
 
 import com.example.bluesystemwithroomdatabase.User.View_User;
@@ -182,6 +183,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, TestImagePage.class);
+                startActivity(intent);
+            }
+        });
+
+
+        binding.cardPos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Pos.class);
                 startActivity(intent);
             }
         });
