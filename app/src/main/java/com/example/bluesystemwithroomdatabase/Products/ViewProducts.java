@@ -123,28 +123,6 @@ public class ViewProducts extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 categoryId = categoryTableList.get(i).getCategoryID();
-
-                binding.selectLocationName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                        binding.saveProducts.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-
-                                location_id = locationTableList.get(i).getLocation_Id();
-                                SaveProuducts saveProuducts= new SaveProuducts();
-                                saveProuducts.execute();
-
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> adapterView) {
-
-                    }
-                });
-
             }
 
             @Override
@@ -161,19 +139,20 @@ public class ViewProducts extends AppCompatActivity {
         binding.selectLocationName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                binding.saveProducts.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        location_id = locationTableList.get(i).getLocation_Id();
-                        SaveProuducts saveProuducts= new SaveProuducts();
-                        saveProuducts.execute();
+                location_id = locationTableList.get(i).getLocation_Id();
 
-                    }
-                });
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        binding.saveProducts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SaveProuducts saveProuducts= new SaveProuducts();
+                saveProuducts.execute();
 
             }
         });
@@ -251,28 +230,6 @@ public class ViewProducts extends AppCompatActivity {
 
             }
         }
-
-
-
-//        ///image
-//
-//        if(resultCode == RESULT_OK){
-//            if(requestCode == SELECT_PICTURE){
-//                Uri uri = data.getData();
-//                if(uri != null){
-//                    binding.imageDataProducts.setImageURI(uri);
-//
-//                    try {
-//                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
-//
-//                        binding.imageDataProducts.setImageBitmap(bitmap);
-//                    }catch (IOException e){
-//
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        }
     }
 
     class SaveProuducts extends AsyncTask<Void, Void, Void> {
@@ -310,9 +267,8 @@ public class ViewProducts extends AppCompatActivity {
             productTable.setProduct_date(date_create);
 
 
-//
             productTable.setImage_product(file.getPath());
-//
+
 
             blueTeachnology_dao.insertProducts(productTable);
             return null;
@@ -326,12 +282,6 @@ public class ViewProducts extends AppCompatActivity {
         }
     }
 
-    private void loadImageFromGallery(){
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURE);
-    }
 
 
     private void getImage(){
