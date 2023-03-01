@@ -1,18 +1,21 @@
 package MyAdapter;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.bluesystemwithroomdatabase.Products.Update_products;
 import com.example.bluesystemwithroomdatabase.R;
 
@@ -28,9 +31,11 @@ import Mydatabase.BlueTeachnology_Database;
 public class Product_Adapter extends RecyclerView.Adapter<Product_Adapter.ProductViewHolder> {
 
     List<ProductTable> productTableList;
+    Context context;
 
-    public Product_Adapter(List<ProductTable> productTableList) {
+    public Product_Adapter(List<ProductTable> productTableList, Context context) {
         this.productTableList = productTableList;
+        this.context = context;
     }
 
     @NonNull
@@ -67,6 +72,7 @@ public class Product_Adapter extends RecyclerView.Adapter<Product_Adapter.Produc
         holder.pbarcode.setText(String.valueOf(productTableList.get(position).getProduct_barCode()));
 
 
+        Glide.with(context).load(productTable.getImage_product()).into(holder.imageView);
         //edit product
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,6 +144,7 @@ public class Product_Adapter extends RecyclerView.Adapter<Product_Adapter.Produc
         TextView  pname_eng, pname_kh,pqty,pprice,ptax, pcost,pdate,pbarcode;
 
         ImageButton edit,delete;
+        ImageView imageView;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -155,6 +162,8 @@ public class Product_Adapter extends RecyclerView.Adapter<Product_Adapter.Produc
             //button
             edit = itemView.findViewById(R.id.button_edit_product);
             delete = itemView.findViewById(R.id.button_delete_product);
+
+            imageView = itemView.findViewById(R.id.show_image_products);
 
 
         }

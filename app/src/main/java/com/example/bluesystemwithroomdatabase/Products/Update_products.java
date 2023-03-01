@@ -50,7 +50,7 @@ public class Update_products extends AppCompatActivity {
 
 
     boolean is_upload = false;
-
+    String imagePath;
 
     int productId;
 
@@ -149,9 +149,11 @@ public class Update_products extends AppCompatActivity {
 
             binding.updateProductCost.setText(product_cost);
             binding.updateProductTax.setText(product_tax);
-
+            //show image
             Glide.with(this).load(productTable.getImage_product()).into(binding.showImageProductsForUpdate);
             productId = productTable.getProductId();
+            imagePath = productTable.getImage_product();
+            Toast.makeText(this, ""+imagePath, Toast.LENGTH_SHORT).show();
 
 
         }else {
@@ -240,8 +242,7 @@ public class Update_products extends AppCompatActivity {
                 productTable.setProduct_cost(Double.parseDouble(binding.updateProductCost.getText().toString()));
                 productTable.setTax(tax);
                 productTable.setProduct_date(update_date);
-
-                productTable.setImage_product(String.valueOf(file));
+                productTable.setImage_product(imagePath);
             }else{
                 is_upload = false;
                 productTable.setProductId(productId);
@@ -255,12 +256,7 @@ public class Update_products extends AppCompatActivity {
                 productTable.setProduct_cost(Double.parseDouble(binding.updateProductCost.getText().toString()));
                 productTable.setTax(tax);
                 productTable.setProduct_date(update_date);
-
-
-                String get_path = productTable.getImage_product();
-
-                productTable.setImage_product("Hello" + get_path);
-
+                productTable.setImage_product(imagePath);
 
             }
 
@@ -311,11 +307,8 @@ public class Update_products extends AppCompatActivity {
 
                     uri=result.getData().getData();
                     file = new File(uri.getPath());
+                    imagePath = file.toString();
                     binding.showImageProductsForUpdate.setImageURI(uri);
-
-
-
-
 
                 }else if(result.getResultCode()== ImagePicker.RESULT_ERROR){
                     Toast.makeText(this, "No image pick", Toast.LENGTH_SHORT).show();

@@ -199,7 +199,7 @@ public class ViewProducts extends AppCompatActivity {
     private void Show_Products(){
         blueTeachnology_dao = BlueTeachnology_Database.getInstance(getApplicationContext()).blueTeachnology_dao();
         productTableList = blueTeachnology_dao.getProductWithCategory();
-        adapter = new Product_Adapter(productTableList);
+        adapter = new Product_Adapter(productTableList, getApplicationContext() );
         binding.listviewProducts.setLayoutManager(new LinearLayoutManager(this));
         binding.listviewProducts.setAdapter(adapter);
 
@@ -268,7 +268,6 @@ public class ViewProducts extends AppCompatActivity {
 
 
             productTable.setImage_product(file.getPath());
-
 
             blueTeachnology_dao.insertProducts(productTable);
             return null;
