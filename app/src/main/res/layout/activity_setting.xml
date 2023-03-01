@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_setting"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/green"
+        app:title="Setting"
+        android:paddingStart="20dp"/>
+    <TextView
+        android:id="@+id/textInfo_setting"
+        android:layout_below="@+id/toolbar_setting"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Informaiton shop"
+        android:textSize="15pt"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ទិន្នន័យដែលអ្នកបានបញ្ចូលនិងបង្ហាញក្នុងវិក័បត្រ"
+        android:textSize="8pt"
+        android:textColor="@color/black"
+        android:id="@id/text"
+        android:layout_below="@id/textInfo_setting"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nameshop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text"
+
+        android:hint="Shop name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/addressShop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Address shop"
+        android:layout_below="@+id/nameshop"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/phoneShop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Phone number"
+        android:layout_below="@+id/addressShop"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+   <LinearLayout
+
+       android:id="@+id/printer"
+       android:layout_below="@+id/phoneShop"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal">
+       <RadioGroup
+           android:id="@+id/radioGroup"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content">
+           <RadioButton
+               android:text="Printer"
+               android:layout_margin="10dp"
+               android:onClick="button_click"
+               android:id="@+id/print_ok"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"/>
+           <RadioButton
+               android:text="No printer"
+               android:onClick="button_click"
+               android:layout_margin="10dp"
+               android:id="@+id/print_no"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"/>
+       </RadioGroup>
+
+
+
+   </LinearLayout>
+
+
+
+
+
+
+
+    <LinearLayout
+        android:id="@+id/classid"
+        android:layout_margin="20dp"
+        android:layout_below="@+id/printer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="លក់ក្នុងឃ្លាំង"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="8pt"/>
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"/>
+    </LinearLayout>
+
+
+    <androidx.cardview.widget.CardView
+
+        android:id="@+id/card_save"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/classid"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginRight="20dp"
+
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+
+        app:cardBackgroundColor="@color/green"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Save"
+            android:textColor="@color/white"
+            android:textSize="10pt" />
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

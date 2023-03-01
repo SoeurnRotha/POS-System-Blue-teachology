@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Inventory.Inventory">
+
+
+    <RelativeLayout
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/show_inventory"
+        >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:id="@+id/view_inventory"
+            android:background="@color/purple_700"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Inventory"
+            android:textSize="10pt"
+            android:textColor="@color/white"
+            android:fontFamily="@font/fontone"
+            android:layout_centerHorizontal="true"
+            android:padding="20dp"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@+id/view_inventory"
+            android:layout_width="match_parent"
+            android:layout_height="480dp"
+            android:id="@+id/list_inventory"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="Add Location"
+            android:id="@+id/add_inventory"
+            android:textColor="@color/white"
+            android:fontFamily="@font/fontone"
+            android:layout_margin="20dp"
+            android:layout_below="@+id/list_inventory"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/show_add_inventory"
+        >
+
+        <View
+            android:id="@+id/view_add_inventory"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@color/purple_700"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/back_to_view_inventory"
+                android:layout_margin="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/back"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Inventory"
+                android:layout_margin="20dp"
+                android:padding="20dp"
+                android:textSize="10pt"
+                android:textColor="@color/white"
+                android:fontFamily="@font/fontone"
+                />
+        </LinearLayout>
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/view_add_inventory"
+            android:id="@+id/inventory_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Location english"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/add_location_eng"
+                android:layout_margin="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_below="@id/inventory_location"
+            android:id="@+id/inventory_location_kh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Location Khmer"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/add_location_kh"
+                android:layout_margin="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/add_inventory_save"
+            android:layout_below="@+id/inventory_location_kh"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="Save"
+            android:fontFamily="@font/fontone"
+            android:textSize="10pt"
+            android:layout_margin="20dp"/>
+
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

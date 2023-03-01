@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PaymentMethod.UpdatePaymentMethod">
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@color/purple_700"
+        android:id="@+id/view_update_payment"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update payment method"
+        android:fontFamily="@font/fontone"
+        android:textColor="@color/white"
+        android:textSize="10pt"
+        android:padding="10dp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:layout_marginTop="30dp"
+        android:id="@+id/box_update_payment"
+        android:layout_below="@id/view_update_payment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Payment description"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/update_payment_des"
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/update_payment_save"
+        android:layout_below="@+id/box_update_payment"
+        android:layout_width="match_parent"
+        android:layout_margin="20dp"
+        android:layout_height="45dp"
+        android:text="Update now"
+        android:textColor="@color/white"
+        android:fontFamily="@font/fontone"
+        android:background="@color/purple_700"
+        android:textSize="10pt"/>
+
+
+</RelativeLayout>

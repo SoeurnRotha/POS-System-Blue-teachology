@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Inventory.UpdateLocation">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@color/purple_700"
+        android:id="@+id/view_update_locatioin"
+        />
+    <TextView
+        android:padding="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update location"
+        android:fontFamily="@font/fontone"
+        android:textSize="10pt"
+        android:textColor="@color/white"/>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/box_eng"
+        android:layout_below="@+id/view_update_locatioin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Location English"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_margin="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:id="@+id/update_location_english"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/box_kh"
+        android:layout_below="@+id/box_eng"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Location Khmer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_margin="20dp"
+            android:id="@+id/update_location_khmer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <Button
+        android:id="@+id/update_location_save"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@id/box_kh"
+        android:text="Update now"
+        android:textSize="10pt"
+        android:fontFamily="@font/fontone"
+        android:background="@color/purple_700"
+        android:layout_margin="20dp"/>
+
+
+
+</RelativeLayout>

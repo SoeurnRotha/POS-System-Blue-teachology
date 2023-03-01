@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".setupItem.ViewItem">
+
+
+    <View
+        android:id="@+id/view_item"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/view_designer"/>
+    <TextView
+        android:id="@+id/view_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View item"
+        android:fontFamily="@font/fontone"
+        android:textColor="@color/white"
+        android:textSize="15pt"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="30dp"/>
+
+    <GridView
+        tools:listitem="@layout/single_view_item_designer"
+        android:id="@+id/gridview_item"
+        android:numColumns="2"
+        android:gravity="center"
+        android:horizontalSpacing="0dp"
+        android:verticalSpacing="15dp"
+
+        android:layout_below="@+id/view_text"
+        android:layout_width="match_parent"
+        android:layout_height="550dp"/>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_add_item"
+            android:layout_below="@+id/gridview_item"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_margin="20dp"
+            android:text="Add item"
+            android:fontFamily="@font/fontone"
+            android:textStyle="bold"
+            android:textSize="10pt"
+            android:background="@color/purple_700"
+            android:textColor="@color/white"/>
+
+
+</RelativeLayout>

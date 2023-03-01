@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".category.Update_Category2">
+
+    <View
+        android:id="@+id/view_update_category"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:background="@color/purple_700"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update category"
+        android:textColor="@color/white"
+        android:textSize="10pt"
+        android:padding="10dp"
+        android:gravity="center"
+        />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_below="@id/view_update_category"
+        android:id="@+id/id_category"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:hint="Category id"
+            android:id="@+id/update_category_id"
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_below="@id/id_category"
+        android:id="@+id/eng_category"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:hint="Category name english"
+            android:layout_margin="20dp"
+            android:id="@+id/update_category_name_eng"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_below="@id/eng_category"
+        android:id="@+id/kh_category"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:hint="Category name kh"
+            android:id="@+id/update_category_name_kh"
+            android:layout_width="match_parent"
+            android:layout_margin="20dp"
+            android:layout_height="match_parent"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:background="@color/purple_700"
+        android:textColor="@color/white"
+        android:fontFamily="@font/fontone"
+        android:textSize="10pt"
+        android:layout_margin="20dp"
+        android:id="@+id/update_category_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/kh_category"
+        android:layout_marginTop="6dp"
+        android:gravity="center"
+        android:text="Save Category" />
+
+
+</RelativeLayout>

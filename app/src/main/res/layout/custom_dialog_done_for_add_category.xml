@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="10dp"
+    android:elevation="10dp"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="20dp"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_done"
+            android:layout_margin="10dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/done"/>
+
+        <TextView
+            android:padding="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/lottie_done"
+            android:id="@+id/textpay"
+            android:textSize="8pt"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:text="You insert category successful.."
+            android:layout_height="wrap_content"/>
+
+
+        <Button
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/textpay"
+            android:id="@+id/ok_done_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ok"
+            style="?attr/materialButtonOutlinedStyle"
+            />
+    </RelativeLayout>
+
+
+
+</androidx.cardview.widget.CardView>

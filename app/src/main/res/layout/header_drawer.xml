@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="350dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:src="@drawable/blue"
+        />
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="www.blue.com.kh"
+        android:textStyle="bold"
+        android:textSize="10pt"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No. 73BG, Street 360, Sangkat Boeung Keng Kang III
+
+            Phnom Penh, Cambodia 12304"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/black"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="info@blue.com.kh
+
+\nTel: +855 23 215 889
+
+\nFax: +855 23 222 942"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/black"/>
+
+
+</LinearLayout>
