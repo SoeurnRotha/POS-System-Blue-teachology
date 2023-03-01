@@ -40,7 +40,6 @@ import Model.CategoryTable;
 import Model.Customer;
 import Model.LocationTable;
 import Model.ProductTable;
-import Model.TestImage;
 import MyAdapter.Location_Bast_Adapter;
 import MyAdapter.Product_Adapter;
 import MyAdapter.Select_Adapter_base_category;
@@ -58,7 +57,7 @@ public class ViewProducts extends AppCompatActivity {
 
     int location_id;
 
-    Bitmap bitmap = null;
+
     Product_Adapter adapter;
 
     BlueTeachnology_Dao blueTeachnology_dao;
@@ -183,7 +182,7 @@ public class ViewProducts extends AppCompatActivity {
         binding.selectImageProducts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loadImageFromGallery();
+                getImage();
             }
         });
 
@@ -255,25 +254,25 @@ public class ViewProducts extends AppCompatActivity {
 
 
 
-        ///image
-
-        if(resultCode == RESULT_OK){
-            if(requestCode == SELECT_PICTURE){
-                Uri uri = data.getData();
-                if(uri != null){
-                    binding.imageDataProducts.setImageURI(uri);
-
-                    try {
-                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
-
-                        binding.imageDataProducts.setImageBitmap(bitmap);
-                    }catch (IOException e){
-
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }
+//        ///image
+//
+//        if(resultCode == RESULT_OK){
+//            if(requestCode == SELECT_PICTURE){
+//                Uri uri = data.getData();
+//                if(uri != null){
+//                    binding.imageDataProducts.setImageURI(uri);
+//
+//                    try {
+//                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
+//
+//                        binding.imageDataProducts.setImageBitmap(bitmap);
+//                    }catch (IOException e){
+//
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        }
     }
 
     class SaveProuducts extends AsyncTask<Void, Void, Void> {
@@ -311,12 +310,8 @@ public class ViewProducts extends AppCompatActivity {
             productTable.setProduct_date(date_create);
 
 
-
-            productTable.setImageProducts(ImageHelper.getStringFromBitmap(bitmap));
-
-
 //
-//            productTable.setImage_product(file.getPath());
+            productTable.setImage_product(file.getPath());
 //
 
             blueTeachnology_dao.insertProducts(productTable);

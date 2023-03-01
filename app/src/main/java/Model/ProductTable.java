@@ -21,8 +21,8 @@ public class ProductTable implements Serializable {
     @ColumnInfo
     String productName_kh;
 
-//    @ColumnInfo
-//    String image_product;
+    @ColumnInfo
+    String image_product;
 
 
     @ColumnInfo
@@ -53,21 +53,6 @@ public class ProductTable implements Serializable {
     String product_date;
 
 
-    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
-    byte [] imageProducts;
-
-
-    public byte[] getImageProducts() {
-        return imageProducts;
-    }
-
-    public void setImageProducts(byte[] imageProducts) {
-        this.imageProducts = imageProducts;
-    }
-
-
-
-
 
     public int getLocationId() {
         return locationId;
@@ -77,7 +62,13 @@ public class ProductTable implements Serializable {
         this.locationId = locationId;
     }
 
+    public String getImage_product() {
+        return image_product;
+    }
 
+    public void setImage_product(String image_product) {
+        this.image_product = image_product;
+    }
 
     public int getProductId() {
         return productId;

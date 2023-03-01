@@ -43,8 +43,6 @@ public class Update_products extends AppCompatActivity {
     int location_id;
     Uri uri;
 
-    String storeUri;
-
     BlueTeachnology_Dao blueTeachnology_dao;
     boolean IS_UPDATE = false;
 
@@ -132,8 +130,6 @@ public class Update_products extends AppCompatActivity {
 
     }
 
-
-
     public void getInten(){
         if(getIntent().hasExtra("products")){
             IS_UPDATE = true;
@@ -144,7 +140,6 @@ public class Update_products extends AppCompatActivity {
             String product_price = String.valueOf(productTable.getProduct_Price());
             String product_qty = String.valueOf(productTable.getProduct_qty());
             String product_tax = String.valueOf(productTable.getTax());
-//            String product_img_path = String.valueOf(productTable.getImageProducts());
 
             binding.updateProductNameEnglish.setText(productTable.getProductName_eng());
             binding.updateProductNameKhmer.setText(productTable.getProductName_kh());
@@ -155,7 +150,7 @@ public class Update_products extends AppCompatActivity {
             binding.updateProductCost.setText(product_cost);
             binding.updateProductTax.setText(product_tax);
 
-//            Glide.with(this).load(product_img_path).into(binding.showImageProductsForUpdate);
+            Glide.with(this).load(productTable.getImage_product()).into(binding.showImageProductsForUpdate);
             productId = productTable.getProductId();
 
 
@@ -232,24 +227,11 @@ public class Update_products extends AppCompatActivity {
             double tax = Double.parseDouble(binding.updateProductTax.getText().toString());
 
             ProductTable productTable = new ProductTable();
-            productTable.setProductId(productId);
-            productTable.setCategoryID(cid);
-            productTable.setLocationId(location_id);
-            productTable.setProductName_eng(binding.updateProductNameEnglish.getText().toString());
-            productTable.setProductName_kh(binding.updateProductNameKhmer.getText().toString());
-            productTable.setProduct_qty(Integer.parseInt(binding.updateProductQty.getText().toString()));
-            productTable.setProduct_barCode(binding.updateProductBarcode.getText().toString());
-            productTable.setProduct_Price(Double.parseDouble(binding.updateProductPrice.getText().toString()));
-            productTable.setProduct_cost(Double.parseDouble(binding.updateProductCost.getText().toString()));
-            productTable.setTax(tax);
-            productTable.setProduct_date(update_date);
-//            productTable.setImage_product(String.valueOf(file));
-
-
             if(is_upload == true){
                 productTable.setProductId(productId);
                 productTable.setCategoryID(cid);
                 productTable.setLocationId(location_id);
+
                 productTable.setProductName_eng(binding.updateProductNameEnglish.getText().toString());
                 productTable.setProductName_kh(binding.updateProductNameKhmer.getText().toString());
                 productTable.setProduct_qty(Integer.parseInt(binding.updateProductQty.getText().toString()));
@@ -258,9 +240,10 @@ public class Update_products extends AppCompatActivity {
                 productTable.setProduct_cost(Double.parseDouble(binding.updateProductCost.getText().toString()));
                 productTable.setTax(tax);
                 productTable.setProduct_date(update_date);
-//                productTable.setImage_product(String.valueOf(file.getPath()));
+
+                productTable.setImage_product(String.valueOf(file));
             }else{
-                is_upload =false;
+                is_upload = false;
                 productTable.setProductId(productId);
                 productTable.setCategoryID(cid);
                 productTable.setLocationId(location_id);
@@ -274,7 +257,10 @@ public class Update_products extends AppCompatActivity {
                 productTable.setProduct_date(update_date);
 
 
-//                productTable.setImage_product(productTable.getImage_product());
+                String get_path = productTable.getImage_product();
+
+                productTable.setImage_product("Hello" + get_path);
+
 
             }
 
@@ -326,9 +312,6 @@ public class Update_products extends AppCompatActivity {
                     uri=result.getData().getData();
                     file = new File(uri.getPath());
                     binding.showImageProductsForUpdate.setImageURI(uri);
-
-
-
 
 
 

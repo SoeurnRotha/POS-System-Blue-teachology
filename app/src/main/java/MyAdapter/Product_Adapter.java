@@ -74,7 +74,6 @@ public class Product_Adapter extends RecyclerView.Adapter<Product_Adapter.Produc
 
                 Intent intent = new Intent(view.getContext(), Update_products.class);
                 intent.putExtra("products",productTable);
-
                 view.getContext().startActivity(intent);
 
             }
@@ -85,38 +84,38 @@ public class Product_Adapter extends RecyclerView.Adapter<Product_Adapter.Produc
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                  AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                  builder.setTitle("DELETE");
-                  builder.setMessage("Do you want to Delete Category");
-                  builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                      @Override
-                      public void onClick(DialogInterface dialogInterface, int index) {
-                          Toast.makeText(builder.getContext(), "You delete successful", Toast.LENGTH_SHORT).show();
-                          Toast.makeText(builder.getContext(), "Yes", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setTitle("DELETE");
+                builder.setMessage("Do you want to Delete Category");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int index) {
+                        Toast.makeText(builder.getContext(), "You delete successful", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(builder.getContext(), "Yes", Toast.LENGTH_SHORT).show();
 
-                          BlueTeachnology_Dao blueTeachnology_dao =  BlueTeachnology_Database.getInstance(view.getContext()).blueTeachnology_dao();
-
-
-                          blueTeachnology_dao.deleteProductByid(productTableList.get(position).getProductId());
+                        BlueTeachnology_Dao blueTeachnology_dao =  BlueTeachnology_Database.getInstance(view.getContext()).blueTeachnology_dao();
 
 
-                          productTableList.remove(position);
-                          notifyDataSetChanged();
+                        blueTeachnology_dao.deleteProductByid(productTableList.get(position).getProductId());
 
-                      }
-                  });
 
-                  builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                      @Override
-                      public void onClick(DialogInterface dialogInterface, int index) {
-                          Toast.makeText(builder.getContext(), "No", Toast.LENGTH_SHORT).show();
-                          dialogInterface.cancel();
-                      }
-                  });
+                        productTableList.remove(position);
+                        notifyDataSetChanged();
 
-                  AlertDialog alertDialog = builder.create();
+                    }
+                });
 
-                  alertDialog.show();
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int index) {
+                        Toast.makeText(builder.getContext(), "No", Toast.LENGTH_SHORT).show();
+                        dialogInterface.cancel();
+                    }
+                });
+
+                AlertDialog alertDialog = builder.create();
+
+                alertDialog.show();
 
             }
         });
