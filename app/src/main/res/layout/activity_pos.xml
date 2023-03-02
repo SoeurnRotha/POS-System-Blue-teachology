@@ -58,25 +58,17 @@
         />
 
 
-    <FrameLayout
-        android:id="@+id/frame_category_select"
-        android:layout_marginTop="20dp"
+    <GridView
         android:layout_below="@+id/list_category_pos"
+        android:id="@+id/gridview_item_category_with_product_many_to_many"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="15dp"
 
-        >
-        <GridView
-            android:id="@+id/gridview_item_category_with_product_many_to_many"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="15dp"
-
-            android:columnWidth="10dp"
-            android:numColumns="2"
-            android:verticalSpacing="20dp"
-            android:horizontalSpacing="10dp"
-            tools:listitem="@layout/single_gridview_pos" />
-    </FrameLayout>
+        android:columnWidth="10dp"
+        android:numColumns="2"
+        android:verticalSpacing="20dp"
+        android:horizontalSpacing="10dp"
+        tools:listitem="@layout/single_gridview_pos" />
 
 </RelativeLayout>

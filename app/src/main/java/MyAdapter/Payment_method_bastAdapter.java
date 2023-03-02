@@ -45,7 +45,7 @@ public class Payment_method_bastAdapter  extends BaseAdapter {
           PaymentMethod paymentMethod = paymentMethodList.get(i);
           TextView payment_type = view.findViewById(R.id.show_items);
 
-          payment_type.setText(paymentMethod.getPaymentId());
+          payment_type.setText(paymentMethod.getDecription());
 
       }
 

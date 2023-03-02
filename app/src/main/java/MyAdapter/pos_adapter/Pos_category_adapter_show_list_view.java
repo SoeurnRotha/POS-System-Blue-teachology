@@ -1,13 +1,17 @@
 package MyAdapter.pos_adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bluesystemwithroomdatabase.Pos.Pos;
+import com.example.bluesystemwithroomdatabase.Pos.Pos_Fragment;
 import com.example.bluesystemwithroomdatabase.R;
 
 import java.util.List;
@@ -34,10 +38,13 @@ public class Pos_category_adapter_show_list_view extends RecyclerView.Adapter<Po
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewCategoryPos holder, int position) {
+    public void onBindViewHolder(@NonNull ViewCategoryPos holder, @SuppressLint("RecyclerView") int position) {
         holder.category_eng.setText(categoryTableList.get(position).getCategoryname_Eng());
 
         holder.category_kh.setText(categoryTableList.get(position).getCategoryname_kh());
+
+
+
     }
 
     @Override
@@ -48,11 +55,14 @@ public class Pos_category_adapter_show_list_view extends RecyclerView.Adapter<Po
     public class ViewCategoryPos extends RecyclerView.ViewHolder{
 
         TextView category_eng, category_kh;
+        CardView card_pos_category_items;
         public ViewCategoryPos(@NonNull View itemView) {
             super(itemView);
 
             category_eng = itemView.findViewById(R.id.pos_category_eng);
             category_kh = itemView.findViewById(R.id.pos_category_kh);
+
+            card_pos_category_items = itemView.findViewById(R.id.card_pos_category_items);
         }
     }
 }

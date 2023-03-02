@@ -54,9 +54,8 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
     @Override
     public void onBindViewHolder(@NonNull ViewCart holder, int position) {
         holder.peng.setText(String.valueOf(cartTableList.get(position).getProductName_eng()));
-        holder.pkh.setText(String.valueOf(cartTableList.get(position).getProductName_kh()));
         holder.qty.setText(String.valueOf(cartTableList.get(position).getProductQty()));
-        holder.price.setText(String.valueOf(cartTableList.get(position).getProductPrice()));
+        holder.price.setText(String.valueOf(cartTableList.get(position).getProductCost()));
 
 
 
@@ -135,7 +134,7 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
                 int sum =0;
                 for(int i=0;  i< cartTableList.size(); i++){
 
-                    sum += (cartTableList.get(i).getProductPrice() * cartTableList.get(i).getProductQty());
+                    sum += (cartTableList.get(i).getProductCost() * cartTableList.get(i).getProductQty());
 
                 }
 
@@ -143,7 +142,7 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
                 discount = Double.parseDouble(discount_input.getText().toString());
                 double p = discount /100;
                 double discountAmount = sum - (sum * p);
-                Toast.makeText(submit.getContext(), "hello = " + discountAmount, Toast.LENGTH_SHORT).show();
+                Toast.makeText(submit.getContext(), "discountAmount = " + discountAmount, Toast.LENGTH_SHORT).show();
 
 
                 totalPrice.setText("" + discountAmount);
@@ -193,20 +192,11 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
         int sum =0;
         for(int i=0;  i< cartTableList.size(); i++){
 
-            sum += (cartTableList.get(i).getProductPrice() * cartTableList.get(i).getProductQty());
+            sum += (cartTableList.get(i).getProductCost() * cartTableList.get(i).getProductQty());
 
         }
 
         subtotal.setText("$" + sum);
-
-//
-//        double discount = Double.parseDouble(discount_input.getText().toString());
-//        double discountAmount = sum - (sum * discount);
-//
-//        totalPrice.setText("Amount" + discountAmount);
-
-
-
 
 
     }

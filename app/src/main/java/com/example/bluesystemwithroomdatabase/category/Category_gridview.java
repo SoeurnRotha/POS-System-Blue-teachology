@@ -61,6 +61,8 @@ public class Category_gridview extends AppCompatActivity {
         });
 
 
+
+
         BlueTeachnology_Dao blueTeachnology_dao = BlueTeachnology_Database.getInstance(this).blueTeachnology_dao();
         List<CategoryTable> categoryTableList = blueTeachnology_dao.getAllCateroy();
 

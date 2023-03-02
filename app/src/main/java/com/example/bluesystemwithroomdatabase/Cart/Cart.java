@@ -28,7 +28,10 @@ public class Cart extends AppCompatActivity {
 
 
     ActivityCartBinding binding;
-
+    
+    String paymentDes;
+    String customerDes;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +83,8 @@ public class Cart extends AppCompatActivity {
         binding.selectCustomer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+                customerDes = customers.get(i).getCustomerName();
+                
             }
 
             @Override
@@ -92,6 +96,8 @@ public class Cart extends AppCompatActivity {
         binding.selectPaymentMethod.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                paymentDes = paymentMethodList.get(i).getDecription();
 
             }
 

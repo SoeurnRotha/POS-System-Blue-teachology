@@ -12,50 +12,29 @@ public class CartTable {
     int cartId;
 
     @ColumnInfo
-    int productId;
-
-    @ColumnInfo
     String productName_eng;
-
-
     @ColumnInfo
     String productName_kh;
 
     @ColumnInfo
     int productQty;
 
-
     @ColumnInfo
-    double productPrice;
-
-
+    double productCost;
 
 
     @ColumnInfo
-    double totalPrice;
+    String product_img;
 
 
-    @ColumnInfo
-    double discount;
-
-    @ColumnInfo
-    String cart_date;
 
 
-    @Override
-    public String toString() {
-        return "CartTable{" +
-                "cartId=" + cartId +
-                ", productId=" + productId +
-                ", productName_eng='" + productName_eng + '\'' +
-                ", productName_kh='" + productName_kh + '\'' +
-                ", productQty=" + productQty +
-                ", productPrice=" + productPrice +
-                ", totalPrice=" + totalPrice +
-                ", discount=" + discount +
-                ", cate_date='" + cart_date + '\'' +
-                '}';
-    }
+
+
+
+
+
+
 
     public int getCartId() {
         return cartId;
@@ -63,14 +42,6 @@ public class CartTable {
 
     public void setCartId(int cartId) {
         this.cartId = cartId;
-    }
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
     }
 
     public String getProductName_eng() {
@@ -97,46 +68,19 @@ public class CartTable {
         this.productQty = productQty;
     }
 
-    public double getProductPrice() {
-        return productPrice;
+    public double getProductCost() {
+        return productCost;
     }
 
-    public void setProductPrice(double productPrice) {
-        this.productPrice = productPrice;
+    public void setProductCost(double productCost) {
+        this.productCost = productCost;
     }
 
-    public double getTotalPrice() {
-        return totalPrice;
+    public String getProduct_img() {
+        return product_img;
     }
 
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public double getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(double discount) {
-        this.discount = discount;
-    }
-
-    public String getCart_date() {
-        return cart_date;
-    }
-
-    public void setCart_date(String cart_date) {
-        this.cart_date = cart_date;
-    }
-
-    public CartTable(int productId, String productName_eng, String productName_kh, int productQty, double productPrice, double totalPrice, double discount, String cart_date) {
-        this.productId = productId;
-        this.productName_eng = productName_eng;
-        this.productName_kh = productName_kh;
-        this.productQty = productQty;
-        this.productPrice = productPrice;
-        this.totalPrice = totalPrice;
-        this.discount = discount;
-        this.cart_date = cart_date;
+    public void setProduct_img(String product_img) {
+        this.product_img = product_img;
     }
 }
