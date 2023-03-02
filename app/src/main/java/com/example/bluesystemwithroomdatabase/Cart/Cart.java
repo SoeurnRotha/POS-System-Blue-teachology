@@ -1,13 +1,18 @@
 package com.example.bluesystemwithroomdatabase.Cart;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.room.DeleteTable;
 
+import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import com.example.bluesystemwithroomdatabase.R;
 import com.example.bluesystemwithroomdatabase.databinding.ActivityCartBinding;
@@ -28,10 +33,11 @@ public class Cart extends AppCompatActivity {
 
 
     ActivityCartBinding binding;
-    
+
     String paymentDes;
     String customerDes;
-    
+    BlueTeachnology_Dao blueTeachnology_dao;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,44 +53,32 @@ public class Cart extends AppCompatActivity {
         List<PaymentMethod> paymentMethodList = blueTeachnology_dao.getAllPayments();
 
 
-
-
         Payment_method_bastAdapter payment_method_bastAdapter = new Payment_method_bastAdapter(getApplicationContext(), paymentMethodList);
-        Customer_bastAdapter adapterbast = new Customer_bastAdapter(getApplicationContext(),customers);
+        Customer_bastAdapter adapterbast = new Customer_bastAdapter(getApplicationContext(), customers);
 
         binding.selectCustomer.setAdapter(adapterbast);
         binding.selectPaymentMethod.setAdapter(payment_method_bastAdapter);
 
 
-
-
-
-
-        Cart_Adater adater = new Cart_Adater(cartTableList,binding.showSubtotal,binding.totalAmount, binding.inputDiscount,binding.discountAmount);
+        Cart_Adater adater = new Cart_Adater(
+                cartTableList, binding.showSubtotal,
+                binding.totalAmount,
+                binding.inputDiscount,
+                binding.discountAmount,
+                binding.inputKhmerToDollar,
+                binding.totalAmountKhmer,
+                binding.cartPaynow,
+                getApplicationContext()
+        );
         binding.listCart.setLayoutManager(new LinearLayoutManager(this));
         binding.listCart.setAdapter(adater);
-
-
-
-
-
-
-
-//        int sum = 0;
-//        for(int i=0;i< cartTableList.size(); i++){
-//            sum += cartTableList.get(i).getProductPrice() * cartTableList.get(i).getProductQty();
-//
-//
-//        }
-//        binding.showSubtotal.setText("$"+ sum);
-
 
 
         binding.selectCustomer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 customerDes = customers.get(i).getCustomerName();
-                
+
             }
 
             @Override
@@ -106,8 +100,79 @@ public class Cart extends AppCompatActivity {
 
             }
         });
+
+
+
+
+        binding.cartPaynow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setTitle("Pay to invoice");
+                builder.setMessage("Do you want to delete your carts");
+                builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(builder.getContext(), "You pay successful", Toast.LENGTH_SHORT).show();
+
+
+                        //delete all products
+                        deleteRecordCart(cartTableList);
+                        recreate();
+
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(builder.getContext(), "Cancel", Toast.LENGTH_SHORT).show();
+                        dialogInterface.cancel();
+                    }
+                });
+
+                AlertDialog alertDialog = builder.create();
+
+                alertDialog.show();
+                deleteRecordCart(cartTableList);
+            }
+        });
+
+
     }
 
+
+    public void deleteRecordCart(List<CartTable> cartTableList){
+        class DeleteAllRecordTask extends AsyncTask<Void, Void, Void> {
+
+            @Override
+            protected Void doInBackground(Void... voids) {
+                BlueTeachnology_Dao blueTeachnology_dao = BlueTeachnology_Database.getInstance(getApplicationContext()).blueTeachnology_dao();
+
+
+                blueTeachnology_dao.deleteAllCart(cartTableList);
+
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void unused) {
+                super.onPostExecute(unused);
+                Toast.makeText(Cart.this, "Delete all Record", Toast.LENGTH_SHORT).show();
+
+                if(cartTableList.size() >0){
+                    cartTableList.clear();
+
+                }
+            }
+
+
+        }
+        DeleteAllRecordTask deleteAllRecordTask = new DeleteAllRecordTask();
+        deleteAllRecordTask.execute();
+
+
+    }
 }
 
 

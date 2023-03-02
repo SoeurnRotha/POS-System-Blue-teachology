@@ -120,7 +120,7 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Total amount  "
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="8pt"
                 android:textStyle="bold" />
@@ -169,11 +169,56 @@
 
 
 
+
+
+
+        <LinearLayout
+
+            android:id="@+id/text_khmer_to_dollar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_discount"
+
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Convert US Dollars to Cambodian Riels"
+                android:textColor="@color/black"
+                android:textSize="8pt"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_gravity="center"
+
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/input_khmer_to_dollar"
+                    android:inputType="numberDecimal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+
+
         <LinearLayout
             android:id="@+id/text_total_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/text_discount"
+            android:layout_below="@id/text_khmer_to_dollar"
 
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
@@ -185,7 +230,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Total price"
+                android:text="Grand Total($)"
                 android:textColor="@color/black"
                 android:textSize="8pt"
                 android:textStyle="bold" />
@@ -203,13 +248,46 @@
                 android:textSize="8pt"
                 android:textStyle="bold" />
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/text_total_khmer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_total_price"
 
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Grand Total(រៀល)"
+                android:textColor="@color/black"
+                android:textSize="8pt"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/totalAmount_khmer"
+                android:padding="10dp"
+                android:background="@color/green"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+
+
+                android:textColor="@color/white"
+                android:textSize="8pt"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/discountAmount"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_below="@id/text_total_price"
+            android:layout_below="@id/text_total_khmer"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"

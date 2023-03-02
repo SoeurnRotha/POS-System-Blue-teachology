@@ -204,6 +204,11 @@ public interface BlueTeachnology_Dao {
     void deleteCartByid(int cartId);
 
 
+    //delete all record
+    @Delete
+    void deleteAllCart(List<CartTable> cartTableList);
+
+
 
     //one to one product with carts
 

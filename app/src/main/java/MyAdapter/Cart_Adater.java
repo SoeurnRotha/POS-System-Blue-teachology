@@ -1,6 +1,8 @@
 package MyAdapter;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +16,13 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.L;
+import com.example.bluesystemwithroomdatabase.Cart.Cart;
 import com.example.bluesystemwithroomdatabase.R;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import Dao.BlueTeachnology_Dao;
@@ -28,18 +32,26 @@ import Mydatabase.BlueTeachnology_Database;
 public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
 
     List<CartTable>  cartTableList;
-    TextView subtotal, totalPrice;
+    TextView subtotal, totalPrice,totalAmount_khmer;
 
     TextInputEditText discount_input;
+    TextInputEditText khmer_to_dollar;
 
-    Button submit;
+    Button submit,paynow;
 
-    public Cart_Adater(List<CartTable> cartTableList, TextView subtotal, TextView totalPrice, TextInputEditText discount_input,Button submit) {
+    Context context;
+
+
+    public Cart_Adater(List<CartTable> cartTableList, TextView subtotal, TextView totalPrice, TextInputEditText discount_input,Button submit,TextInputEditText khmer_to_dollar,TextView totalAmount_khmer,Button paynow, Context context) {
         this.cartTableList = cartTableList;
         this.subtotal = subtotal;
         this.totalPrice = totalPrice;
         this.discount_input = discount_input;
         this.submit = submit;
+        this.khmer_to_dollar = khmer_to_dollar;
+        this.totalAmount_khmer = totalAmount_khmer;
+        this.paynow = paynow ;
+        this.context = context;
     }
 
     @NonNull
@@ -56,6 +68,7 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
         holder.peng.setText(String.valueOf(cartTableList.get(position).getProductName_eng()));
         holder.qty.setText(String.valueOf(cartTableList.get(position).getProductQty()));
         holder.price.setText(String.valueOf(cartTableList.get(position).getProductCost()));
+
 
 
 
@@ -138,21 +151,33 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
 
                 }
 
-
+                double khmer_dollar = Double.parseDouble(khmer_to_dollar.getText().toString());
+                double grand_total = khmer_dollar * sum;
 
                 double discount =0;
                 if(discount_input.getText().toString().isEmpty()){
-                    totalPrice.setText("" + sum);
+                    totalPrice.setText("$ " + numberFormat(String.valueOf(sum)));
+
+                    totalAmount_khmer.setText("(Real) "+ numberFormat(String.valueOf(grand_total)));
+
                 }else{
                     discount = Double.parseDouble(discount_input.getText().toString());
                     double p = discount /100;
                     double discountAmount = sum - (sum * p);
                     Toast.makeText(submit.getContext(), "discountAmount = " + discountAmount, Toast.LENGTH_SHORT).show();
-                    totalPrice.setText("" + discountAmount);
+                    totalPrice.setText("$ " + numberFormat(String.valueOf(discountAmount)));
+
+                    grand_total = khmer_dollar * discountAmount;
+
+
+
+                    totalAmount_khmer.setText("(Real) "+ numberFormat(String.valueOf(grand_total)));
                 }
+
 
             }
         });
+
     }
 
     @Override
@@ -174,20 +199,9 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
             qty = itemView.findViewById(R.id.count_qty);
 
             price = itemView.findViewById(R.id.product_price);
-
-
-
             delete = itemView.findViewById(R.id.button_cart_delete);
             remove = itemView.findViewById(R.id.button_remove_qty);
             add = itemView.findViewById(R.id.button_add_qty);
-
-
-
-
-
-
-
-
         }
     }
 
@@ -202,6 +216,11 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
         }
         subtotal.setText("$" + sum);
 
-
     }
+
+    private static String numberFormat(String number){
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,##0.00");
+        return decimalFormat.format(Double.parseDouble(number));
+    }
+
 }

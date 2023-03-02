@@ -79,7 +79,7 @@ public class Product_Base_Adapter_gridview extends BaseAdapter {
             public void onClick(View view) {
                 CartTable cartTable=new CartTable();
 
-                cartTable.setProductQty(0);
+                cartTable.setProductQty(1);
                 cartTable.setProductCost(productTableList.get(i).getProduct_cost());
                 cartTable.setProduct_img(productTableList.get(i).getImage_product());
                 cartTable.setProductName_eng(productTableList.get(i).getProductName_eng());
