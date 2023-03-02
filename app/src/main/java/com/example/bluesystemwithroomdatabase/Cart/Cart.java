@@ -60,7 +60,7 @@ public class Cart extends AppCompatActivity {
 
 
 
-        Cart_Adater adater = new Cart_Adater(cartTableList,binding.showSubtotal,binding.totalAmount, binding.inputDiscount,binding.submit);
+        Cart_Adater adater = new Cart_Adater(cartTableList,binding.showSubtotal,binding.totalAmount, binding.inputDiscount,binding.discountAmount);
         binding.listCart.setLayoutManager(new LinearLayoutManager(this));
         binding.listCart.setAdapter(adater);
 

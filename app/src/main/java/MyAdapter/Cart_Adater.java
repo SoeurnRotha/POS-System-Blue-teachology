@@ -138,14 +138,19 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
 
                 }
 
-                double discount ;
-                discount = Double.parseDouble(discount_input.getText().toString());
-                double p = discount /100;
-                double discountAmount = sum - (sum * p);
-                Toast.makeText(submit.getContext(), "discountAmount = " + discountAmount, Toast.LENGTH_SHORT).show();
 
 
-                totalPrice.setText("" + discountAmount);
+                double discount =0;
+                if(discount_input.getText().toString().isEmpty()){
+                    totalPrice.setText("" + sum);
+                }else{
+                    discount = Double.parseDouble(discount_input.getText().toString());
+                    double p = discount /100;
+                    double discountAmount = sum - (sum * p);
+                    Toast.makeText(submit.getContext(), "discountAmount = " + discountAmount, Toast.LENGTH_SHORT).show();
+                    totalPrice.setText("" + discountAmount);
+                }
+
             }
         });
     }
@@ -195,7 +200,6 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
             sum += (cartTableList.get(i).getProductCost() * cartTableList.get(i).getProductQty());
 
         }
-
         subtotal.setText("$" + sum);
 
 

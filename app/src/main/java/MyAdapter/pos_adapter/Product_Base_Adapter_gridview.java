@@ -67,9 +67,7 @@ public class Product_Base_Adapter_gridview extends BaseAdapter {
         english.setText(String.valueOf(productTableList.get(i).getProductName_eng()));
         price.setText(String.valueOf(productTableList.get(i).getProduct_cost()));
         khmer.setText(String.valueOf(productTableList.get(i).getProductName_kh()));
-
         cart = view.findViewById(R.id.category_with_product_button_cart);
-
 
 
         Glide.with(context).load(productTableList.get(i).getImage_product()).into(product_img);
