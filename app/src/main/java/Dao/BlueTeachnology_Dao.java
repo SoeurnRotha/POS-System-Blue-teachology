@@ -249,6 +249,10 @@ public interface BlueTeachnology_Dao {
     void insertInvoice(Invoice invoice);
 
 
+    @Query("SELECT * FROM Invoice")
+    List<Invoice> getAllInvoice();
+
+
 
 
 

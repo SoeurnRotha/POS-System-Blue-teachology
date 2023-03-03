@@ -162,6 +162,14 @@
                 />
 
             <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                />
+            <TextView
                 android:id="@+id/invoice_subtotal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -189,6 +197,15 @@
                 />
 
             <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(%)"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                />
+
+            <TextView
                 android:id="@+id/invoice_discount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -213,6 +230,14 @@
                 android:padding="10dp"
                 />
             <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                />
+            <TextView
                 android:id="@+id/invoice_discount_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -223,6 +248,7 @@
 
                 />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -235,6 +261,15 @@
                 />
 
             <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="៛"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                />
+
+            <TextView
                 android:id="@+id/invoice_grand_total_real"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -244,6 +279,15 @@
                 android:padding="10dp"
                 />
         </LinearLayout>
+
+
+        <ImageView
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            android:id="@+id/invoice_qr_code"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            />
 
     </LinearLayout>
 
