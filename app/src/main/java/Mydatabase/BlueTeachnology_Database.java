@@ -13,6 +13,7 @@ import Dao.BlueTeachnology_Dao;
 import Model.CartTable;
 import Model.CategoryTable;
 import Model.Customer;
+import Model.Invoice;
 import Model.LocationTable;
 import Model.PaymentMethod;
 import Model.ProductTable;
@@ -30,7 +31,8 @@ import Relationship.ManyToMany.LocationWithProducts.LocationProductsCrossRef;
         CartTable.class,
         LocationTable.class,
         TestImage.class,
-        LocationProductsCrossRef.class
+        LocationProductsCrossRef.class,
+        Invoice.class
 
 }, version = 1)
 @TypeConverters({ImageHelper.class})

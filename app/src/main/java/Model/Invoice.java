@@ -11,108 +11,64 @@ import java.util.Date;
 public class Invoice {
 
     @PrimaryKey(autoGenerate = true)
-    String invoice_id;
-
-
-    @ColumnInfo
-    String customerId;
+    int invoiceId;
 
     @ColumnInfo
-    String productId;
+    String customerName;
 
     @ColumnInfo
-    int paymentId;
+    int userId;
 
     @ColumnInfo
     String product_name_english;
 
     @ColumnInfo
-    String product_name_kh;
+    String product_name_khmer;
+
+
 
     @ColumnInfo
-    double productPrice;
-
-    @ColumnInfo
-    int productQty;
-
-    @ColumnInfo
-    double total_amount;
-
-    //totalAmount = qty * price
-
-    @ColumnInfo
-    double invoice_total;
-
+    double amount;
 
     @ColumnInfo
     double discount;
 
     @ColumnInfo
+    String paymentType;
+
+
+    @ColumnInfo
+    double grand_total_dollar;
+
+    @ColumnInfo
+    double grand_total_khmer;
+
+
+    @ColumnInfo
     String invoice_date;
 
-
-    public Invoice(String customerId, String productId, int paymentId, String product_name_english, String product_name_kh, double productPrice, int productQty, double total_amount, double invoice_total, double discount, String invoice_date) {
-        this.customerId = customerId;
-        this.productId = productId;
-        this.paymentId = paymentId;
-        this.product_name_english = product_name_english;
-        this.product_name_kh = product_name_kh;
-        this.productPrice = productPrice;
-        this.productQty = productQty;
-        this.total_amount = total_amount;
-        this.invoice_total = invoice_total;
-        this.discount = discount;
-        this.invoice_date = invoice_date;
+    public int getInvoiceId() {
+        return invoiceId;
     }
 
-    @Override
-    public String toString() {
-        return "Invoice{" +
-                "invoice_id='" + invoice_id + '\'' +
-                ", customerId='" + customerId + '\'' +
-                ", productId='" + productId + '\'' +
-                ", paymentId=" + paymentId +
-                ", product_name_english='" + product_name_english + '\'' +
-                ", product_name_kh='" + product_name_kh + '\'' +
-                ", productPrice=" + productPrice +
-                ", productQty=" + productQty +
-                ", total_amount=" + total_amount +
-                ", invoice_total=" + invoice_total +
-                ", discount=" + discount +
-                ", invoice_date='" + invoice_date + '\'' +
-                '}';
+    public void setInvoiceId(int invoiceId) {
+        this.invoiceId = invoiceId;
     }
 
-    public String getInvoice_id() {
-        return invoice_id;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setInvoice_id(String invoice_id) {
-        this.invoice_id = invoice_id;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
-    public String getCustomerId() {
-        return customerId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
-
-    public String getProductId() {
-        return productId;
-    }
-
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
-
-    public int getPaymentId() {
-        return paymentId;
-    }
-
-    public void setPaymentId(int paymentId) {
-        this.paymentId = paymentId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getProduct_name_english() {
@@ -123,44 +79,20 @@ public class Invoice {
         this.product_name_english = product_name_english;
     }
 
-    public String getProduct_name_kh() {
-        return product_name_kh;
+    public String getProduct_name_khmer() {
+        return product_name_khmer;
     }
 
-    public void setProduct_name_kh(String product_name_kh) {
-        this.product_name_kh = product_name_kh;
+    public void setProduct_name_khmer(String product_name_khmer) {
+        this.product_name_khmer = product_name_khmer;
     }
 
-    public double getProductPrice() {
-        return productPrice;
+    public double getAmount() {
+        return amount;
     }
 
-    public void setProductPrice(double productPrice) {
-        this.productPrice = productPrice;
-    }
-
-    public int getProductQty() {
-        return productQty;
-    }
-
-    public void setProductQty(int productQty) {
-        this.productQty = productQty;
-    }
-
-    public double getTotal_amount() {
-        return total_amount;
-    }
-
-    public void setTotal_amount(double total_amount) {
-        this.total_amount = total_amount;
-    }
-
-    public double getInvoice_total() {
-        return invoice_total;
-    }
-
-    public void setInvoice_total(double invoice_total) {
-        this.invoice_total = invoice_total;
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 
     public double getDiscount() {
@@ -169,6 +101,30 @@ public class Invoice {
 
     public void setDiscount(double discount) {
         this.discount = discount;
+    }
+
+    public String getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    public double getGrand_total_dollar() {
+        return grand_total_dollar;
+    }
+
+    public void setGrand_total_dollar(double grand_total_dollar) {
+        this.grand_total_dollar = grand_total_dollar;
+    }
+
+    public double getGrand_total_khmer() {
+        return grand_total_khmer;
+    }
+
+    public void setGrand_total_khmer(double grand_total_khmer) {
+        this.grand_total_khmer = grand_total_khmer;
     }
 
     public String getInvoice_date() {

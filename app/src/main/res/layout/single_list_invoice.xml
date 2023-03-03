@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="10dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp"
+    android:layout_margin="10dp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            >
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/blue"
+                android:layout_margin="20dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Order number"
+                android:padding="10dp"
+                />
+            <TextView
+                android:id="@+id/invoice_id_order"
+                android:text="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date time"
+                android:padding="10dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/invoice_date_time"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text="1-11-11"
+                android:padding="10dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Customer name"
+                android:padding="10dp"
+                />
+
+
+            <TextView
+                android:id="@+id/invoice_customer_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Customer name"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:padding="10dp"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Payment method"
+                android:padding="10dp"
+                />
+
+            <TextView
+                android:id="@+id/invoice_payment_method"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Payment method"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cashier"
+                android:padding="10dp"
+                />
+
+            <TextView
+
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:id="@+id/invoice_user_cashier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cashier name"
+                android:padding="10dp"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SubTotal"
+                android:padding="10dp"
+                />
+
+            <TextView
+                android:id="@+id/invoice_subtotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SubTotal"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                />
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Discount"
+                android:padding="10dp"
+                />
+
+            <TextView
+                android:id="@+id/invoice_discount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Discount"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:padding="10dp"
+                />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Discount amount"
+                android:padding="10dp"
+                />
+            <TextView
+                android:id="@+id/invoice_discount_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Discount amount"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Grand tottal(Real)"
+                android:padding="10dp"
+                />
+
+            <TextView
+                android:id="@+id/invoice_grand_total_real"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Grand total(Real)"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:padding="10dp"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+</androidx.cardview.widget.CardView>

@@ -16,6 +16,7 @@ import java.util.List;
 import Model.CartTable;
 import Model.CategoryTable;
 import Model.Customer;
+import Model.Invoice;
 import Model.LocationTable;
 import Model.PaymentMethod;
 import Model.ProductTable;
@@ -236,6 +237,18 @@ public interface BlueTeachnology_Dao {
 
     @Query("DELETE FROM LocationTable WHERE location_Id =:lid")
     void deleteLocationByid(int lid);
+
+
+
+
+
+    //invoice table
+
+
+    @Insert
+    void insertInvoice(Invoice invoice);
+
+
 
 
 

@@ -22,6 +22,7 @@ import java.util.List;
 import Dao.BlueTeachnology_Dao;
 import Model.CartTable;
 import Model.Customer;
+import Model.Invoice;
 import Model.PaymentMethod;
 import MyAdapter.Cart_Adater;
 import MyAdapter.Customer_bastAdapter;
@@ -36,6 +37,8 @@ public class Cart extends AppCompatActivity {
 
     String paymentDes;
     String customerDes;
+
+    String customerName, PaymentType;
     BlueTeachnology_Dao blueTeachnology_dao;
 
     @Override
@@ -45,19 +48,9 @@ public class Cart extends AppCompatActivity {
         binding = ActivityCartBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        BlueTeachnology_Dao blueTeachnology_dao = BlueTeachnology_Database.getInstance(getApplicationContext()).blueTeachnology_dao();
+        blueTeachnology_dao = BlueTeachnology_Database.getInstance(getApplicationContext()).blueTeachnology_dao();
 
         List<CartTable> cartTableList = blueTeachnology_dao.getAllCart();
-        List<ProductWithCarts> productWithCarts = blueTeachnology_dao.getProductWithCarts();
-        List<Customer> customers = blueTeachnology_dao.getAllCustomer();
-        List<PaymentMethod> paymentMethodList = blueTeachnology_dao.getAllPayments();
-
-
-        Payment_method_bastAdapter payment_method_bastAdapter = new Payment_method_bastAdapter(getApplicationContext(), paymentMethodList);
-        Customer_bastAdapter adapterbast = new Customer_bastAdapter(getApplicationContext(), customers);
-
-        binding.selectCustomer.setAdapter(adapterbast);
-        binding.selectPaymentMethod.setAdapter(payment_method_bastAdapter);
 
 
         Cart_Adater adater = new Cart_Adater(
@@ -68,76 +61,13 @@ public class Cart extends AppCompatActivity {
                 binding.inputKhmerToDollar,
                 binding.totalAmountKhmer,
                 binding.cartPaynow,
-                getApplicationContext()
+                getApplicationContext(),
+                binding.selectCustomer,
+                binding.selectPaymentMethod
+
         );
         binding.listCart.setLayoutManager(new LinearLayoutManager(this));
         binding.listCart.setAdapter(adater);
-
-
-        binding.selectCustomer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                customerDes = customers.get(i).getCustomerName();
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-        binding.selectPaymentMethod.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-                paymentDes = paymentMethodList.get(i).getDecription();
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-
-
-
-        binding.cartPaynow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                builder.setTitle("Pay to invoice");
-                builder.setMessage("Do you want to delete your carts");
-                builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(builder.getContext(), "You pay successful", Toast.LENGTH_SHORT).show();
-
-
-                        //delete all products
-                        deleteRecordCart(cartTableList);
-                        recreate();
-
-                    }
-                });
-
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(builder.getContext(), "Cancel", Toast.LENGTH_SHORT).show();
-                        dialogInterface.cancel();
-                    }
-                });
-
-                AlertDialog alertDialog = builder.create();
-
-                alertDialog.show();
-                deleteRecordCart(cartTableList);
-            }
-        });
-
 
     }
 
@@ -173,6 +103,8 @@ public class Cart extends AppCompatActivity {
 
 
     }
+
+
 }
 
 

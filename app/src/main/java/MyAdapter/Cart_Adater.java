@@ -1,13 +1,16 @@
 package MyAdapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,18 +18,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.airbnb.lottie.L;
-import com.example.bluesystemwithroomdatabase.Cart.Cart;
 import com.example.bluesystemwithroomdatabase.R;
 import com.google.android.material.textfield.TextInputEditText;
 
-import org.w3c.dom.Text;
-
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import Dao.BlueTeachnology_Dao;
 import Model.CartTable;
+import Model.Customer;
+import Model.Invoice;
+import Model.PaymentMethod;
 import Mydatabase.BlueTeachnology_Database;
 
 public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
@@ -41,8 +45,14 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
 
     Context context;
 
+    String customerName,PaymentType;
+    Spinner selectCustomerName,selectPaymenyType;
 
-    public Cart_Adater(List<CartTable> cartTableList, TextView subtotal, TextView totalPrice, TextInputEditText discount_input,Button submit,TextInputEditText khmer_to_dollar,TextView totalAmount_khmer,Button paynow, Context context) {
+    List<PaymentMethod> paymentMethodList;
+    List<Customer> customerList;
+
+
+    public Cart_Adater(List<CartTable> cartTableList, TextView subtotal, TextView totalPrice, TextInputEditText discount_input,Button submit,TextInputEditText khmer_to_dollar,TextView totalAmount_khmer,Button paynow, Context context, Spinner selectCustomerName, Spinner selectPaymenyType) {
         this.cartTableList = cartTableList;
         this.subtotal = subtotal;
         this.totalPrice = totalPrice;
@@ -52,8 +62,16 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
         this.totalAmount_khmer = totalAmount_khmer;
         this.paynow = paynow ;
         this.context = context;
+
+        this.selectCustomerName = selectCustomerName;
+        this.selectPaymenyType = selectPaymenyType;
+
     }
 
+
+    double khmer_dollar,discount , grand_total, discountAmount;
+    int sum;
+    BlueTeachnology_Dao blueTeachnology_dao;
     @NonNull
     @Override
     public ViewCart onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -64,10 +82,11 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewCart holder, int position) {
+    public void onBindViewHolder(@NonNull ViewCart holder, @SuppressLint("RecyclerView") int position) {
         holder.peng.setText(String.valueOf(cartTableList.get(position).getProductName_eng()));
         holder.qty.setText(String.valueOf(cartTableList.get(position).getProductQty()));
         holder.price.setText(String.valueOf(cartTableList.get(position).getProductCost()));
+        holder.pkh.setText(String.valueOf(cartTableList.get(position).getProductName_kh()));
 
 
 
@@ -140,21 +159,63 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
         });
 
 
+        blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
+        
+        customerList = blueTeachnology_dao.getAllCustomer();
+        paymentMethodList = blueTeachnology_dao.getAllPayments();
+
+
+        Payment_method_bastAdapter payment_method_bastAdapter = new Payment_method_bastAdapter(context,paymentMethodList);
+        Customer_bastAdapter customer_bastAdapter = new Customer_bastAdapter(context, customerList);
+
+
+        selectCustomerName.setAdapter(customer_bastAdapter);
+        selectPaymenyType.setAdapter(payment_method_bastAdapter);
+
+
+        
+        selectCustomerName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                customerName = customerList.get(i).getCustomerName();
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        selectPaymenyType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                PaymentType = paymentMethodList.get(i).getDecription();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                int sum =0;
+                sum =0;
                 for(int i=0;  i< cartTableList.size(); i++){
 
                     sum += (cartTableList.get(i).getProductCost() * cartTableList.get(i).getProductQty());
 
                 }
 
-                double khmer_dollar = Double.parseDouble(khmer_to_dollar.getText().toString());
-                double grand_total = khmer_dollar * sum;
+                khmer_dollar = Double.parseDouble(khmer_to_dollar.getText().toString());
+                grand_total = khmer_dollar * sum;
 
-                double discount =0;
+                discount =0;
                 if(discount_input.getText().toString().isEmpty()){
                     totalPrice.setText("$ " + numberFormat(String.valueOf(sum)));
 
@@ -163,7 +224,7 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
                 }else{
                     discount = Double.parseDouble(discount_input.getText().toString());
                     double p = discount /100;
-                    double discountAmount = sum - (sum * p);
+                    discountAmount = sum - (sum * p);
                     Toast.makeText(submit.getContext(), "discountAmount = " + discountAmount, Toast.LENGTH_SHORT).show();
                     totalPrice.setText("$ " + numberFormat(String.valueOf(discountAmount)));
 
@@ -173,6 +234,66 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
 
                     totalAmount_khmer.setText("(Real) "+ numberFormat(String.valueOf(grand_total)));
                 }
+
+
+            }
+        });
+
+        paynow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setTitle("Pay to invoice");
+                builder.setMessage("Do you want to delete your carts");
+
+                builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(builder.getContext(), "You pay successful", Toast.LENGTH_SHORT).show();
+
+
+                        Calendar cal = Calendar.getInstance();
+                        cal.add(Calendar.DATE, 1);
+                        System.out.println(cal.getTime());
+
+
+                        Invoice invoice = new Invoice();
+                        invoice.setInvoice_date(String.valueOf(cal.getTime()));
+
+                        invoice.setCustomerName(customerName);
+                        invoice.setPaymentType(PaymentType);
+                        invoice.setAmount(discountAmount );
+                        invoice.setDiscount(discount);
+                        invoice.setProduct_name_english(cartTableList.get(position).getProductName_eng());
+                        invoice.setProduct_name_khmer(holder.pkh.getText().toString());
+                        invoice.setUserId(1);
+                        invoice.setGrand_total_dollar(sum);
+                        invoice.setGrand_total_khmer(grand_total);
+
+                        BlueTeachnology_Dao blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
+
+
+                        blueTeachnology_dao.insertInvoice(invoice);
+                        //delete all products
+                        deleteRecordCart(cartTableList);
+
+
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(builder.getContext(), "Cancel", Toast.LENGTH_SHORT).show();
+                        dialogInterface.cancel();
+                    }
+                });
+
+                AlertDialog alertDialog = builder.create();
+
+                alertDialog.show();
 
 
             }
@@ -222,5 +343,38 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
         DecimalFormat decimalFormat = new DecimalFormat("###,###,##0.00");
         return decimalFormat.format(Double.parseDouble(number));
     }
+
+    public void deleteRecordCart(List<CartTable> cartTableList){
+        class DeleteAllRecordTask extends AsyncTask<Void, Void, Void> {
+
+            @Override
+            protected Void doInBackground(Void... voids) {
+                BlueTeachnology_Dao blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
+
+
+                blueTeachnology_dao.deleteAllCart(cartTableList);
+
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void unused) {
+                super.onPostExecute(unused);
+                Toast.makeText(context, "Delete all Record", Toast.LENGTH_SHORT).show();
+
+                if(cartTableList.size() >0){
+                    cartTableList.clear();
+
+                }
+            }
+
+
+        }
+        DeleteAllRecordTask deleteAllRecordTask = new DeleteAllRecordTask();
+        deleteAllRecordTask.execute();
+
+
+    }
+
 
 }
