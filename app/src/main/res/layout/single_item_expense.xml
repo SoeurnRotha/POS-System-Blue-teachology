@@ -10,6 +10,7 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -30,6 +31,9 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:text="Expense description"
+                android:textColor="@color/black"
+                android:textSize="7pt"
+                android:textStyle="bold"
                 android:layout_gravity="center"
                 android:padding="10dp"
                 />

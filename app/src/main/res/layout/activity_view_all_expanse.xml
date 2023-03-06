@@ -51,9 +51,10 @@
                     android:padding="10dp"
                     />
                 <TextView
+                    android:id="@+id/amount_grand_dollar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1000$"
+                    android:text=""
                     android:textStyle="bold"
                     android:textSize="8pt"
                     android:textColor="@color/black"
@@ -78,9 +79,10 @@
                     android:padding="10dp"
                     />
                 <TextView
+                    android:id="@+id/amount_grand_khmer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1000$"
+                    android:text=""
                     android:textStyle="bold"
                     android:textSize="8pt"
                     android:textColor="@color/black"
@@ -139,7 +141,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="999"
-                                android:textColor="@color/black"
+                                android:textColor="@color/green"
                                 android:textSize="8pt"
                                 android:padding="10dp"
                                 />
@@ -178,7 +180,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="+"
+                                android:text="-"
                                 android:textColor="@color/black"
                                 android:textSize="8pt"
                                 android:padding="10dp"
@@ -188,7 +190,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="999"
-                                android:textColor="@color/black"
+                                android:textColor="@color/red"
                                 android:textSize="8pt"
                                 android:padding="10dp"
                                 />

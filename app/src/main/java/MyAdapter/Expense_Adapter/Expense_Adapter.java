@@ -35,6 +35,8 @@ public class Expense_Adapter extends RecyclerView.Adapter<Expense_Adapter.ViewEx
 
     @Override
     public void onBindViewHolder(@NonNull ViewExpense holder, int position) {
+
+
         holder.descriton.setText(String.valueOf(expanseTableList.get(position).getExpanse_description()));
         holder.date.setText(String.valueOf(expanseTableList.get(position).getCreate_date()));
         holder.money.setText(String.valueOf(expanseTableList.get(position).getExpense_mony()));

@@ -252,32 +252,58 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Toast.makeText(builder.getContext(), "You pay successful", Toast.LENGTH_SHORT).show();
+                        if(discountAmount != 0){
+                            Calendar cal = Calendar.getInstance();
+                            cal.add(Calendar.DATE, 1);
+                            System.out.println(cal.getTime());
 
 
-                        Calendar cal = Calendar.getInstance();
-                        cal.add(Calendar.DATE, 1);
-                        System.out.println(cal.getTime());
+                            Invoice invoice = new Invoice();
+                            invoice.setInvoice_date(String.valueOf(cal.getTime()));
+
+                            invoice.setCustomerName(customerName);
+                            invoice.setPaymentType(PaymentType);
+                            invoice.setAmount(discountAmount );
+                            invoice.setDiscount(discount);
+                            invoice.setProduct_name_english(cartTableList.get(position).getProductName_eng());
+                            invoice.setProduct_name_khmer(holder.pkh.getText().toString());
+                            invoice.setUserId(1);
+                            invoice.setGrand_total_dollar(discountAmount);
+                            invoice.setGrand_total_khmer(grand_total);
+                            BlueTeachnology_Dao blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
 
 
-                        Invoice invoice = new Invoice();
-                        invoice.setInvoice_date(String.valueOf(cal.getTime()));
+                            blueTeachnology_dao.insertInvoice(invoice);
+                            //delete all products
+                            deleteRecordCart(cartTableList);
 
-                        invoice.setCustomerName(customerName);
-                        invoice.setPaymentType(PaymentType);
-                        invoice.setAmount(discountAmount );
-                        invoice.setDiscount(discount);
-                        invoice.setProduct_name_english(cartTableList.get(position).getProductName_eng());
-                        invoice.setProduct_name_khmer(holder.pkh.getText().toString());
-                        invoice.setUserId(1);
-                        invoice.setGrand_total_dollar(sum);
-                        invoice.setGrand_total_khmer(grand_total);
-
-                        BlueTeachnology_Dao blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
+                        }else{
+                            Calendar cal = Calendar.getInstance();
+                            cal.add(Calendar.DATE, 1);
+                            System.out.println(cal.getTime());
 
 
-                        blueTeachnology_dao.insertInvoice(invoice);
-                        //delete all products
-                        deleteRecordCart(cartTableList);
+                            Invoice invoice = new Invoice();
+                            invoice.setInvoice_date(String.valueOf(cal.getTime()));
+
+                            invoice.setCustomerName(customerName);
+                            invoice.setPaymentType(PaymentType);
+                            invoice.setAmount(discountAmount );
+                            invoice.setDiscount(discount);
+                            invoice.setProduct_name_english(cartTableList.get(position).getProductName_eng());
+                            invoice.setProduct_name_khmer(holder.pkh.getText().toString());
+                            invoice.setUserId(1);
+                            invoice.setGrand_total_dollar(sum);
+                            invoice.setGrand_total_khmer(grand_total);
+                            BlueTeachnology_Dao blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
+
+
+                            blueTeachnology_dao.insertInvoice(invoice);
+                            //delete all products
+                            deleteRecordCart(cartTableList);
+
+                        }
+
 
 
                     }
