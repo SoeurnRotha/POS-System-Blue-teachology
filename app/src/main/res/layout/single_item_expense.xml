@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp"
+    app:cardMaxElevation="10dp"
+    android:elevation="10dp"
+    android:layout_margin="10dp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_gravity="center"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/expenses"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/expense_description_list"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Expense description"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                />
+            <TextView
+                android:id="@+id/expense_date"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Expense date"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:textColor="@color/green"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/expense_money_list"
+            android:textColor="@color/red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Expense description"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

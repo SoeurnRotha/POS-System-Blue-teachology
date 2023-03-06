@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.bluesystemwithroomdatabase.Cart.Cart;
 import com.example.bluesystemwithroomdatabase.Customer.ViewCustomer;
+import com.example.bluesystemwithroomdatabase.Expanse.ViewAllExpanse;
 import com.example.bluesystemwithroomdatabase.Inventory.Inventory;
 import com.example.bluesystemwithroomdatabase.Invoice.InvoiceActivity;
 import com.example.bluesystemwithroomdatabase.PaymentMethod.ViewPaymentMethod;
@@ -183,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         binding.cardExpanse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, TestImagePage.class);
+                Intent intent = new Intent(MainActivity.this, ViewAllExpanse.class);
                 startActivity(intent);
             }
         });

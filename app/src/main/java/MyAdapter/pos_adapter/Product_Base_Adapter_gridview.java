@@ -89,10 +89,21 @@ public class Product_Base_Adapter_gridview extends BaseAdapter implements Filter
                 cartTable.setProductName_kh(productTableList.get(i).getProductName_kh());
 
 
+
                 BlueTeachnology_Dao blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
-                blueTeachnology_dao.insertCart(cartTable);
-                Toast.makeText(context, "" + productTableList.get(i).getProductName_eng(), Toast.LENGTH_SHORT).show();
-            }
+
+
+                //if name == name  false
+                //if name # name false
+                if (blueTeachnology_dao.cartExists(cartTable.getProductName_eng(), cartTable.getProductName_kh())){
+                    Toast.makeText(context, "You Add to cart already", Toast.LENGTH_SHORT).show();
+                }else {
+                    blueTeachnology_dao.insertCart(cartTable);
+                    Toast.makeText(context, "" + productTableList.get(i).getProductName_eng(), Toast.LENGTH_SHORT).show();
+
+                }
+
+               }
         });
 
 

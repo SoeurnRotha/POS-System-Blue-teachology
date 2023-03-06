@@ -16,6 +16,7 @@ import java.util.List;
 import Model.CartTable;
 import Model.CategoryTable;
 import Model.Customer;
+import Model.ExpanseTable;
 import Model.Invoice;
 import Model.LocationTable;
 import Model.PaymentMethod;
@@ -270,6 +271,17 @@ public interface BlueTeachnology_Dao {
 
 
 
+// expense
+
+    @Insert
+    void insertExpense(ExpanseTable expanseTable);
+
+    @Update
+    void updateExpense(ExpanseTable expanseTable);
+
+
+    @Query("SELECT * FROM ExpanseTable")
+    List<ExpanseTable> getAllExpense();
 
 
 
