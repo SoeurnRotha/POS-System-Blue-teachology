@@ -252,7 +252,21 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Toast.makeText(builder.getContext(), "You pay successful", Toast.LENGTH_SHORT).show();
+
+                        ArrayList<String> engName = new ArrayList<>();
+
+                        for(int k =0 ; k<cartTableList.size() ; k++){
+                            engName.add(cartTableList.get(k).getProductName_eng());
+                        }
+
+
                         if(discountAmount != 0){
+
+                            for(int j=0;j <engName.size() ; j++){
+                                Toast.makeText(context, "eng " + engName.get(j), Toast.LENGTH_SHORT).show();
+                            }
+
+
                             Calendar cal = Calendar.getInstance();
                             cal.add(Calendar.DATE, 1);
                             System.out.println(cal.getTime());
@@ -290,6 +304,8 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
                             invoice.setPaymentType(PaymentType);
                             invoice.setAmount(discountAmount );
                             invoice.setDiscount(discount);
+
+
                             invoice.setProduct_name_english(cartTableList.get(position).getProductName_eng());
                             invoice.setProduct_name_khmer(holder.pkh.getText().toString());
                             invoice.setUserId(1);
