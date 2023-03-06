@@ -1,13 +1,21 @@
 package com.example.bluesystemwithroomdatabase.Pos;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import com.example.bluesystemwithroomdatabase.databinding.ActivityPosBinding;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import java.util.List;
 
@@ -30,6 +38,7 @@ public class Pos extends AppCompatActivity {
 
     List<CategoryWithProduct> categoryWithProducts;
     List<ProductTable> productTableList;
+    Product_Base_Adapter_gridview product_base_adapter_gridview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +59,8 @@ public class Pos extends AppCompatActivity {
         //show data from products
 
         productTableList = blueTeachnology_dao.getAllProducts();
-        Product_Base_Adapter_gridview adapter_gridview = new Product_Base_Adapter_gridview(productTableList, getApplicationContext());
-        binding.gridviewItemCategoryWithProductManyToMany.setAdapter(adapter_gridview);
+        product_base_adapter_gridview = new Product_Base_Adapter_gridview(productTableList, getApplicationContext());
+        binding.gridviewItemCategoryWithProductManyToMany.setAdapter(product_base_adapter_gridview);
 
 
 
@@ -63,5 +72,56 @@ public class Pos extends AppCompatActivity {
 
             }
         });
+
+        binding.icon.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                scanCode();
+                Toast.makeText(Pos.this, "Hello code", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        binding.searchProducts.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                product_base_adapter_gridview.getFilter().filter(charSequence.toString());
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
+
+    public void scanCode(){
+
+        IntentIntegrator intentIntegrator = new IntentIntegrator(this);
+        intentIntegrator.setBeepEnabled(true);
+        intentIntegrator.setPrompt("Scan code");
+        intentIntegrator.initiateScan();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode,resultCode, data);
+        if(intentResult != null){
+            if(intentResult.getContents() == null){
+                Toast.makeText(this, "No code", Toast.LENGTH_SHORT).show();
+            }else{
+                binding.searchProducts.setText(intentResult.getContents());
+
+            }
+        }
+    }
+
+
 }

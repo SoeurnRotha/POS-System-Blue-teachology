@@ -25,25 +25,35 @@
         android:padding="10dp"
         android:src="@drawable/cart" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/outlinedTextField"
-        android:layout_marginTop="20dp"
+    <LinearLayout
+        android:id="@+id/box_search"
         android:layout_below="@id/view_pos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:hint="Search here"
-        app:endIconMode="clear_text"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/search_products"
+        android:orientation="vertical"
+        >
+        <com.google.android.material.textfield.TextInputLayout
+            app:endIconDrawable="@drawable/baseline_qr_code_2_24"
+            app:endIconMode="custom"
+            android:id="@+id/icon"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/view_pos"
             android:layout_width="match_parent"
-            android:layout_margin="20dp"
             android:layout_height="wrap_content"
-            />
+            android:hint="Search here"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/search_products"
 
-    </com.google.android.material.textfield.TextInputLayout>
+                android:layout_width="match_parent"
+                android:layout_margin="20dp"
+                android:layout_height="wrap_content"
+                />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -53,7 +63,7 @@
         android:scrollbars="horizontal"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_below="@id/outlinedTextField"
+        android:layout_below="@id/box_search"
         android:id="@+id/list_category_pos"
         />
 

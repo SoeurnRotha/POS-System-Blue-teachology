@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,7 +14,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.bluesystemwithroomdatabase.R;
+import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import Dao.BlueTeachnology_Dao;
@@ -20,11 +24,10 @@ import Model.CartTable;
 import Model.ProductTable;
 import Mydatabase.BlueTeachnology_Database;
 
-public class Product_Base_Adapter_gridview extends BaseAdapter {
+public class Product_Base_Adapter_gridview extends BaseAdapter implements Filterable {
 
     List<ProductTable> productTableList;
     Context context;
-
 
     public Product_Base_Adapter_gridview(List<ProductTable> productTableList, Context context) {
         this.productTableList = productTableList;
@@ -91,6 +94,46 @@ public class Product_Base_Adapter_gridview extends BaseAdapter {
                 Toast.makeText(context, "" + productTableList.get(i).getProductName_eng(), Toast.LENGTH_SHORT).show();
             }
         });
+
+
+
+
+
+
         return view;
+    }
+
+    @Override
+    public Filter getFilter() {
+        Filter filter = new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                FilterResults filterResults = new FilterResults();
+                if(charSequence == null || charSequence.length() ==0){
+                    filterResults.values = productTableList;
+                    filterResults.count = productTableList.size();
+                }else{
+                    String searchStr = charSequence.toString().toLowerCase();
+                    List<ProductTable> productTables = new ArrayList<>();
+                    for(ProductTable productTable: productTableList){
+                        if(productTable.getProductName_eng().toLowerCase().contains(searchStr) || productTable.getProductName_kh().toLowerCase().contains(searchStr)
+                        || productTable.getProduct_barCode().toLowerCase().contains(searchStr)){
+                            productTables.add(productTable);
+                        }
+                    }
+                    filterResults.values = productTables;
+                    filterResults.count = productTables.size();
+
+                }
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                productTableList = (List<ProductTable>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+        return filter;
     }
 }

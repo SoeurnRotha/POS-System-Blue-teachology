@@ -124,6 +124,14 @@ public interface BlueTeachnology_Dao {
 
 
 
+    //searach
+    @Query("SELECT * FROM ProductTable WHERE productName_eng LIKE:searchQuery OR productName_kh LIKE:searchQuery OR product_barCode LIKE:searchQuery")
+    List<ProductTable> searchProducts(String searchQuery);
+
+
+
+
+
 
 
 
@@ -193,6 +201,9 @@ public interface BlueTeachnology_Dao {
 
     //cart
 
+    @Query("SELECT EXISTS (SELECT * FROM CartTable WHERE productName_eng =:productName_eng OR productName_kh=:productName_kh )")
+    boolean cartExists(String productName_eng , String productName_kh);
+
     @Query("SELECT * FROM CartTable")
     List<CartTable> getAllCart();
 
@@ -251,6 +262,9 @@ public interface BlueTeachnology_Dao {
 
     @Query("SELECT * FROM Invoice")
     List<Invoice> getAllInvoice();
+
+    @Query("DELETE FROM Invoice WHERE invoiceId=:invoiceId")
+    void deleteInvoiceByid(int invoiceId);
 
 
 

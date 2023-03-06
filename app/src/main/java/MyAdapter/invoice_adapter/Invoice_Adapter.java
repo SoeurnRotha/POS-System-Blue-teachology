@@ -1,15 +1,19 @@
 package MyAdapter.invoice_adapter;
 
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bluesystemwithroomdatabase.R;
@@ -21,7 +25,9 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 import java.text.DecimalFormat;
 import java.util.List;
 
+import Dao.BlueTeachnology_Dao;
 import Model.Invoice;
+import Mydatabase.BlueTeachnology_Database;
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
 
@@ -66,6 +72,48 @@ public class Invoice_Adapter extends RecyclerView.Adapter<Invoice_Adapter.ViewIn
         holder.cashier.setText(String.valueOf(invoiceList.get(position).getUserId()));
 
 
+        holder.invoice_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setTitle("DELETE");
+                builder.setMessage("Do you want to Delete invoice");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(builder.getContext(), "You delete successful", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(builder.getContext(), "Yes", Toast.LENGTH_SHORT).show();
+
+
+                        //delete
+
+
+                        BlueTeachnology_Dao blueTeachnology_dao =  BlueTeachnology_Database.getInstance(view.getContext()).blueTeachnology_dao();
+
+                        blueTeachnology_dao.deleteInvoiceByid(invoiceList.get(position).getInvoiceId());
+
+                        invoiceList.remove(position);
+
+                        notifyDataSetChanged();
+
+                    }
+                });
+
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(builder.getContext(), "No", Toast.LENGTH_SHORT).show();
+                        dialogInterface.cancel();
+                    }
+                });
+
+                AlertDialog alertDialog = builder.create();
+
+                alertDialog.show();
+            }
+        });
+
+
         // Initializing the QR Encoder with your value to be encoded, type you required and Dimension
 
         String textQrCode =
@@ -94,6 +142,7 @@ public class Invoice_Adapter extends RecyclerView.Adapter<Invoice_Adapter.ViewIn
     public class ViewInvoice extends RecyclerView.ViewHolder{
         TextView invoice_id, date,customerName,paymentType,cashier,subTotal,discount,discountAmount,grand_total_dollar,grand_total_khmer;
         ImageView image_qr_code;
+        ImageButton invoice_delete;
         public ViewInvoice(@NonNull View itemView) {
             super(itemView);
 
@@ -110,6 +159,8 @@ public class Invoice_Adapter extends RecyclerView.Adapter<Invoice_Adapter.ViewIn
 
 
             image_qr_code = itemView.findViewById(R.id.invoice_qr_code);
+
+            invoice_delete= itemView.findViewById(R.id.invoice_delete);
 
         }
     }
