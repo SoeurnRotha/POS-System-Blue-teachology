@@ -251,20 +251,19 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
                 builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(builder.getContext(), "You pay successful", Toast.LENGTH_SHORT).show();
 
                         ArrayList<String> engName = new ArrayList<>();
+                        ArrayList<String> khName = new ArrayList<>();
 
                         for(int k =0 ; k<cartTableList.size() ; k++){
                             engName.add(cartTableList.get(k).getProductName_eng());
+                            khName.add(cartTableList.get(k).getProductName_kh());
                         }
 
 
                         if(discountAmount != 0){
 
-                            for(int j=0;j <engName.size() ; j++){
-                                Toast.makeText(context, "eng " + engName.get(j), Toast.LENGTH_SHORT).show();
-                            }
+
 
 
                             Calendar cal = Calendar.getInstance();
@@ -279,8 +278,9 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
                             invoice.setPaymentType(PaymentType);
                             invoice.setAmount(discountAmount );
                             invoice.setDiscount(discount);
-                            invoice.setProduct_name_english(cartTableList.get(position).getProductName_eng());
-                            invoice.setProduct_name_khmer(holder.pkh.getText().toString());
+
+                            invoice.setProduct_name_english(String.valueOf(engName));
+                            invoice.setProduct_name_khmer(String.valueOf(khName));
                             invoice.setUserId(1);
                             invoice.setGrand_total_dollar(discountAmount);
                             invoice.setGrand_total_khmer(grand_total);
@@ -304,10 +304,11 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
                             invoice.setPaymentType(PaymentType);
                             invoice.setAmount(discountAmount );
                             invoice.setDiscount(discount);
+                            invoice.setProduct_name_english(String.valueOf(engName));
+                            invoice.setProduct_name_khmer(String.valueOf(khName));
 
 
-                            invoice.setProduct_name_english(cartTableList.get(position).getProductName_eng());
-                            invoice.setProduct_name_khmer(holder.pkh.getText().toString());
+
                             invoice.setUserId(1);
                             invoice.setGrand_total_dollar(sum);
                             invoice.setGrand_total_khmer(grand_total);
@@ -402,7 +403,7 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
             @Override
             protected void onPostExecute(Void unused) {
                 super.onPostExecute(unused);
-                Toast.makeText(context, "Delete all Record", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Delete all Record", Toast.LENGTH_SHORT).show();
 
                 if(cartTableList.size() >0){
                     cartTableList.clear();
