@@ -13,6 +13,7 @@ import Dao.BlueTeachnology_Dao;
 import Model.CartTable;
 import Model.CategoryTable;
 import Model.Customer;
+import Model.DataConverts;
 import Model.ExpanseTable;
 import Model.Invoice;
 import Model.LocationTable;
@@ -37,7 +38,7 @@ import Relationship.ManyToMany.LocationWithProducts.LocationProductsCrossRef;
         ExpanseTable.class
 
 }, version = 1)
-@TypeConverters({ImageHelper.class})
+@TypeConverters({ImageHelper.class, DataConverts.class})
 public abstract class BlueTeachnology_Database extends RoomDatabase {
 
     public abstract BlueTeachnology_Dao blueTeachnology_dao();

@@ -281,7 +281,6 @@
                 android:padding="10dp"
                 />
         </LinearLayout>
-
         <ImageButton
             android:id="@+id/invoice_delete"
             android:padding="10dp"

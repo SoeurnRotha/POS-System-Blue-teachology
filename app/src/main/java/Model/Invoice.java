@@ -4,7 +4,9 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -19,10 +21,10 @@ public class Invoice {
     @ColumnInfo
     int userId;
 
-    @ColumnInfo
+    @ColumnInfo (name ="product_eng_list" )
     String product_name_english;
 
-    @ColumnInfo
+    @ColumnInfo (name ="product_kh_list" )
     String product_name_khmer;
 
 
@@ -71,21 +73,8 @@ public class Invoice {
         this.userId = userId;
     }
 
-    public String getProduct_name_english() {
-        return product_name_english;
-    }
 
-    public void setProduct_name_english(String product_name_english) {
-        this.product_name_english = product_name_english;
-    }
 
-    public String getProduct_name_khmer() {
-        return product_name_khmer;
-    }
-
-    public void setProduct_name_khmer(String product_name_khmer) {
-        this.product_name_khmer = product_name_khmer;
-    }
 
     public double getAmount() {
         return amount;
@@ -125,6 +114,22 @@ public class Invoice {
 
     public void setGrand_total_khmer(double grand_total_khmer) {
         this.grand_total_khmer = grand_total_khmer;
+    }
+
+    public String getProduct_name_english() {
+        return product_name_english;
+    }
+
+    public void setProduct_name_english(String product_name_english) {
+        this.product_name_english = product_name_english;
+    }
+
+    public String getProduct_name_khmer() {
+        return product_name_khmer;
+    }
+
+    public void setProduct_name_khmer(String product_name_khmer) {
+        this.product_name_khmer = product_name_khmer;
     }
 
     public String getInvoice_date() {
