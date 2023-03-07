@@ -4,8 +4,10 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity
-public class UserTable {
+public class UserTable implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
 
@@ -24,6 +26,9 @@ public class UserTable {
 
     @ColumnInfo
     String password;
+
+    @ColumnInfo
+    String userImage;
 
 
     @ColumnInfo
@@ -63,47 +68,6 @@ public class UserTable {
     @ColumnInfo
     boolean allow;
 
-
-    public UserTable(String frist_name, String last_name, String username, String password, String gender, String brith_of_date, String date_create_user, boolean admin, boolean manager, boolean cashier, boolean insert, boolean update, boolean delete, boolean view, boolean allow) {
-        this.frist_name = frist_name;
-        this.last_name = last_name;
-        this.username = username;
-        this.password = password;
-        this.gender = gender;
-        this.brith_of_date = brith_of_date;
-        this.date_create_user = date_create_user;
-        this.admin = admin;
-        this.manager = manager;
-        this.cashier = cashier;
-        this.insert = insert;
-        this.update = update;
-        this.delete = delete;
-        this.view = view;
-        this.allow = allow;
-    }
-
-    @Override
-    public String toString() {
-        return "UserTable{" +
-                "userId=" + userId +
-                ", frist_name='" + frist_name + '\'' +
-                ", last_name='" + last_name + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", gender='" + gender + '\'' +
-                ", brith_of_date='" + brith_of_date + '\'' +
-                ", date_create_user='" + date_create_user + '\'' +
-                ", admin=" + admin +
-                ", manager=" + manager +
-                ", cashier=" + cashier +
-                ", insert=" + insert +
-                ", update=" + update +
-                ", delete=" + delete +
-                ", view=" + view +
-                ", allow=" + allow +
-                '}';
-    }
-
     public int getUserId() {
         return userId;
     }
@@ -142,6 +106,14 @@ public class UserTable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(String userImage) {
+        this.userImage = userImage;
     }
 
     public String getGender() {

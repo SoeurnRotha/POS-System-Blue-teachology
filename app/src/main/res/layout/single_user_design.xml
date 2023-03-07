@@ -12,41 +12,209 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/user_id"
-            android:padding="20dp"
-            android:textStyle="bold"
-            android:textSize="8pt"
-            android:fontFamily="@font/fonttow"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:civ_border_color="@color/black"
+            app:civ_border_width="1dp"
+            android:src="@drawable/add_image"
+            android:id="@+id/show_image_user"
             />
-        <TextView
-            android:textStyle="bold"
-            android:textSize="10pt"
-            android:fontFamily="@font/fonttow"
-            android:id="@+id/user_name"
-            android:padding="20dp"
-            android:layout_width="120dp"
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Frist name : "
+                android:textSize="7pt"
+                />
+            <TextView
+                android:padding="10dp"
+                android:id="@+id/frist_name_user"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello"
+                android:textSize="7pt"
             />
-        <TextView
-            android:textStyle="bold"
-            android:textSize="10pt"
-            android:fontFamily="@font/fonttow"
-            android:id="@+id/user_password"
-            android:padding="20dp"
 
+        </LinearLayout>
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Last name : "
+                android:textSize="7pt"
+                />
+            <TextView
+                android:padding="10dp"
+                android:id="@+id/last_name_user"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello"
+                android:textSize="7pt"
+                />
 
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User name : "
+                android:textSize="7pt"
+                />
+            <TextView
+                android:padding="10dp"
+                android:id="@+id/user_name_user"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello"
+                android:textSize="7pt"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password : "
+                android:textSize="7pt"
+                />
+            <TextView
+                android:padding="10dp"
+                android:id="@+id/password_user"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello"
+                android:textSize="7pt"
+                />
+
+        </LinearLayout>
 
 
         <LinearLayout
-            android:orientation="vertical"
+            android:padding="10dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gender : "
+                android:textSize="7pt"
+                />
+            <TextView
+                android:padding="10dp"
+                android:id="@+id/gender_user"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello"
+                android:textSize="7pt"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="10dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Birth of date : "
+                android:textSize="7pt"
+                />
+            <TextView
+                android:padding="10dp"
+                android:id="@+id/bod_user"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello"
+                android:textSize="7pt"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="10dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User roles : "
+                android:textSize="7pt"
+                />
+            <TextView
+                android:padding="10dp"
+                android:id="@+id/user_roles"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello"
+                android:textSize="7pt"
+                />
+
+        </LinearLayout>
+
+
+
+
+
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
