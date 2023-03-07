@@ -53,6 +53,7 @@ public class Update_User extends AppCompatActivity {
     boolean isDelete = false;
     boolean isView   =false;
     boolean isAllow  = false;
+    boolean is_upload = false;
 
 
     String gender;
@@ -65,6 +66,45 @@ public class Update_User extends AppCompatActivity {
 
         getInten();
 
+        binding.updateImageUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getImage();
+                is_upload = true;
+            }
+        });
+
+        binding.updateAllow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(binding.updateAllow.isChecked()){
+                    binding.updateInsert.setEnabled(false);
+                    binding.updateUpdate.setEnabled(false);
+                    binding.updateDelete.setEnabled(false);
+                    binding.updateView.setEnabled(false);
+
+
+                    binding.updateInsert.setChecked(false);
+                    binding.updateUpdate.setChecked(false);
+                    binding.updateDelete.setChecked(false);
+                    binding.updateView.setChecked(false);
+
+                }else{
+                    binding.updateInsert.setEnabled(true);
+                    binding.updateUpdate.setEnabled(true);
+                    binding.updateDelete.setEnabled(true);
+                    binding.updateView.setEnabled(true);
+                }
+            }
+        });
+
+        binding.updateSaveNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                save(view);
+            }
+        });
 
 
 
@@ -89,20 +129,17 @@ public class Update_User extends AppCompatActivity {
                 isAdmin = false;
             }else {
                 isAdmin = true;
-                Toast.makeText(this, "Admin", Toast.LENGTH_SHORT).show();
             }
             if(userTable.isManager() == false){
                 isManage = false;
             }else{
                 isManage = true;
-                Toast.makeText(this, "Manager", Toast.LENGTH_SHORT).show();
             }
 
             if(userTable.isCashier() == false){
                 isCashier = false;
             }else{
                 isCashier = true;
-                Toast.makeText(this, "Cashier", Toast.LENGTH_SHORT).show();
             }
 
 
@@ -142,6 +179,7 @@ public class Update_User extends AppCompatActivity {
             }
 
 
+
             //cheack
             binding.updateAdmin.setChecked(isAdmin);
             binding.updateManager.setChecked(isManage);
@@ -154,9 +192,31 @@ public class Update_User extends AppCompatActivity {
 
 
 
+            if(binding.updateAdmin.isChecked()){
+                isAdmin = true;
+            }
+            if(binding.updateManager.isChecked()){
+                isManage = true;
+            }
+            if(binding.updateCashier.isChecked()){
+                isCashier = true;
+            }
+            if(binding.updateInsert.isChecked()){
+                isInsert= true;
+            }
+            if(binding.updateUpdate.isChecked()){
+                isUpdate = true;
+            }
+            if(binding.updateDelete.isChecked()){
+                isDelete = true;
+            }
+            if(binding.updateView.isChecked()){
+                isView = true;
+            }
+            if(binding.updateAllow.isChecked()){
+                isAllow =true;
 
-
-
+            }
 
 
             //show image
@@ -173,15 +233,15 @@ public class Update_User extends AppCompatActivity {
     }
 
 
-//    public void save(View view){
-//        if(IS_UPDATE == false){
-//            Update_products.SaveProducts saveCustomer = new Update_products.SaveProducts();
-//            saveCustomer.execute();
-//        }else{
-//            Update_products.UpdateProducts updateProducts = new Update_products.UpdateProducts();
-//            updateProducts.execute();
-//        }
-//    }
+    public void save(View view){
+        if(IS_UPDATE == false){
+            SaveUser saveUser = new SaveUser();
+            saveUser.execute();
+        }else{
+            UpdateUser updateUser = new UpdateUser();
+            updateUser.execute();
+        }
+    }
 
 
     class SaveUser extends AsyncTask<Void,Void,Void>
@@ -190,7 +250,26 @@ public class Update_User extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
 
+
             userTable.setUserId(userId);
+
+            userTable.setFrist_name(binding.updateFristName.getText().toString());
+            userTable.setLast_name(binding.updateLastName.getText().toString());
+            userTable.setUsername(binding.updateUserName.getText().toString());
+            userTable.setGender(binding.updateGenderUser.getText().toString());
+
+            userTable.setAdmin(isAdmin);
+            userTable.setManager(isManage);
+            userTable.setCashier(isCashier);
+
+            userTable.setInsert(isInsert);
+            userTable.setUpdate(isUpdate);
+            userTable.setDelete(isDelete);
+            userTable.setView(isView);
+            userTable.setAllow(isAllow);
+
+            blueTeachnology_dao = BlueTeachnology_Database.getInstance(getApplicationContext()).blueTeachnology_dao();
+            blueTeachnology_dao.insertUser(userTable);
             return null;
         }
 
@@ -203,7 +282,7 @@ public class Update_User extends AppCompatActivity {
     }
 
 
-    class UpdateProducts extends AsyncTask<Void,Void,Void>
+    class UpdateUser extends AsyncTask<Void,Void,Void>
     {
 
         @Override
@@ -214,40 +293,54 @@ public class Update_User extends AppCompatActivity {
             String update_date = simpleDateFormat.format(date);
 
             ProductTable productTable = new ProductTable();
-//            if(is_upload == true){
-//                productTable.setProductId(productId);
-//                productTable.setCategoryID(cid);
-//                productTable.setLocationId(location_id);
-//
-//                productTable.setProductName_eng(binding.updateProductNameEnglish.getText().toString());
-//                productTable.setProductName_kh(binding.updateProductNameKhmer.getText().toString());
-//                productTable.setProduct_qty(Integer.parseInt(binding.updateProductQty.getText().toString()));
-//                productTable.setProduct_barCode(binding.updateProductBarcode.getText().toString());
-//                productTable.setProduct_Price(Double.parseDouble(binding.updateProductPrice.getText().toString()));
-//                productTable.setProduct_cost(Double.parseDouble(binding.updateProductCost.getText().toString()));
-//                productTable.setTax(tax);
-//                productTable.setProduct_date(update_date);
-//                productTable.setImage_product(imagePath);
-//            }else{
-//                is_upload = false;
-//                productTable.setProductId(productId);
-//                productTable.setCategoryID(cid);
-//                productTable.setLocationId(location_id);
-//                productTable.setProductName_eng(binding.updateProductNameEnglish.getText().toString());
-//                productTable.setProductName_kh(binding.updateProductNameKhmer.getText().toString());
-//                productTable.setProduct_qty(Integer.parseInt(binding.updateProductQty.getText().toString()));
-//                productTable.setProduct_barCode(binding.updateProductBarcode.getText().toString());
-//                productTable.setProduct_Price(Double.parseDouble(binding.updateProductPrice.getText().toString()));
-//                productTable.setProduct_cost(Double.parseDouble(binding.updateProductCost.getText().toString()));
-//                productTable.setTax(tax);
-//                productTable.setProduct_date(update_date);
-//                productTable.setImage_product(imagePath);
-//
-//            }
+            if(is_upload == true){
+                userTable.setUserId(userId);
+
+                userTable.setFrist_name(binding.updateFristName.getText().toString());
+                userTable.setLast_name(binding.updateLastName.getText().toString());
+                userTable.setUsername(binding.updateUserName.getText().toString());
+                userTable.setGender(binding.updateGenderUser.getText().toString());
+
+                userTable.setAdmin(isAdmin);
+                userTable.setManager(isManage);
+                userTable.setCashier(isCashier);
+
+                userTable.setInsert(isInsert);
+                userTable.setUpdate(isUpdate);
+                userTable.setDelete(isDelete);
+                userTable.setView(isView);
+                userTable.setAllow(isAllow);
 
 
-//            blueTeachnology_dao = BlueTeachnology_Database.getInstance(getApplicationContext()).blueTeachnology_dao();
-//            blueTeachnology_dao.updateProducts(productTable);
+                productTable.setImage_product(imagePath);
+            }else{
+                is_upload = false;
+
+                userTable.setUserId(userId);
+
+                userTable.setFrist_name(binding.updateFristName.getText().toString());
+                userTable.setLast_name(binding.updateLastName.getText().toString());
+                userTable.setUsername(binding.updateUserName.getText().toString());
+                userTable.setGender(binding.updateGenderUser.getText().toString());
+
+                userTable.setAdmin(binding.updateAdmin.isChecked());
+                userTable.setManager(binding.updateManager.isChecked());
+                userTable.setCashier(binding.updateCashier.isChecked());
+
+                userTable.setInsert(binding.updateInsert.isChecked());
+                userTable.setUpdate(binding.updateUpdate.isChecked());
+                userTable.setDelete(binding.updateDelete.isChecked());
+                userTable.setView(binding.updateView.isChecked());
+                userTable.setAllow(binding.updateAllow.isChecked());
+
+
+                productTable.setImage_product(imagePath);
+
+            }
+
+
+            blueTeachnology_dao = BlueTeachnology_Database.getInstance(getApplicationContext()).blueTeachnology_dao();
+            blueTeachnology_dao.updateUser(userTable);
             return null;
         }
 

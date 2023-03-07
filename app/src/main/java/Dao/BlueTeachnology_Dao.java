@@ -36,6 +36,9 @@ public interface BlueTeachnology_Dao {
     @Insert
     void insertUser(UserTable userTable);
 
+    @Update
+    void updateUser(UserTable userTable);
+
 
     @Query("SELECT EXISTS (SELECT * from USERTABLE where username=:username)")
     boolean is_token(String username);

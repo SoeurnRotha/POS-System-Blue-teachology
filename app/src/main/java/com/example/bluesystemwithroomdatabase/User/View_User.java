@@ -79,6 +79,7 @@ public class View_User extends AppCompatActivity {
             public void onClick(View view) {
                 binding.showUser.setVisibility(view.GONE);
                 binding.addUserinFo.setVisibility(view.VISIBLE);
+                recreate();
             }
         });
         binding.backUser.setOnClickListener(new View.OnClickListener() {
@@ -172,24 +173,24 @@ public class View_User extends AppCompatActivity {
 
                 //cheack box
                 if(binding.checkboxInsert.isChecked()){
-                    Toast.makeText(View_User.this, "Insert", Toast.LENGTH_SHORT).show();
+                    insert =true;
                 }
 
                 if(binding.checkboxUpdate.isChecked()){
-                    Toast.makeText(View_User.this, "Update", Toast.LENGTH_SHORT).show();
+                   update=true;
                 }
 
                 if(binding.checkboxDelete.isChecked()){
-                    Toast.makeText(View_User.this, "Delete", Toast.LENGTH_SHORT).show();
+                    delete = true;
                 }
 
                 if(binding.checkboxView.isChecked()){
-                    Toast.makeText(View_User.this, "View", Toast.LENGTH_SHORT).show();
-                }
+                    views =true;
+                 }
+
 
                 if(binding.checkboxAllow.isChecked()){
-                    Toast.makeText(View_User.this, "Allow", Toast.LENGTH_SHORT).show();
-
+                  allow =true;
 
                 }
 
