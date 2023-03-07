@@ -15,7 +15,7 @@
             android:id="@+id/view_update_customer"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:background="@color/pop"
+            android:background="@color/purple_700"
             />
 
         <TextView
@@ -42,9 +42,21 @@
             />
 
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_margin="20dp"
+            android:src="@drawable/add_image"
+            app:civ_border_width="1dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/info_update_customer"
+            android:id="@+id/update_image_customer"
+            />
+
+
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_below="@+id/info_update_customer"
+            android:layout_below="@+id/update_image_customer"
             android:id="@+id/cus_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

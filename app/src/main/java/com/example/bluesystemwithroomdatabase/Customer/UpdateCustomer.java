@@ -2,10 +2,14 @@ package com.example.bluesystemwithroomdatabase.Customer;
 
 import static java.lang.Integer.parseInt;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -13,8 +17,11 @@ import android.view.View;
 import android.widget.Toast;
 
 
+import com.bumptech.glide.Glide;
 import com.example.bluesystemwithroomdatabase.databinding.ActivityUpdateCustomerBinding;
+import com.github.drjacky.imagepicker.ImagePicker;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -31,8 +38,13 @@ public class UpdateCustomer extends AppCompatActivity {
     private Customer customer;
 
     boolean IS_UPDATE = false;
+    String image;
+    boolean is_upload =false;
 
     int id;
+
+    Uri uri;
+    File file;
 
 
     BlueTeachnology_Dao blueTeachnology_dao;
@@ -56,6 +68,15 @@ public class UpdateCustomer extends AppCompatActivity {
         });
 
 
+        binding.updateImageCustomer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getImage();
+                is_upload= true;
+            }
+        });
+
+
 
 
 
@@ -72,7 +93,8 @@ public class UpdateCustomer extends AppCompatActivity {
             binding.updateCustomerEmail.setText(customer.getCustomer_email());
             binding.updateCustomerAddress.setText(customer.getCustomer_address());
             binding.updateCustomerGender.setText(customer.getCustomer_gender());
-
+            Glide.with(this).load(customer.getCustomer_image()).into(binding.updateImageCustomer);
+            image = customer.getCustomer_image();
             id = customer.getCustomerId();
         }else {
             IS_UPDATE = false;
@@ -150,13 +172,34 @@ public class UpdateCustomer extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
 
+
+            if(is_upload == true){
+
+                customer.setCustomerId(id);
+                customer.setCustomerName(binding.updateCustomerName.getText().toString().trim());
+                customer.setCustomer_phone(binding.updateCustomerPhone.getText().toString().trim());
+                customer.setCustomer_gender(binding.updateCustomerGender.getText().toString().trim());
+                customer.setCustomer_email(binding.updateCustomerEmail.getText().toString().trim());
+                customer.setCustomer_address(binding.updateCustomerAddress.getText().toString().trim());
+
+
+                customer.setCustomer_image(image);
+            }else{
+                is_upload = false;
+
+                customer.setCustomerId(id);
+                customer.setCustomerName(binding.updateCustomerName.getText().toString().trim());
+                customer.setCustomer_phone(binding.updateCustomerPhone.getText().toString().trim());
+                customer.setCustomer_gender(binding.updateCustomerGender.getText().toString().trim());
+                customer.setCustomer_email(binding.updateCustomerEmail.getText().toString().trim());
+                customer.setCustomer_address(binding.updateCustomerAddress.getText().toString().trim());
+
+                customer.setCustomer_image(image);
+
+            }
+
             //set data to customer
-            customer.setCustomerId(id);
-            customer.setCustomerName(binding.updateCustomerName.getText().toString().trim());
-            customer.setCustomer_phone(binding.updateCustomerPhone.getText().toString().trim());
-            customer.setCustomer_gender(binding.updateCustomerGender.getText().toString().trim());
-            customer.setCustomer_email(binding.updateCustomerEmail.getText().toString().trim());
-            customer.setCustomer_address(binding.updateCustomerAddress.getText().toString().trim());
+
 
 
 
@@ -176,4 +219,30 @@ public class UpdateCustomer extends AppCompatActivity {
             Toast.makeText(UpdateCustomer.this, "Update successful", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private void getImage(){
+        launcher.launch(
+                ImagePicker.Companion.with(this)
+                        .maxResultSize(1080,1080, true)
+                        .crop()
+                        .galleryOnly()
+                        .createIntent()
+        );
+
+    }
+    ActivityResultLauncher<Intent> launcher=
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),(ActivityResult result)->{
+                if(result.getResultCode()==RESULT_OK){
+
+                    assert result.getData() != null;
+
+                    uri=result.getData().getData();
+                    file = new File(uri.getPath());
+                    image = file.toString();
+                    binding.updateImageCustomer.setImageURI(uri);
+
+                }else if(result.getResultCode()== ImagePicker.RESULT_ERROR){
+                    Toast.makeText(this, "No image pick", Toast.LENGTH_SHORT).show();
+                }
+            });
 }

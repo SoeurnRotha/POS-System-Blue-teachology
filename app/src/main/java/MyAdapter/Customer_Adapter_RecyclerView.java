@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.ListFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.bluesystemwithroomdatabase.Customer.UpdateCustomer;
 import com.example.bluesystemwithroomdatabase.Customer.ViewCustomer;
 import com.example.bluesystemwithroomdatabase.R;
@@ -28,6 +29,7 @@ import java.util.List;
 import Dao.BlueTeachnology_Dao;
 import Model.Customer;
 import Mydatabase.BlueTeachnology_Database;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Customer_Adapter_RecyclerView extends RecyclerView.Adapter<Customer_Adapter_RecyclerView.CustomerViewHolder> {
 
@@ -62,6 +64,8 @@ public class Customer_Adapter_RecyclerView extends RecyclerView.Adapter<Customer
         holder.date.setText(String.valueOf(customer.getDate_time_create()));
         holder.email.setText(String.valueOf(customer.getCustomer_email()));
 
+
+        Glide.with(context).load(customer.getCustomer_image()).into(holder.imageView);
 
         holder.update.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,6 +122,8 @@ public class Customer_Adapter_RecyclerView extends RecyclerView.Adapter<Customer
         TextView name, address, phone, email, date;
         ImageView delete;
 
+        CircleImageView imageView;
+
         CardView update;
 
         public CustomerViewHolder(@NonNull View itemView) {
@@ -127,6 +133,7 @@ public class Customer_Adapter_RecyclerView extends RecyclerView.Adapter<Customer
             phone = itemView.findViewById(R.id.phone_customer);
             email = itemView.findViewById(R.id.email_customer);
             date = itemView.findViewById(R.id.date_create_customer);
+            imageView = itemView.findViewById(R.id.show_image_customer);
 
 
             delete = itemView.findViewById(R.id.delete_customer);

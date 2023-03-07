@@ -19,6 +19,9 @@ public class Customer implements Serializable {
 
 
     @ColumnInfo
+    String customer_image;
+
+    @ColumnInfo
     String customerName;
 
     @ColumnInfo
@@ -38,6 +41,14 @@ public class Customer implements Serializable {
 
     @ColumnInfo
     String date_time_create;
+
+    public String getCustomer_image() {
+        return customer_image;
+    }
+
+    public void setCustomer_image(String customer_image) {
+        this.customer_image = customer_image;
+    }
 
     public int getCustomerId() {
         return customerId;

@@ -1,5 +1,8 @@
 package com.example.bluesystemwithroomdatabase.Customer;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,7 +20,9 @@ import android.widget.Toast;
 import com.example.bluesystemwithroomdatabase.R;
 import com.example.bluesystemwithroomdatabase.databinding.ActivityViewCustomerBinding;
 import com.example.bluesystemwithroomdatabase.databinding.CustomDialogDoneForAddCustomerBinding;
+import com.github.drjacky.imagepicker.ImagePicker;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -44,6 +50,7 @@ public class ViewCustomer extends AppCompatActivity {
     boolean isEmpty = false;
 
     String gender ;
+    File file;
 
 
 //for update
@@ -67,6 +74,7 @@ public class ViewCustomer extends AppCompatActivity {
                 binding.addCustomerVisible.setVisibility(view.VISIBLE);
                 binding.viewCustomer.setVisibility(view.GONE);
 
+
             }
         });
 
@@ -76,12 +84,17 @@ public class ViewCustomer extends AppCompatActivity {
             public void onClick(View view) {
                 binding.viewCustomer.setVisibility(view.VISIBLE);
                 binding.addCustomerVisible.setVisibility(view.GONE);
-
+                recreate();
             }
         });
-
-
+        binding.addImageCustomer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getImage();
+            }
+        });
         Show_Data_From_Customer();
+
         Insert_Data_From_Custoemr();
 
 
@@ -145,15 +158,15 @@ public class ViewCustomer extends AppCompatActivity {
                     Toast.makeText(ViewCustomer.this, "Please input customer name and customer phone", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
                 if(binding.genderCustomerMele.isChecked()){
                     gender = "Mele";
-                    Toast.makeText(ViewCustomer.this, "Mele", Toast.LENGTH_SHORT).show();
                 }
 
                 if(binding.genderCustomerFemele.isChecked()){
                     gender = "Femele";
-                    Toast.makeText(ViewCustomer.this, "Femele", Toast.LENGTH_SHORT).show();
                 }
+
 
 
 
@@ -240,8 +253,9 @@ public class ViewCustomer extends AppCompatActivity {
             customer.setCustomer_email(binding.inputCustomerEmail.getText().toString().trim());
             customer.setCustomer_gender(gender);
             customer.setCustomer_phone(binding.inputCustomerPhone.getText().toString().trim());
-
             customer.setDate_time_create(date_create);
+
+
 
             blueTeachnology_dao = BlueTeachnology_Database.getInstance(getApplicationContext()).blueTeachnology_dao();
             blueTeachnology_dao.insertCustomer(customer);
@@ -251,10 +265,34 @@ public class ViewCustomer extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void unused) {
             super.onPostExecute(unused);
-            finish();
-            Toast.makeText(ViewCustomer.this, "Save record", Toast.LENGTH_SHORT).show();
         }
     }
+
+
+    private void getImage(){
+        launcher.launch(
+                ImagePicker.Companion.with(this)
+                        .maxResultSize(1080,1080, true)
+                        .crop()
+                        .galleryOnly()
+                        .createIntent()
+        );
+
+    }
+    ActivityResultLauncher<Intent> launcher=
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),(ActivityResult result)->{
+                if(result.getResultCode()==RESULT_OK){
+
+                    assert result.getData() != null;
+
+                    Uri uri=result.getData().getData();
+                    file = new File(uri.getPath());
+
+                    binding.addImageCustomer.setImageURI(uri);
+                }else if(result.getResultCode()== ImagePicker.RESULT_ERROR){
+                    Toast.makeText(this, "No image pick", Toast.LENGTH_SHORT).show();
+                }
+            });
 
 
 

@@ -162,6 +162,10 @@ public interface BlueTeachnology_Dao {
     @Query("SELECT * FROM Customer WHERE customerName =:customerName")
     List<Customer> checkCustomer(String customerName);
 
+    @Query("SELECT EXISTS (SELECT * FROM Customer WHERE customerName =:name OR customer_email=:email )")
+    boolean customerExists(String name , String email);
+
+
     @Update
     void updateCustomer(Customer customer);
 
