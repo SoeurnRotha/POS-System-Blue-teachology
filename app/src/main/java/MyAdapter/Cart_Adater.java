@@ -75,7 +75,8 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
     }
 
 
-    double khmer_dollar,discount , grand_total, discountAmount;
+    double discount;
+    long khmer_dollar , grand_total, discountAmount;
     int sum;
     BlueTeachnology_Dao blueTeachnology_dao;
     @NonNull
@@ -106,36 +107,7 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 updatePrice();
-                holder.remove.setOnClickListener(new View.OnClickListener() {
 
-                    @Override
-                    public void onClick(View view) {
-
-        //                int qty =cartTableList.get(position).getProductQty();
-                        int qty = Integer.parseInt(holder.qty.getText().toString());
-
-                        if(qty >=1){
-                            qty--;
-                            cartTableList.get(position).setProductQty(qty);
-                            notifyDataSetChanged();
-                            updatePrice();
-                        }
-
-
-                    }
-                });
-
-                holder.add.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        int qty = Integer.parseInt(holder.qty.getText().toString());
-                        qty++;
-                        cartTableList.get(position).setProductQty(qty);
-                        notifyDataSetChanged();
-                        updatePrice();
-
-                    }
-                });
             }
 
             @Override
@@ -193,35 +165,35 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
 
 
 
-//        holder.remove.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-////                int qty =cartTableList.get(position).getProductQty();
-//                int qty = Integer.parseInt(getQty);
-//
-//                if(qty >=1){
-//                    qty--;
-//                    cartTableList.get(position).setProductQty(qty);
-//                    notifyDataSetChanged();
-//                    updatePrice();
-//                }
-//
-//
-//            }
-//        });
-//
-//        holder.add.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                int qty = Integer.parseInt(getQty);
-//                qty++;
-//                cartTableList.get(position).setProductQty(qty);
-//                notifyDataSetChanged();
-//                updatePrice();
-//
-//            }
-//        });
+        holder.remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+//                int qty =cartTableList.get(position).getProductQty();
+                int qty = Integer.parseInt(holder.qty.getText().toString());
+
+                if(qty >=1){
+                    qty--;
+                    cartTableList.get(position).setProductQty(qty);
+                    notifyDataSetChanged();
+                    updatePrice();
+                }
+
+
+            }
+        });
+
+        holder.add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int qty = Integer.parseInt(holder.qty.getText().toString());
+                qty++;
+                cartTableList.get(position).setProductQty(qty);
+                notifyDataSetChanged();
+                updatePrice();
+
+            }
+        });
 
 
         blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
@@ -277,7 +249,7 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
 
                 }
 
-                khmer_dollar = Double.parseDouble(khmer_to_dollar.getText().toString());
+                khmer_dollar = Long.parseLong(khmer_to_dollar.getText().toString());
                 grand_total = khmer_dollar * sum;
 
                 discount =0;
@@ -289,7 +261,7 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
                 }else{
                     discount = Double.parseDouble(discount_input.getText().toString());
                     double p = discount /100;
-                    discountAmount = sum - (sum * p);
+                    discountAmount = (long) (sum - (sum * p));
                     Toast.makeText(submit.getContext(), "discountAmount = " + discountAmount, Toast.LENGTH_SHORT).show();
                     totalPrice.setText("$ " + numberFormat(String.valueOf(discountAmount)));
 
@@ -319,10 +291,19 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
 
                         ArrayList<String> engName = new ArrayList<>();
                         ArrayList<String> khName = new ArrayList<>();
+                        ArrayList<String> qtyList = new ArrayList<>();
+                        ArrayList<String> priceList = new ArrayList<>();
+
+                        String storeqt = String.valueOf(cartTableList.get(position).getProductQty());
+                        String storepr = String.valueOf(cartTableList.get(position).getProductCost());
 
                         for(int k =0 ; k<cartTableList.size() ; k++){
                             engName.add(cartTableList.get(k).getProductName_eng());
                             khName.add(cartTableList.get(k).getProductName_kh());
+
+
+                            qtyList.add(String.valueOf(cartTableList.get(k).getProductQty()));
+                            priceList.add(String.valueOf(cartTableList.get(k).getProductCost()));
                         }
 
 
@@ -343,9 +324,11 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
                             invoice.setPaymentType(PaymentType);
                             invoice.setAmount(discountAmount );
                             invoice.setDiscount(discount);
+                            invoice.setQty(qtyList);
+                            invoice.setPrice(priceList);
 
-                            invoice.setProduct_name_english(String.valueOf(engName));
-                            invoice.setProduct_name_khmer(String.valueOf(khName));
+                            invoice.setProduct_name_english(engName);
+                            invoice.setProduct_name_khmer(khName);
                             invoice.setUserId(1);
                             invoice.setGrand_total_dollar(discountAmount);
                             invoice.setGrand_total_khmer(grand_total);
@@ -369,11 +352,10 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
                             invoice.setPaymentType(PaymentType);
                             invoice.setAmount(discountAmount );
                             invoice.setDiscount(discount);
-                            invoice.setProduct_name_english(String.valueOf(engName));
-                            invoice.setProduct_name_khmer(String.valueOf(khName));
-
-
-
+                            invoice.setQty(qtyList);
+                            invoice.setPrice(priceList);
+                            invoice.setProduct_name_english(engName);
+                            invoice.setProduct_name_khmer(khName);
                             invoice.setUserId(1);
                             invoice.setGrand_total_dollar(sum);
                             invoice.setGrand_total_khmer(grand_total);

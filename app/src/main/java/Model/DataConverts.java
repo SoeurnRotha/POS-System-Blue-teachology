@@ -7,33 +7,23 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.Serializable;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
-public class DataConverts implements Serializable {
+
+public class DataConverts  {
 
     @TypeConverter
-    public String fromOptionValuesList(List<Invoice> invoiceList){
-        if (invoiceList == null){
-            return (null);
-        }
+    public static ArrayList<String> fromString(String value){
         Gson gson = new Gson();
-        Type type = new TypeToken<List<Invoice>>(){
+        Type type=new TypeToken<ArrayList<String>>(){}.getType();
 
-        }.getType();
-        String json = gson.toJson(invoiceList, type);
-        return  json;
+
+        return gson.fromJson(value,type);
     }
-
     @TypeConverter
-    public List<Invoice> toOptionValueList(String invoiceValueString){
-        if(invoiceValueString ==null){
-            return (null);
-        }
+    public static String fromArrayList(ArrayList<String> list){
         Gson gson = new Gson();
-        Type type = new TypeToken<List<Invoice>>(){
-
-        }.getType();
-        List<Invoice> invoiceList = gson.fromJson(invoiceValueString, type);
-        return invoiceList;
+        return gson.toJson(list);
     }
 }

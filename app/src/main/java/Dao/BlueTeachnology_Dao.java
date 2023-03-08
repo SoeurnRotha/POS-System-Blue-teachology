@@ -9,8 +9,6 @@ import androidx.room.Transaction;
 import androidx.room.TypeConverter;
 import androidx.room.Update;
 
-import com.example.bluesystemwithroomdatabase.Cart.Cart;
-
 import java.util.List;
 
 import Model.CartTable;
@@ -21,7 +19,6 @@ import Model.Invoice;
 import Model.LocationTable;
 import Model.PaymentMethod;
 import Model.ProductTable;
-import Model.TestImage;
 import Model.UserTable;
 import Relationship.ManyToMany.CategoryWithProduct;
 import Relationship.ManyToMany.LocationWithProducts.LocationWithProducts;
@@ -350,14 +347,6 @@ public interface BlueTeachnology_Dao {
 
 
 
-
-    //test image
-
-    @Insert
-    void insertImage(TestImage testImage);
-
-    @Query("SELECT * FROM TestImage")
-    List<TestImage> getImage();
 
 
 

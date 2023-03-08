@@ -1,5 +1,6 @@
 package MyAdapter.invoice_adapter;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -49,8 +50,7 @@ public class Invoice_Adapter extends RecyclerView.Adapter<Invoice_Adapter.ViewIn
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewInvoice holder, int position) {
-
+    public void onBindViewHolder(@NonNull ViewInvoice holder, @SuppressLint("RecyclerView") int position) {
 
         holder.invoice_id.setText(String.valueOf(invoiceList.get(position).getInvoiceId()));
 
@@ -69,7 +69,10 @@ public class Invoice_Adapter extends RecyclerView.Adapter<Invoice_Adapter.ViewIn
         holder.discountAmount.setText(numberFormat(String.valueOf(invoiceList.get(position).getAmount())));
 
 
-        holder.cashier.setText(String.valueOf(invoiceList.get(position).getUserId()));
+        holder.cashier.setText(String.valueOf(invoiceList.get(position).getQty()));
+
+
+
 
 
         holder.invoice_delete.setOnClickListener(new View.OnClickListener() {

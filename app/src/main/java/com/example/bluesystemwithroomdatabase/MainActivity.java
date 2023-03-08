@@ -28,7 +28,7 @@ import com.example.bluesystemwithroomdatabase.Products.ViewProducts;
 import com.example.bluesystemwithroomdatabase.User.View_User;
 import com.example.bluesystemwithroomdatabase.category.Category_gridview;
 import com.example.bluesystemwithroomdatabase.databinding.ActivityMainBinding;
-import com.example.bluesystemwithroomdatabase.testImage.TestImagePage;
+
 import com.google.android.material.navigation.NavigationView;
 
 

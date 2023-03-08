@@ -22,15 +22,16 @@ public class Invoice {
     int userId;
 
     @ColumnInfo (name ="product_eng_list" )
-    String product_name_english;
+    ArrayList<String> product_name_english;
 
     @ColumnInfo (name ="product_kh_list" )
-    String product_name_khmer;
+    ArrayList<String> product_name_khmer;
 
 
 
     @ColumnInfo
-    double amount;
+    public
+    long amount;
 
     @ColumnInfo
     double discount;
@@ -40,14 +41,32 @@ public class Invoice {
 
 
     @ColumnInfo
-    double grand_total_dollar;
+    public
+    long grand_total_dollar;
 
     @ColumnInfo
-    double grand_total_khmer;
+    public
+    long grand_total_khmer;
+
+    @ColumnInfo
+    ArrayList<String> qty;
+
+
+    @ColumnInfo
+    ArrayList<String> price;
 
 
     @ColumnInfo
     String invoice_date;
+
+
+    public ArrayList<String> getPrice() {
+        return price;
+    }
+
+    public void setPrice(ArrayList<String> price) {
+        this.price = price;
+    }
 
     public int getInvoiceId() {
         return invoiceId;
@@ -73,16 +92,27 @@ public class Invoice {
         this.userId = userId;
     }
 
+    public ArrayList<String> getProduct_name_english() {
+        return product_name_english;
+    }
 
+    public void setProduct_name_english(ArrayList<String> product_name_english) {
+        this.product_name_english = product_name_english;
+    }
 
+    public ArrayList<String> getProduct_name_khmer() {
+        return product_name_khmer;
+    }
+
+    public void setProduct_name_khmer(ArrayList<String> product_name_khmer) {
+        this.product_name_khmer = product_name_khmer;
+    }
 
     public double getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
+
 
     public double getDiscount() {
         return discount;
@@ -104,32 +134,32 @@ public class Invoice {
         return grand_total_dollar;
     }
 
-    public void setGrand_total_dollar(double grand_total_dollar) {
-        this.grand_total_dollar = grand_total_dollar;
-    }
+
 
     public double getGrand_total_khmer() {
         return grand_total_khmer;
     }
 
-    public void setGrand_total_khmer(double grand_total_khmer) {
+    public void setAmount(long amount) {
+        this.amount = amount;
+    }
+
+    public void setGrand_total_dollar(long grand_total_dollar) {
+        this.grand_total_dollar = grand_total_dollar;
+    }
+
+
+
+    public void setGrand_total_khmer(long grand_total_khmer) {
         this.grand_total_khmer = grand_total_khmer;
     }
 
-    public String getProduct_name_english() {
-        return product_name_english;
+    public ArrayList<String> getQty() {
+        return qty;
     }
 
-    public void setProduct_name_english(String product_name_english) {
-        this.product_name_english = product_name_english;
-    }
-
-    public String getProduct_name_khmer() {
-        return product_name_khmer;
-    }
-
-    public void setProduct_name_khmer(String product_name_khmer) {
-        this.product_name_khmer = product_name_khmer;
+    public void setQty(ArrayList<String> qty) {
+        this.qty = qty;
     }
 
     public String getInvoice_date() {

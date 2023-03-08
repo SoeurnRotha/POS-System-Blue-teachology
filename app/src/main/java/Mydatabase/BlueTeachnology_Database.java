@@ -7,7 +7,6 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-import com.example.bluesystemwithroomdatabase.testImage.ImageHelper;
 
 import Dao.BlueTeachnology_Dao;
 import Model.CartTable;
@@ -19,7 +18,6 @@ import Model.Invoice;
 import Model.LocationTable;
 import Model.PaymentMethod;
 import Model.ProductTable;
-import Model.TestImage;
 import Model.UserTable;
 import Relationship.ManyToMany.CategoryProductsCrossRef;
 import Relationship.ManyToMany.LocationWithProducts.LocationProductsCrossRef;
@@ -32,13 +30,13 @@ import Relationship.ManyToMany.LocationWithProducts.LocationProductsCrossRef;
         PaymentMethod.class,
         CartTable.class,
         LocationTable.class,
-        TestImage.class,
+
         LocationProductsCrossRef.class,
         Invoice.class,
         ExpanseTable.class
 
 }, version = 1)
-@TypeConverters({ImageHelper.class, DataConverts.class})
+@TypeConverters({ DataConverts.class})
 public abstract class BlueTeachnology_Database extends RoomDatabase {
 
     public abstract BlueTeachnology_Dao blueTeachnology_dao();

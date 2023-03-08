@@ -22,7 +22,7 @@ import com.example.bluesystemwithroomdatabase.Customer.ViewCustomer;
 import com.example.bluesystemwithroomdatabase.R;
 import com.example.bluesystemwithroomdatabase.databinding.ActivityViewProductsBinding;
 import com.example.bluesystemwithroomdatabase.databinding.CustomDialogDoneForAddProductBinding;
-import com.example.bluesystemwithroomdatabase.testImage.ImageHelper;
+
 import com.github.drjacky.imagepicker.ImagePicker;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
