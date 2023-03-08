@@ -1,5 +1,6 @@
 package MyAdapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -57,7 +58,7 @@ public class Customer_Adapter_RecyclerView extends RecyclerView.Adapter<Customer
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CustomerViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CustomerViewHolder holder, @SuppressLint("RecyclerView") int position) {
         final Customer customer = customerList.get(position);
 
         if(customer == null){

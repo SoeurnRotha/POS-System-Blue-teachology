@@ -42,26 +42,20 @@ public class ViewCustomer extends AppCompatActivity {
     private static final int MY_REQUESTCODE = 10;
     ActivityViewCustomerBinding binding;
     BlueTeachnology_Dao blueTeachnology_dao;
-    BlueTeachnology_Database blueTeachnology_database;
+
 
     Customer_Adapter_RecyclerView adapter;
     List<Customer> customerList;
-
-    //for insert
-
     boolean isEmpty = false;
 
     String gender ;
     File file;
 
 
-//for update
+
     boolean IS_UPDATE = false;
 
     int id;
-
-    List<Customer> search;
-    Customer_Adapter_RecyclerView customer_adapter_recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

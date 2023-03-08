@@ -77,7 +77,6 @@ public class Pos extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 scanCode();
-                Toast.makeText(Pos.this, "Hello code", Toast.LENGTH_SHORT).show();
             }
         });
 
