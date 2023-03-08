@@ -24,19 +24,37 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
 
+        <TextView
+            android:id="@+id/v_c"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="View Customer"
             android:textColor="@color/white"
             android:textSize="10pt"
             android:textStyle="bold"
-            android:layout_marginTop="30dp"
+
             android:padding="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/v_c"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="10dp">
+
+            <SearchView
+                android:id="@+id/search_customer"
+
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+
+                android:background="@color/white"
+                android:queryHint="Search customer" />
+        </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_below="@+id/view"

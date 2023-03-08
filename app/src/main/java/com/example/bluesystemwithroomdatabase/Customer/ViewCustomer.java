@@ -15,6 +15,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.bluesystemwithroomdatabase.R;
@@ -58,6 +60,8 @@ public class ViewCustomer extends AppCompatActivity {
 
     int id;
 
+    List<Customer> search;
+    Customer_Adapter_RecyclerView customer_adapter_recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,8 +69,20 @@ public class ViewCustomer extends AppCompatActivity {
         binding = ActivityViewCustomerBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.searchCustomer.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        binding.searchCustomer.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
 
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String s) {
+                adapter.getFilter().filter(s);
+                return false;
+            }
+        });
 
         binding.addCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,13 +112,6 @@ public class ViewCustomer extends AppCompatActivity {
         Show_Data_From_Customer();
 
         Insert_Data_From_Custoemr();
-
-
-
-        final Calendar calendar = Calendar.getInstance();
-        final int year = calendar.get(Calendar.YEAR);
-        final int day = calendar.get(Calendar.DAY_OF_MONTH);
-        final int month = calendar.get(Calendar.MONTH);
 
 
 

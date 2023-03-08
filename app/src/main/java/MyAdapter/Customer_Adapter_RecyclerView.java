@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +26,9 @@ import com.example.bluesystemwithroomdatabase.Customer.UpdateCustomer;
 import com.example.bluesystemwithroomdatabase.Customer.ViewCustomer;
 import com.example.bluesystemwithroomdatabase.R;
 
+import java.io.File;
+import java.io.FileFilter;
+import java.util.ArrayList;
 import java.util.List;
 
 import Dao.BlueTeachnology_Dao;
@@ -31,15 +36,17 @@ import Model.Customer;
 import Mydatabase.BlueTeachnology_Database;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class Customer_Adapter_RecyclerView extends RecyclerView.Adapter<Customer_Adapter_RecyclerView.CustomerViewHolder> {
+public class Customer_Adapter_RecyclerView extends RecyclerView.Adapter<Customer_Adapter_RecyclerView.CustomerViewHolder> implements Filterable {
 
 
     List<Customer> customerList;
+    List<Customer> customerListFull;
     Context context;
 
     public Customer_Adapter_RecyclerView(List<Customer> customerList, Context context) {
         this.customerList = customerList;
         this.context = context;
+        customerListFull = new ArrayList<>(customerList);
     }
 
     @NonNull
@@ -118,6 +125,9 @@ public class Customer_Adapter_RecyclerView extends RecyclerView.Adapter<Customer
         return 0;
     }
 
+
+
+
     public class CustomerViewHolder extends RecyclerView.ViewHolder {
         TextView name, address, phone, email, date;
         ImageView delete;
@@ -141,5 +151,38 @@ public class Customer_Adapter_RecyclerView extends RecyclerView.Adapter<Customer
 
         }
     }
+    @Override
+    public Filter getFilter() {
+        return customerFilter;
+    }
+    private Filter customerFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<Customer> filterList =new ArrayList<>();
 
+            if(charSequence == null || charSequence.length() == 0){
+                filterList.addAll(customerListFull);
+            }else{
+                String filterPattern = charSequence.toString().toLowerCase().trim();
+
+
+                for(Customer customer: customerListFull){
+                    if(customer.getCustomerName().toLowerCase().contains(filterPattern)){
+                        filterList.add(customer);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filterList;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            customerList.clear();
+            customerList.addAll((List) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 }
