@@ -4,12 +4,15 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.bluesystemwithroomdatabase.R;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -51,6 +55,8 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
     List<PaymentMethod> paymentMethodList;
     List<Customer> customerList;
 
+    String getQty;
+
 
     public Cart_Adater(List<CartTable> cartTableList, TextView subtotal, TextView totalPrice, TextInputEditText discount_input,Button submit,TextInputEditText khmer_to_dollar,TextView totalAmount_khmer,Button paynow, Context context, Spinner selectCustomerName, Spinner selectPaymenyType) {
         this.cartTableList = cartTableList;
@@ -83,10 +89,66 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewCart holder, @SuppressLint("RecyclerView") int position) {
+        final CartTable cartTable = cartTableList.get(position);
         holder.peng.setText(String.valueOf(cartTableList.get(position).getProductName_eng()));
         holder.qty.setText(String.valueOf(cartTableList.get(position).getProductQty()));
         holder.price.setText(String.valueOf(cartTableList.get(position).getProductCost()));
         holder.pkh.setText(String.valueOf(cartTableList.get(position).getProductName_kh()));
+
+
+
+        holder.qty.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                updatePrice();
+                holder.remove.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+
+        //                int qty =cartTableList.get(position).getProductQty();
+                        int qty = Integer.parseInt(holder.qty.getText().toString());
+
+                        if(qty >=1){
+                            qty--;
+                            cartTableList.get(position).setProductQty(qty);
+                            notifyDataSetChanged();
+                            updatePrice();
+                        }
+
+
+                    }
+                });
+
+                holder.add.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        int qty = Integer.parseInt(holder.qty.getText().toString());
+                        qty++;
+                        cartTableList.get(position).setProductQty(qty);
+                        notifyDataSetChanged();
+                        updatePrice();
+
+                    }
+                });
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        updatePrice();
+
+        Glide.with(context).load(cartTable.getProduct_img()).into(holder.imageView);
+
+
+
 
 
 
@@ -131,32 +193,35 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
 
 
 
-        holder.remove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int qty =cartTableList.get(position).getProductQty();
-                if(qty >=1){
-                    qty--;
-                    cartTableList.get(position).setProductQty(qty);
-                    notifyDataSetChanged();
-                    updatePrice();
-                }
-
-
-            }
-        });
-
-        holder.add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int qty = cartTableList.get(position).getProductQty();
-                qty++;
-                cartTableList.get(position).setProductQty(qty);
-                notifyDataSetChanged();
-                updatePrice();
-
-            }
-        });
+//        holder.remove.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+////                int qty =cartTableList.get(position).getProductQty();
+//                int qty = Integer.parseInt(getQty);
+//
+//                if(qty >=1){
+//                    qty--;
+//                    cartTableList.get(position).setProductQty(qty);
+//                    notifyDataSetChanged();
+//                    updatePrice();
+//                }
+//
+//
+//            }
+//        });
+//
+//        holder.add.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int qty = Integer.parseInt(getQty);
+//                qty++;
+//                cartTableList.get(position).setProductQty(qty);
+//                notifyDataSetChanged();
+//                updatePrice();
+//
+//            }
+//        });
 
 
         blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
@@ -351,9 +416,12 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
 
     public class ViewCart extends RecyclerView.ViewHolder{
 
-        TextView peng,pkh,qty,price;
+        TextView peng,pkh,price;
+
+        TextInputEditText qty;
 
         ImageButton delete, remove, add;
+        ImageView imageView;
         public ViewCart(@NonNull View itemView) {
             super(itemView);
 
@@ -366,12 +434,15 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
             delete = itemView.findViewById(R.id.button_cart_delete);
             remove = itemView.findViewById(R.id.button_remove_qty);
             add = itemView.findViewById(R.id.button_add_qty);
+
+            imageView = itemView.findViewById(R.id.image_cart);
         }
     }
 
 
     //for update price  * qty
     public void updatePrice(){
+
         int sum =0;
         for(int i=0;  i< cartTableList.size(); i++){
 

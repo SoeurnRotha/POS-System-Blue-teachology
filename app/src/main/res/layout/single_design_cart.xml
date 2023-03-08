@@ -17,14 +17,16 @@
         >
 
         <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/image_cart"
             android:layout_margin="10dp"
             android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_height="70dp"
             android:src="@drawable/product_icon"/>
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_gravity="center"
-            android:layout_width="150dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
@@ -64,38 +66,51 @@
             android:orientation="vertical"
             >
             <androidx.appcompat.widget.AppCompatImageButton
+
                 android:id="@+id/button_cart_delete"
-                android:layout_gravity="center"
+                android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/delete"/>
             <LinearLayout
+                android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatImageButton
+                    android:layout_gravity="center"
                     android:id="@+id/button_remove_qty"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:src="@drawable/remove"/>
 
-
-                <TextView
-
-                    android:id="@+id/count_qty"
-                    android:layout_gravity="center"
-                    android:textSize="8pt"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/outlinedTextField"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1"/>
+
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/count_qty"
+                        android:inputType="number"
+                        android:layout_margin="10dp"
+                        android:textSize="10pt"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
 
                 <androidx.appcompat.widget.AppCompatImageButton
+                    android:layout_gravity="center"
                     android:id="@+id/button_add_qty"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+
                     android:src="@drawable/add"/>
 
             </LinearLayout>

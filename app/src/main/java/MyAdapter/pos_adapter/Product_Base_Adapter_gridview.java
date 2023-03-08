@@ -92,6 +92,7 @@ public class Product_Base_Adapter_gridview extends BaseAdapter implements Filter
 
 
 
+
                 BlueTeachnology_Dao blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
 
 

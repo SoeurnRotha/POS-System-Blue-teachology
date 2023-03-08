@@ -257,6 +257,7 @@ public class ViewCustomer extends AppCompatActivity {
             customer.setCustomer_gender(gender);
             customer.setCustomer_phone(binding.inputCustomerPhone.getText().toString().trim());
             customer.setDate_time_create(date_create);
+            customer.setCustomer_image(file.getPath());
 
 
 
