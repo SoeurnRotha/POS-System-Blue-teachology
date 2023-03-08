@@ -34,24 +34,15 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    SharedPreferences.Editor editor;
-
-    private static final String SHARED_PREF_NAME = "Blue_app";
+    SharedPreferences sharedPreferences;
     Toolbar toolbar;
-
-//    Adapter_class adapter_class;
-//
-//    List<String> title;
-//    List<Integer> image;
-//    GridView gridView;
-
-
     ActivityMainBinding binding;
 
     SharedPreferences preferences;
 
-
-
+    private static final String SHARED_NAME = "blue";
+    private static final String KEY_NAME = "name";
+    private static final String KEY_PROFILE = "password";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,22 +50,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        preferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
-        editor = preferences.edit();
-
-
+        sharedPreferences = getSharedPreferences(SHARED_NAME,MODE_PRIVATE);
 
         binding.toolbar.setTitle("Blue Teachnology");
-//
-//        BlueTeachnology_Dao blueTeachnology_dao = BlueTeachnology_Database.getInstance(getApplicationContext()).blueTeachnology_dao();
-//        List<CategoryWithProduct> categoryWithProducts = blueTeachnology_dao.getCategoryWithProducts();
-//        //test
-//        Log.d("CategoryWithProduct", "" + categoryWithProducts.toString());
-
-
         setSupportActionBar(toolbar);
-
-
         binding.navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this , binding.drawerLayout,toolbar, R.string.open_nav, R.string.close_nav);
         binding.drawerLayout.addDrawerListener(toggle);
@@ -233,11 +212,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
     public void logout(){
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        editor = preferences.edit();
-        editor.clear();
-        editor.commit();
         builder.setTitle("LOGOUT");
-        finish();
+
+
 
 
 
@@ -248,8 +225,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(DialogInterface dialogInterface, int i) {
                 Toast.makeText(MainActivity.this, "Yes", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-                //toast
+//                startActivity(intent);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.apply();
+                finish();
             }
         });
 
