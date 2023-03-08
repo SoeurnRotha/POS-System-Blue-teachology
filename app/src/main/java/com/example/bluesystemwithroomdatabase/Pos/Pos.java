@@ -86,7 +86,6 @@ public class Pos extends AppCompatActivity {
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             }
-
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 product_base_adapter_gridview.getFilter().filter(charSequence.toString());

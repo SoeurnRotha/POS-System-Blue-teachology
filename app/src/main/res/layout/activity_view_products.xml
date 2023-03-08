@@ -6,58 +6,64 @@
     android:layout_height="match_parent"
     tools:context=".Products.ViewProducts">
 
-    <RelativeLayout
-        android:visibility="gone"
+    <ScrollView
+        android:visibility="visible"
         android:id="@+id/viewproducts"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="@color/purple_700"
-            android:id="@+id/view_products"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="View Product"
-            android:fontFamily="@font/fontone"
-            android:textColor="@color/white"
-            android:textSize="15pt"
-            android:padding="20dp"
-            android:layout_centerHorizontal="true"
-            />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_below="@id/view_products"
-            android:id="@+id/listview_products"
+        android:layout_height="match_parent"
+        >
+        <RelativeLayout
 
             android:layout_width="match_parent"
-            android:layout_height="500dp"/>
+            android:layout_height="match_parent">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@color/purple_700"
+                android:id="@+id/view_products"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View Product"
+                android:fontFamily="@font/fontone"
+                android:textColor="@color/white"
+                android:textSize="15pt"
+                android:padding="20dp"
+                android:layout_centerHorizontal="true"
+                />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/add_products"
-            android:layout_below="@+id/listview_products"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@color/gray"
-            android:layout_margin="10dp"
-            android:text="Add product"
-            android:textStyle="bold"
-            android:fontFamily="@font/fontone"
-            android:elevation="10dp"
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_below="@id/view_products"
+                android:id="@+id/listview_products"
 
-            />
+                android:layout_width="match_parent"
+                android:layout_height="500dp"/>
 
-    </RelativeLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/add_products"
+                android:layout_below="@+id/listview_products"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/gray"
+                android:layout_margin="10dp"
+                android:text="Add product"
+                android:textStyle="bold"
+                android:fontFamily="@font/fontone"
+                android:elevation="10dp"
+
+                />
+
+        </RelativeLayout>
 
 
 
+    </ScrollView>
 
 
     <ScrollView
-        android:visibility="visible"
-        android:id="@+id/add_product"
+        android:visibility="gone"
+        android:id="@+id/show_add_product"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -256,6 +262,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_margin="20dp"
                     android:id="@+id/input_product_price"
+                    android:inputType="number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />
@@ -286,12 +293,14 @@
                 android:layout_below="@+id/barcode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:hint="Product cost"
 
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_margin="20dp"
+                    android:inputType="number"
                     android:id="@+id/input_product_cost"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -311,6 +320,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_product_tax"
                     android:layout_margin="20dp"
+                    android:inputType="number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />

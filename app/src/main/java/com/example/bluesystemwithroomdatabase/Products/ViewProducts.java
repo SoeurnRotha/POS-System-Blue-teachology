@@ -75,7 +75,7 @@ public class ViewProducts extends AppCompatActivity {
         binding.addProducts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.addProduct.setVisibility(view.VISIBLE);
+                binding.showAddProduct.setVisibility(view.VISIBLE);
                 binding.viewproducts.setVisibility(view.GONE);
             }
         });
@@ -83,7 +83,7 @@ public class ViewProducts extends AppCompatActivity {
         binding.backViewProducts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.addProduct.setVisibility(view.GONE);
+                binding.showAddProduct.setVisibility(view.GONE);
                 binding.viewproducts.setVisibility(view.VISIBLE);
             }
         });
@@ -99,10 +99,6 @@ public class ViewProducts extends AppCompatActivity {
 
 
         Show_Products();
-
-
-
-
 
         //show data category
         blueTeachnology_dao = BlueTeachnology_Database.getInstance(getApplicationContext()).blueTeachnology_dao();

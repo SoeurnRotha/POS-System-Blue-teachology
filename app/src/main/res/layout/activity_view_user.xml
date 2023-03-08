@@ -19,7 +19,7 @@
             <View
                 android:id="@+id/view_user"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="100dp"
                 android:background="@color/purple_700"/>
 
             <TextView
@@ -33,9 +33,27 @@
                 android:textStyle="bold"
                 android:text="View User"/>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="30dp"
+                android:layout_below="@id/view_user"
+                android:id="@+id/box_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Search here"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_margin="20dp"
+                    android:id="@+id/search_user"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list_user"
-                android:layout_below="@+id/view_user"
+                android:layout_below="@+id/box_search"
                 android:layout_width="match_parent"
                 tools:listitem="@layout/single_user_design"
 

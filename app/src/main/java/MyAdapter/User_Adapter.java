@@ -1,5 +1,6 @@
 package MyAdapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.example.bluesystemwithroomdatabase.R;
 import com.example.bluesystemwithroomdatabase.User.Update_User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import Dao.BlueTeachnology_Dao;
@@ -27,8 +31,9 @@ import Model.UserTable;
 import Mydatabase.BlueTeachnology_Database;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class User_Adapter extends RecyclerView.Adapter<User_Adapter.UserViewHolder> {
+public class User_Adapter extends RecyclerView.Adapter<User_Adapter.UserViewHolder> implements Filterable {
     List<UserTable> userTableList;
+    List<UserTable> userTableListFull;
     Context context;
     BlueTeachnology_Dao blueTeachnology_dao;
     String userRoles;
@@ -38,6 +43,7 @@ public class User_Adapter extends RecyclerView.Adapter<User_Adapter.UserViewHold
     public User_Adapter(List<UserTable> userTableList, Context context) {
         this.userTableList = userTableList;
         this.context = context;
+        this.userTableListFull = new ArrayList<>(userTableList);
     }
 
     @NonNull
@@ -48,7 +54,7 @@ public class User_Adapter extends RecyclerView.Adapter<User_Adapter.UserViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull UserViewHolder holder, @SuppressLint("RecyclerView") int position) {
         final UserTable userTable = userTableList.get(position);
 
         if(userTable == null){
@@ -165,6 +171,7 @@ public class User_Adapter extends RecyclerView.Adapter<User_Adapter.UserViewHold
         return userTableList.size();
     }
 
+
     public class UserViewHolder extends  RecyclerView.ViewHolder{
 
         TextView username,password, fristname, lastname,gender,bod,user_roles;
@@ -189,4 +196,41 @@ public class User_Adapter extends RecyclerView.Adapter<User_Adapter.UserViewHold
 
         }
     }
+
+
+    @Override
+    public Filter getFilter() {
+        return AllProductFilter;
+    }
+    private Filter AllProductFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<UserTable> filterList =new ArrayList<>();
+
+            if(charSequence == null || charSequence.length() == 0){
+                filterList.addAll(userTableListFull);
+            }else{
+                String filterPattern = charSequence.toString().toLowerCase().trim();
+
+
+                for(UserTable userTable: userTableListFull){
+                    if(userTable.getFrist_name().toLowerCase().contains(filterPattern) || userTable.getLast_name().toLowerCase().contains(filterPattern) || userTable.getUsername().toLowerCase().contains(filterPattern)){
+                        filterList.add(userTable);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filterList;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            userTableList.clear();
+            userTableList.addAll((List) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
+
 }

@@ -10,6 +10,8 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.RadioGroup;
@@ -50,7 +52,10 @@ public class View_User extends AppCompatActivity {
     boolean views =false;
     boolean allow =false;
 
+
     String gender;
+
+    User_Adapter user_adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,9 +71,26 @@ public class View_User extends AppCompatActivity {
         BlueTeachnology_Dao blueTeachnology_dao = BlueTeachnology_Database.getInstance(this).blueTeachnology_dao();
         List<UserTable> userTableList = blueTeachnology_dao.getAlluserInfo();
 
-        User_Adapter user_adapter = new User_Adapter(userTableList, getApplicationContext());
+        user_adapter = new User_Adapter(userTableList, getApplicationContext());
         binding.listUser.setLayoutManager(new LinearLayoutManager(this));
         binding.listUser.setAdapter(user_adapter);
+
+        binding.searchUser.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                user_adapter.getFilter().filter(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         recreate();
 
@@ -79,7 +101,7 @@ public class View_User extends AppCompatActivity {
             public void onClick(View view) {
                 binding.showUser.setVisibility(view.GONE);
                 binding.addUserinFo.setVisibility(view.VISIBLE);
-                recreate();
+
             }
         });
         binding.backUser.setOnClickListener(new View.OnClickListener() {
