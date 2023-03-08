@@ -56,16 +56,18 @@
     </LinearLayout>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-
-        tools:listitem="@layout/single_list_item_category_show_in_pos"
-        android:orientation="horizontal"
-        android:scrollbars="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_below="@id/box_search"
+    <com.google.android.material.tabs.TabLayout
+        android:layout_below="@+id/box_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/list_category_pos"
+        android:layout_margin="20dp"
+        app:tabMode="auto"
+        android:importantForAccessibility="no"
+        app:tabIndicatorColor="@color/purple_700"
+        app:tabSelectedTextColor="@color/black"
         />
+
 
 
     <GridView

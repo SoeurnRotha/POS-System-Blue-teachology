@@ -2,18 +2,19 @@ package com.example.bluesystemwithroomdatabase.Pos;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.example.bluesystemwithroomdatabase.databinding.ActivityPosBinding;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -22,7 +23,6 @@ import java.util.List;
 import Dao.BlueTeachnology_Dao;
 import Model.CategoryTable;
 import Model.ProductTable;
-import MyAdapter.pos_adapter.Pos_category_adapter_show_list_view;
 import MyAdapter.pos_adapter.Product_Base_Adapter_gridview;
 import Mydatabase.BlueTeachnology_Database;
 import Relationship.ManyToMany.CategoryWithProduct;
@@ -39,6 +39,8 @@ public class Pos extends AppCompatActivity {
     List<CategoryWithProduct> categoryWithProducts;
     List<ProductTable> productTableList;
     Product_Base_Adapter_gridview product_base_adapter_gridview;
+    String categoryName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,10 +52,12 @@ public class Pos extends AppCompatActivity {
 
         //show data from category
         categoryTableList = blueTeachnology_dao.getAllCateroy();
-        Pos_category_adapter_show_list_view adapter_show_list_category = new Pos_category_adapter_show_list_view(categoryTableList);
-        binding.listCategoryPos.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
-        binding.listCategoryPos.setAdapter(adapter_show_list_category);
+//        Pos_category_adapter_show_list_view adapter_show_list_category = new Pos_category_adapter_show_list_view(categoryTableList);
+//        binding.listCategoryPos.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+//        binding.listCategoryPos.setAdapter(adapter_show_list_category);
 
+        onTab();
+        //tab
 
 
         //show data from products
@@ -94,6 +98,34 @@ public class Pos extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
+
+    private void onTab(){
+        binding.listCategoryPos.addTab(binding.listCategoryPos.newTab().setText("All"));
+        if(categoryTableList.size() !=0){
+            for(CategoryTable categoryTable: categoryTableList){
+                categoryName = categoryTable.getCategoryname_Eng();
+                binding.listCategoryPos.addTab(binding.listCategoryPos.newTab().setText(categoryName));
+            }
+
+        }
+        binding.listCategoryPos.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
 
             }
         });
