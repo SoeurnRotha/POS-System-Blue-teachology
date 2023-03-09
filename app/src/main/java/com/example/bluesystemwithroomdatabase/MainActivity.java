@@ -265,11 +265,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void updateHeader(View headerView){
         sharedPreferences = getSharedPreferences(SHARED_NAME,MODE_PRIVATE);
-
         ImageView profileUser = headerView.findViewById(R.id.show_userimage);
         TextView username = headerView.findViewById(R.id.show_username);
         TextView userRoles = headerView.findViewById(R.id.show_userRoles);
-
         username.setText(sharedPreferences.getString(KEY_USERNAME, null));
         userRoles.setText(sharedPreferences.getString(KEY_USERROLES, null));
         String path = sharedPreferences.getString(KEY_PROFILE, null);
