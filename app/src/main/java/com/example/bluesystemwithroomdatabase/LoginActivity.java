@@ -51,8 +51,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        sharedPreferences = getSharedPreferences(SHARED_NAME, MODE_PRIVATE );
         binding= ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         blueTeachnology_dao = BlueTeachnology_Database.getInstance(getApplicationContext()).blueTeachnology_dao();
@@ -69,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString(KEY_USERNAME,username);
                     editor.putString(KEY_USERROLES, "ADMIN");
+                    editor.putBoolean("hasLogin", true);
                     editor.apply();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
@@ -84,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                         if(userTableList.get(i).isCashier()){
                             USER_ROLES = "Cashier";
                         }
+                        sharedPreferences = getSharedPreferences(SHARED_NAME, MODE_PRIVATE );
 
                         USER_NAME = userTableList.get(i).getUsername();
                         PATH_IMAGE = userTableList.get(i).getUserImage();
@@ -92,6 +92,7 @@ public class LoginActivity extends AppCompatActivity {
                         editor.putString(KEY_USERROLES, USER_ROLES);
                         editor.putString(KEY_USERNAME, USER_NAME);
                         editor.putString(KEY_PROFILE, PATH_IMAGE);
+                        editor.putBoolean("hasLogin", true);
                         editor.apply();
 
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);

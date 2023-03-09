@@ -63,7 +63,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        sharedPreferences = getSharedPreferences(SHARED_NAME,MODE_PRIVATE);
+
+
+
 
         binding.toolbar.setTitle("Blue Teachnology");
         binding.toolbar.setTitleTextColor(Color.WHITE);
@@ -239,8 +241,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(MainActivity.this, "Yes", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.clear();
                 editor.apply();
@@ -264,6 +264,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     public void updateHeader(View headerView){
+        sharedPreferences = getSharedPreferences(SHARED_NAME,MODE_PRIVATE);
 
         ImageView profileUser = headerView.findViewById(R.id.show_userimage);
         TextView username = headerView.findViewById(R.id.show_username);

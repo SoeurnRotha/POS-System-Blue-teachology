@@ -8,7 +8,8 @@ import android.os.Bundle;
 import android.os.Handler;
 
 public class SplashScreen extends AppCompatActivity {
-
+    private static final String SHARED_NAME = "blue";
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,14 +17,23 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
 
-
-
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashScreen.this, LoginActivity.class);
-                startActivity(intent);
+                sharedPreferences = getSharedPreferences(SHARED_NAME,MODE_PRIVATE);
+                boolean hasLogin = sharedPreferences.getBoolean("hasLogin",false);
+                if(hasLogin){
+                    Intent intent = new Intent(SplashScreen.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+
+                }else{
+                    Intent intent = new Intent(SplashScreen.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+
+                }
 
             }
         }, 3000);
