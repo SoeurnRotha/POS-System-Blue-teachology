@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.bluesystemwithroomdatabase.databinding.ActivityLoginBinding;
@@ -58,18 +59,20 @@ public class LoginActivity extends AppCompatActivity {
         binding.buttonLoginInloginActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sharedPreferences = getSharedPreferences(SHARED_NAME,MODE_PRIVATE);
+
                 String username = binding.loginUsername.getText().toString();
                 String password = binding.loginPassword.getText().toString();
                 userTableList =blueTeachnology_dao.loginAccount(username ,password);
-
+                sharedPreferences = getSharedPreferences(SHARED_NAME,MODE_PRIVATE);
                 if((username.equals("Admin")) && (password.equals("1234"))){
-
+                    //default user
+//                    sharedPreferences = getSharedPreferences("default",MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
 
                     editor.putString(KEY_USERNAME,username);
                     editor.putString(KEY_USERROLES, "ADMIN");
                     editor.putBoolean("hasLogin", true);
+
                     editor.apply();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
@@ -86,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                         if(userTableList.get(i).isCashier()){
                             USER_ROLES = "Cashier";
                         }
+
                         USER_NAME = userTableList.get(i).getUsername();
                         PATH_IMAGE = userTableList.get(i).getUserImage();
                         SharedPreferences.Editor editor = sharedPreferences.edit();

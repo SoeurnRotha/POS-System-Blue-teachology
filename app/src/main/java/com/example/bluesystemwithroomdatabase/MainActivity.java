@@ -264,6 +264,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     public void updateHeader(View headerView){
+
         sharedPreferences = getSharedPreferences(SHARED_NAME,MODE_PRIVATE);
         ImageView profileUser = headerView.findViewById(R.id.show_userimage);
         TextView username = headerView.findViewById(R.id.show_username);
@@ -274,11 +275,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Glide.with(this).load(path).into(profileUser);
 
 
-
-
-
-
-
+//        sharedPreferences = getSharedPreferences("default", MODE_PRIVATE);
+//        profileUser.setImageResource(R.drawable.user);
+//        Glide.with(this).load(path).into(profileUser);
+//
+//        username.setText(sharedPreferences.getString(KEY_USERNAME, null));
+//        userRoles.setText(sharedPreferences.getString(KEY_USERROLES, null));
     }
 
 
