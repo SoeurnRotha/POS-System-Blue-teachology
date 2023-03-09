@@ -17,8 +17,10 @@ import com.example.bluesystemwithroomdatabase.databinding.ActivityLoginBinding;
 import com.github.drjacky.imagepicker.ImagePicker;
 
 import java.io.File;
+import java.util.List;
 
 import Dao.BlueTeachnology_Dao;
+import Model.UserTable;
 import Mydatabase.BlueTeachnology_Database;
 
 
@@ -35,29 +37,24 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private static final String SHARED_NAME = "blue";
-    private static final String KEY_NAME = "name";
-    private static final String KEY_PASSWORD = "password";
+    private static final String KEY_USERNAME = "username";
+    private static final String KEY_USERROLES = "userRoles";
     private static final String KEY_PROFILE = "profile";
+
+    String USER_ROLES;
+    String USER_NAME;
+    String PATH_IMAGE;
+
+    List<UserTable> userTableList;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(binding.getRoot());
 
         sharedPreferences = getSharedPreferences(SHARED_NAME, MODE_PRIVATE );
-
-
-
-
-
         binding= ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-
-
-
-
         blueTeachnology_dao = BlueTeachnology_Database.getInstance(getApplicationContext()).blueTeachnology_dao();
 
         binding.buttonLoginInloginActivity.setOnClickListener(new View.OnClickListener() {
@@ -65,47 +62,50 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String username = binding.loginUsername.getText().toString();
                 String password = binding.loginPassword.getText().toString();
+
+                userTableList =blueTeachnology_dao.loginAccount(username ,password);
+
                 if((username.equals("Admin")) && (password.equals("1234"))){
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString(KEY_NAME,username);
-                    editor.putString(KEY_PASSWORD, password);
-
-
-
+                    editor.putString(KEY_USERNAME,username);
+                    editor.putString(KEY_USERROLES, "ADMIN");
+                    editor.apply();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
-
-
-
-
                 }
-                else if(blueTeachnology_dao.login(username,password)){
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString(KEY_NAME,username);
-                    editor.putString(KEY_PASSWORD, password);
-                    editor.apply();
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                for(int i=0;i< userTableList.size(); i++){
+                    if(username.equals(userTableList.get(i).getUsername()) && password.equals(userTableList.get(i).getPassword())){
+                        if(userTableList.get(i).isAdmin()){
+                            USER_ROLES = "Admin";
+                        }
+                        if(userTableList.get(i).isManager()){
+                            USER_ROLES = "Manager";
+                        }
+                        if(userTableList.get(i).isCashier()){
+                            USER_ROLES = "Cashier";
+                        }
 
+                        USER_NAME = userTableList.get(i).getUsername();
+                        PATH_IMAGE = userTableList.get(i).getUserImage();
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                }else{
-                    Toast.makeText(LoginActivity.this, "Invalid Username Or Password", Toast.LENGTH_SHORT).show();
+                        editor.putString(KEY_USERROLES, USER_ROLES);
+                        editor.putString(KEY_USERNAME, USER_NAME);
+                        editor.putString(KEY_PROFILE, PATH_IMAGE);
+                        editor.apply();
+
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+
+                    }
+                    else{
+                        Toast.makeText(LoginActivity.this, "Invalidate Login", Toast.LENGTH_SHORT).show();
+                    }
                 }
+
 
             }
         });
     }
 
-    ActivityResultLauncher<Intent> launcher=
-            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),(ActivityResult result)->{
-                if(result.getResultCode()==RESULT_OK){
-
-                    assert result.getData() != null;
-
-                    Uri uri=result.getData().getData();
-                    file = new File(uri.getPath());
-
-                }else if(result.getResultCode()== ImagePicker.RESULT_ERROR){
-                    Toast.makeText(this, "No image pick", Toast.LENGTH_SHORT).show();
-                }
-            });
 }

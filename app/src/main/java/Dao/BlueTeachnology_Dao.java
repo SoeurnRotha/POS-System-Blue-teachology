@@ -43,6 +43,10 @@ public interface BlueTeachnology_Dao {
     @Query("SELECT EXISTS (SELECT * from USERTABLE where username=:username AND password=:password)")
     boolean login(String username , String password);
 
+    @Query("SELECT * from USERTABLE where username=:username AND password=:password")
+    List<UserTable> loginAccount(String username , String password);
+
+
     @Query("SELECT * FROM usertable")
     List<UserTable> getAlluserInfo();
 

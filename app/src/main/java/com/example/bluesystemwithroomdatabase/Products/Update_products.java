@@ -192,11 +192,6 @@ public class Update_products extends AppCompatActivity {
             productTable.setTax(Double.parseDouble(binding.updateProductTax.getText().toString()));
 
 
-
-
-
-
-
             blueTeachnology_dao = BlueTeachnology_Database.getInstance(getApplicationContext()).blueTeachnology_dao();
             blueTeachnology_dao.insertProducts(productTable);
 
