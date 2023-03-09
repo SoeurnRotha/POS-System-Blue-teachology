@@ -32,77 +32,36 @@ public interface BlueTeachnology_Dao {
     //user
     @Insert
     void insertUser(UserTable userTable);
-
     @Update
     void updateUser(UserTable userTable);
-
-
     @Query("SELECT EXISTS (SELECT * from USERTABLE where username=:username)")
     boolean is_token(String username);
-
     @Query("SELECT EXISTS (SELECT * from USERTABLE where username=:username AND password=:password)")
     boolean login(String username , String password);
-
     @Query("SELECT * from USERTABLE where username=:username AND password=:password")
     List<UserTable> loginAccount(String username , String password);
-
-
     @Query("SELECT * FROM usertable")
     List<UserTable> getAlluserInfo();
-
-
     @Delete
     void delete(UserTable userTable);
-
-
     @Query("DELETE FROM usertable WHERE userId =:uid")
     void deleteUserByid(int uid);
-
-
-
-
-
     @Query("UPDATE usertable SET username = :username , password=:password WHERE userId =:uid")
     void updateUserBYid(int uid ,String username,String password);
-
-
-
-
-
-
-
 //category
 
     @Insert
     void insertCaterory(CategoryTable categoryTable);
-
     @Update
     void updateCategory(CategoryTable categoryTable);
-
-
     @Delete
     void deleteCateroty(CategoryTable categoryTable);
-
-
-
     @Query("UPDATE CategoryTable SET categoryname_Eng =:eng , categoryname_kh =:kh WHERE categoryID=:cid")
     void updateCategoryByid(int cid, String eng,String kh);
-
-
-
-
-
-
     @Query("DELETE FROM CategoryTable WHERE categoryID =:cid")
     void deleteByid(int cid);
-
-
-
     @Query("SELECT * FROM CategoryTable")
     List<CategoryTable> getAllCateroy();
-
-
-
     //products
 
     @Insert
@@ -215,7 +174,8 @@ public interface BlueTeachnology_Dao {
 
     @Query("SELECT * FROM CartTable")
     List<CartTable> getAllCart();
-
+    @Update
+    void updateCart(CartTable cartTable);
 
     @Insert
     void insertCart(CartTable cartTable);

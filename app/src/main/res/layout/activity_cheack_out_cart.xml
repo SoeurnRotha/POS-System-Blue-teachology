@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Check_out.Cheack_out_cart">
+
+    <TableLayout
+
+        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/table_cheackout"
+        >
+
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:background="@color/purple_700"
+                android:textColor="@color/white"
+                android:padding="10dp"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="No"
+                />
+            <TextView
+                android:textColor="@color/white"
+                android:background="@color/green"
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                />
+
+            <TextView
+                android:background="@color/pop"
+                android:textColor="@color/white"
+                android:padding="10dp"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="QTY"
+                />
+            <TextView
+                android:textColor="@color/white"
+                android:background="@color/red"
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Price"
+                />
+            <TextView
+                android:textColor="@color/white"
+                android:background="@color/material_dynamic_primary30"
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Amount"
+                />
+
+
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/list_cheackout"
+                />
+        </TableRow>
+    </TableLayout>
+</RelativeLayout>

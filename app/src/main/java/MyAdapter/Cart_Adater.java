@@ -3,6 +3,7 @@ package MyAdapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -22,18 +23,16 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.bluesystemwithroomdatabase.Check_out.Cheack_out_cart;
 import com.example.bluesystemwithroomdatabase.R;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import Dao.BlueTeachnology_Dao;
 import Model.CartTable;
 import Model.Customer;
-import Model.Invoice;
 import Model.PaymentMethod;
 import Mydatabase.BlueTeachnology_Database;
 
@@ -56,6 +55,7 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
     List<Customer> customerList;
 
     String getQty;
+
 
 
     public Cart_Adater(List<CartTable> cartTableList, TextView subtotal, TextView totalPrice, TextInputEditText discount_input,Button submit,TextInputEditText khmer_to_dollar,TextView totalAmount_khmer,Button paynow, Context context, Spinner selectCustomerName, Spinner selectPaymenyType) {
@@ -288,86 +288,98 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
                 builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+//
+//                        ArrayList<String> engName = new ArrayList<>();
+//                        ArrayList<String> khName = new ArrayList<>();
+//                        ArrayList<String> qtyList = new ArrayList<>();
+//                        ArrayList<String> priceList = new ArrayList<>();
+//
+//                        String storeqt = String.valueOf(cartTableList.get(position).getProductQty());
+//                        String storepr = String.valueOf(cartTableList.get(position).getProductCost());
+//
+//                        for(int k =0 ; k<cartTableList.size() ; k++){
+//                            engName.add(cartTableList.get(k).getProductName_eng());
+//                            khName.add(cartTableList.get(k).getProductName_kh());
+//
+//
+//                            qtyList.add(String.valueOf(cartTableList.get(k).getProductQty()));
+//                            priceList.add(String.valueOf(cartTableList.get(k).getProductCost()));
+//                        }
+//
+//
+//                        if(discountAmount != 0){
+//
+//
+//
+//
+//                            Calendar cal = Calendar.getInstance();
+//                            cal.add(Calendar.DATE, 1);
+//                            System.out.println(cal.getTime());
+//
+//
+//                            Invoice invoice = new Invoice();
+//                            invoice.setInvoice_date(String.valueOf(cal.getTime()));
+//
+//                            invoice.setCustomerName(customerName);
+//                            invoice.setPaymentType(PaymentType);
+//                            invoice.setAmount(discountAmount );
+//                            invoice.setDiscount(discount);
+//                            invoice.setQty(qtyList);
+//                            invoice.setPrice(priceList);
+//                            invoice.setProduct_name_english(engName);
+//                            invoice.setProduct_name_khmer(khName);
+//                            invoice.setUserId(1);
+//                            invoice.setGrand_total_dollar(discountAmount);
+//                            invoice.setGrand_total_khmer(grand_total);
+//                            BlueTeachnology_Dao blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
+//
+//
+//                            blueTeachnology_dao.insertInvoice(invoice);
+//                            //delete all products
+//                            deleteRecordCart(cartTableList);
+//
+//                        }else{
+//                            Calendar cal = Calendar.getInstance();
+//                            cal.add(Calendar.DATE, 1);
+//                            System.out.println(cal.getTime());
+//
+//
+//                            Invoice invoice = new Invoice();
+//                            invoice.setInvoice_date(String.valueOf(cal.getTime()));
+//
+//                            invoice.setCustomerName(customerName);
+//                            invoice.setPaymentType(PaymentType);
+//                            invoice.setAmount(discountAmount );
+//                            invoice.setDiscount(discount);
+//                            invoice.setQty(qtyList);
+//                            invoice.setPrice(priceList);
+//                            invoice.setProduct_name_english(engName);
+//                            invoice.setProduct_name_khmer(khName);
+//                            invoice.setUserId(1);
+//                            invoice.setGrand_total_dollar(sum);
+//                            invoice.setGrand_total_khmer(grand_total);
+//                            BlueTeachnology_Dao blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
+//
+//
+//                            blueTeachnology_dao.insertInvoice(invoice);
+//                            //delete all products
+//                            deleteRecordCart(cartTableList);
+//
+//                        }
 
-                        ArrayList<String> engName = new ArrayList<>();
-                        ArrayList<String> khName = new ArrayList<>();
-                        ArrayList<String> qtyList = new ArrayList<>();
-                        ArrayList<String> priceList = new ArrayList<>();
-
-                        String storeqt = String.valueOf(cartTableList.get(position).getProductQty());
-                        String storepr = String.valueOf(cartTableList.get(position).getProductCost());
-
-                        for(int k =0 ; k<cartTableList.size() ; k++){
-                            engName.add(cartTableList.get(k).getProductName_eng());
-                            khName.add(cartTableList.get(k).getProductName_kh());
 
 
-                            qtyList.add(String.valueOf(cartTableList.get(k).getProductQty()));
-                            priceList.add(String.valueOf(cartTableList.get(k).getProductCost()));
-                        }
+                        //send data (qty , price , length cart )
+                        CartTable cartTable1 = new CartTable();
+                        Intent intent = new Intent(view.getContext(), Cheack_out_cart.class);
 
 
-                        if(discountAmount != 0){
-
-
-
-
-                            Calendar cal = Calendar.getInstance();
-                            cal.add(Calendar.DATE, 1);
-                            System.out.println(cal.getTime());
-
-
-                            Invoice invoice = new Invoice();
-                            invoice.setInvoice_date(String.valueOf(cal.getTime()));
-
-                            invoice.setCustomerName(customerName);
-                            invoice.setPaymentType(PaymentType);
-                            invoice.setAmount(discountAmount );
-                            invoice.setDiscount(discount);
-                            invoice.setQty(qtyList);
-                            invoice.setPrice(priceList);
-
-                            invoice.setProduct_name_english(engName);
-                            invoice.setProduct_name_khmer(khName);
-                            invoice.setUserId(1);
-                            invoice.setGrand_total_dollar(discountAmount);
-                            invoice.setGrand_total_khmer(grand_total);
-                            BlueTeachnology_Dao blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
-
-
-                            blueTeachnology_dao.insertInvoice(invoice);
-                            //delete all products
-                            deleteRecordCart(cartTableList);
-
-                        }else{
-                            Calendar cal = Calendar.getInstance();
-                            cal.add(Calendar.DATE, 1);
-                            System.out.println(cal.getTime());
-
-
-                            Invoice invoice = new Invoice();
-                            invoice.setInvoice_date(String.valueOf(cal.getTime()));
-
-                            invoice.setCustomerName(customerName);
-                            invoice.setPaymentType(PaymentType);
-                            invoice.setAmount(discountAmount );
-                            invoice.setDiscount(discount);
-                            invoice.setQty(qtyList);
-                            invoice.setPrice(priceList);
-                            invoice.setProduct_name_english(engName);
-                            invoice.setProduct_name_khmer(khName);
-                            invoice.setUserId(1);
-                            invoice.setGrand_total_dollar(sum);
-                            invoice.setGrand_total_khmer(grand_total);
-                            BlueTeachnology_Dao blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
-
-
-                            blueTeachnology_dao.insertInvoice(invoice);
-                            //delete all products
-                            deleteRecordCart(cartTableList);
-
-                        }
-
+                        //go home work tt
+                        cartTable1.setProductQty();
+                        cartTable1.setProductName_eng();
+                        cartTable1.setProductCost();
+                        blueTeachnology_dao.updateCart(cartTable1);
+                        view.getContext().startActivity(intent);
 
 
                     }
@@ -418,6 +430,8 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
             add = itemView.findViewById(R.id.button_add_qty);
 
             imageView = itemView.findViewById(R.id.image_cart);
+
+
         }
     }
 

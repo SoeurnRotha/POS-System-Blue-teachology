@@ -1,34 +1,20 @@
 package com.example.bluesystemwithroomdatabase.Cart;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.room.DeleteTable;
 
-import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Toast;
 
-import com.example.bluesystemwithroomdatabase.R;
 import com.example.bluesystemwithroomdatabase.databinding.ActivityCartBinding;
 
 import java.util.List;
 
 import Dao.BlueTeachnology_Dao;
 import Model.CartTable;
-import Model.Customer;
-import Model.Invoice;
-import Model.PaymentMethod;
 import MyAdapter.Cart_Adater;
-import MyAdapter.Customer_bastAdapter;
-import MyAdapter.Payment_method_bastAdapter;
 import Mydatabase.BlueTeachnology_Database;
-import Relationship.ManyToMany.OneToOne.ProductWithCarts;
 
 public class Cart extends AppCompatActivity {
 
@@ -68,6 +54,7 @@ public class Cart extends AppCompatActivity {
         );
         binding.listCart.setLayoutManager(new LinearLayoutManager(this));
         binding.listCart.setAdapter(adater);
+
 
     }
 
