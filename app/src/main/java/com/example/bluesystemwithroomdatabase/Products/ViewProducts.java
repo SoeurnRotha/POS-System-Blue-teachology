@@ -89,7 +89,7 @@ public class ViewProducts extends AppCompatActivity {
         });
 
         //scan code
-        binding.scanCode.setOnClickListener(new View.OnClickListener() {
+        binding.barcode.setEndIconOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -298,7 +298,7 @@ public class ViewProducts extends AppCompatActivity {
                     Uri uri=result.getData().getData();
                     file = new File(uri.getPath());
 
-                    binding.imageDataProducts.setImageURI(uri);
+                    binding.selectImageProducts.setImageURI(uri);
                 }else if(result.getResultCode()== ImagePicker.RESULT_ERROR){
                     Toast.makeText(this, "No image pick", Toast.LENGTH_SHORT).show();
                 }

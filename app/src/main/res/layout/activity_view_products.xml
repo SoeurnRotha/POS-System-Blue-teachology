@@ -7,7 +7,7 @@
     tools:context=".Products.ViewProducts">
 
     <ScrollView
-        android:visibility="visible"
+        android:visibility="gone"
         android:id="@+id/viewproducts"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -62,7 +62,7 @@
 
 
     <ScrollView
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/show_add_product"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -112,22 +112,12 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/image_data_products"
-                    android:layout_gravity="center_horizontal"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-
-                    />
-                <Button
                     android:id="@+id/select_image_products"
-                    android:textColor="@color/white"
-                    android:textSize="8pt"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/fontone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="45dp"
-                    android:text="Select Image"
+                    android:src="@drawable/add_image"
                     />
+
 
 
 
@@ -157,7 +147,7 @@
 
                 <Spinner
                     android:id="@+id/select_category_name"
-
+                    android:padding="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp" />
@@ -262,7 +252,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_margin="20dp"
                     android:id="@+id/input_product_price"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />
@@ -275,6 +265,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Product barcode"
+                app:endIconMode="custom"
+                app:endIconDrawable="@drawable/baseline_qr_code_2_24"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -300,7 +292,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_margin="20dp"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:id="@+id/input_product_cost"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -348,37 +340,6 @@
                 android:textColor="@color/white" />
 
 
-            <androidx.cardview.widget.CardView
-
-                android:id="@+id/scanCode"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/save_products"
-                android:layout_centerHorizontal="true"
-                android:background="@color/purple_700"
-                android:elevation="10dp"
-                android:padding="10dp"
-                app:cardElevation="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <androidx.constraintlayout.utils.widget.ImageFilterView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/bar_code" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:padding="15dp"
-                        android:text="Scan Code" />
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
 
 
         </RelativeLayout>

@@ -15,7 +15,7 @@
         android:fontFamily="sans-serif"
         android:text="Hello world"
         android:textColor="@color/black"
-        android:textSize="10pt"
+        android:textSize="7pt"
         android:textStyle="bold" />
 
 </LinearLayout>

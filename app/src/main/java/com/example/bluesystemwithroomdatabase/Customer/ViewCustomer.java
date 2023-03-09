@@ -229,6 +229,9 @@ public class ViewCustomer extends AppCompatActivity {
                 binding.inputCustomerAddress.setText("");
                 binding.inputCustomerEmail.setText("");
                 binding.inputCustomerPhone.setText("");
+                binding.genderCustomerFemele.setChecked(false);
+                binding.genderCustomerMele.setChecked(false);
+                binding.addImageCustomer.setImageResource(R.drawable.user);
             }
 
 
