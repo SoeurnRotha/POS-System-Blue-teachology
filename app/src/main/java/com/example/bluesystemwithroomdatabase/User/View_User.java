@@ -3,6 +3,7 @@ package com.example.bluesystemwithroomdatabase.User;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -11,14 +12,18 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.bluesystemwithroomdatabase.Customer.ViewCustomer;
 import com.example.bluesystemwithroomdatabase.R;
 import com.example.bluesystemwithroomdatabase.databinding.ActivityViewUserBinding;
+import com.example.bluesystemwithroomdatabase.databinding.CustomDialogDoneForAddCustomerBinding;
+import com.example.bluesystemwithroomdatabase.databinding.CustomDialogDoneForAddUserBinding;
 import com.github.drjacky.imagepicker.ImagePicker;
 
 
@@ -112,7 +117,7 @@ public class View_User extends AppCompatActivity {
             }
         });
 
-        binding.buttonSeleteBodUser.setOnClickListener(new View.OnClickListener() {
+        binding.buttonSeleteBodUser.setEndIconOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DatePickerDialog dialog = new DatePickerDialog(View_User.this, new DatePickerDialog.OnDateSetListener() {
@@ -125,7 +130,6 @@ public class View_User extends AppCompatActivity {
                     }
                 },year,month,day);
                 dialog.show();
-
             }
         });
         binding.checkboxAllow.setOnClickListener(new View.OnClickListener() {
@@ -231,6 +235,7 @@ public class View_User extends AppCompatActivity {
                 String last_namme = binding.inputLastName.getText().toString();
                 String user_name = binding.editUserInputUsername.getText().toString();
                 String password = binding.editUserInputPassword.getText().toString();
+
                 mele = binding.genderMele.isChecked();
                 femele = binding.genderFemele.isChecked();
 
@@ -246,27 +251,44 @@ public class View_User extends AppCompatActivity {
 
 
 
-                UserTable userTable = new UserTable();
-                userTable.setUserImage(file.getPath());
-                userTable.setFrist_name(first_name);
-                userTable.setLast_name(last_namme);
-                userTable.setDate_create_user(create_date);
-                userTable.setUsername(user_name);
-                userTable.setPassword(password);
-                userTable.setGender(gender);
-                userTable.setBrith_of_date(binding.inputBodUser.getText().toString());
-                userTable.setAdmin(admin);
-                userTable.setManager(manager);
-                userTable.setCashier(cashier);
-                userTable.setInsert(insert);
-                userTable.setUpdate(update);
-                userTable.setDelete(delete);
-                userTable.setView(views);
-                userTable.setAllow(allow);
+                if(TextUtils.isEmpty(first_name) ||
+                        TextUtils.isEmpty(last_namme)
+                        || TextUtils.isEmpty(user_name)
+                        || TextUtils.isEmpty(password)
+                        || TextUtils.isEmpty(file.getPath())
+
+                ){
+                    Toast.makeText(View_User.this, "Please fill in the information correctly.", Toast.LENGTH_SHORT).show();
+                }else{
+
+                    UserTable userTable = new UserTable();
+                    userTable.setUserImage(file.getPath());
+                    userTable.setFrist_name(first_name);
+                    userTable.setLast_name(last_namme);
+                    userTable.setDate_create_user(create_date);
+                    userTable.setUsername(user_name);
+                    userTable.setPassword(password);
+                    userTable.setGender(gender);
+                    userTable.setBrith_of_date(binding.inputBodUser.getText().toString());
+                    userTable.setAdmin(admin);
+                    userTable.setManager(manager);
+                    userTable.setCashier(cashier);
+                    userTable.setInsert(insert);
+                    userTable.setUpdate(update);
+                    userTable.setDelete(delete);
+                    userTable.setView(views);
+                    userTable.setAllow(allow);
+
+                    ClearText();
+                    insertDone();
 
 
 
-                blueTeachnology_dao.insertUser(userTable);
+                    blueTeachnology_dao.insertUser(userTable);
+                }
+
+
+
             }
         });
 
@@ -298,4 +320,41 @@ public class View_User extends AppCompatActivity {
                     Toast.makeText(this, "No image pick", Toast.LENGTH_SHORT).show();
                 }
             });
+
+    public void ClearText(){
+        binding.inputFristName.setText("");
+        binding.inputLastName.setText("");
+        binding.inputBodUser.setText("");
+        binding.editUserInputUsername.setText("");
+        binding.editUserInputPassword.setText("");
+        binding.genderFemele.setChecked(false);
+        binding.genderMele.setChecked(false);
+
+
+        binding.checkboxAdmin.setChecked(false);
+        binding.checkboxManager.setChecked(false);
+        binding.checkboxCashier.setChecked(false);
+
+        binding.checkboxInsert.setChecked(false);
+        binding.checkboxUpdate.setChecked(false);
+        binding.checkboxDelete.setChecked(false);
+        binding.checkboxView.setChecked(false);
+        binding.checkboxAllow.setChecked(false);
+
+        binding.imageUser.setImageResource(R.drawable.add_image);
+    }
+    public void insertDone(){
+        CustomDialogDoneForAddUserBinding addCustomerBinding = CustomDialogDoneForAddUserBinding.inflate(getLayoutInflater());
+        AlertDialog.Builder builder = new AlertDialog.Builder(View_User.this);
+        builder.setView(addCustomerBinding.getRoot());
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        addCustomerBinding.okDoneUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+    }
 }

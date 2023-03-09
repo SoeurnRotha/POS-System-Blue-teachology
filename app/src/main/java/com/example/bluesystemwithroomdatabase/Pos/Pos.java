@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
+import com.example.bluesystemwithroomdatabase.Cart.Cart;
 import com.example.bluesystemwithroomdatabase.databinding.ActivityPosBinding;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -99,6 +100,14 @@ public class Pos extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
 
+            }
+        });
+
+        binding.addCartPos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Pos.this, Cart.class);
+                startActivity(intent);
             }
         });
     }

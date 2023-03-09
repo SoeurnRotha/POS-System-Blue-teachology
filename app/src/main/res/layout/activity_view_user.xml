@@ -7,7 +7,7 @@
     tools:context=".User.View_User">
 
     <ScrollView
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/show_user">
@@ -74,7 +74,7 @@
         </RelativeLayout>
     </ScrollView>
     <ScrollView
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/add_userinFo"
@@ -134,14 +134,19 @@
                 android:textStyle="bold" />
 
 
-            <ImageView
-                android:layout_margin="20dp"
+            <de.hdodenhof.circleimageview.CircleImageView
+                app:civ_border_width="1dp"
+                app:civ_border_color="@color/black"
                 android:id="@+id/image_user"
-                android:layout_below="@id/text_info_user"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
+                android:layout_below="@id/text_info_user"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/add_image"/>
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/add_image" />
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -243,7 +248,7 @@
 
 
             <LinearLayout
-                android:layout_margin="20dp"
+
                 android:layout_below="@id/group_gender"
                 android:id="@+id/input_bod"
                 android:orientation="horizontal"
@@ -251,22 +256,18 @@
                 android:layout_height="wrap_content"
                 >
 
-                <Button
-
-                    android:id="@+id/button_selete_bod_user"
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:text="Select brith of date"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
-                    />
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/outlinedTextField"
+                    android:id="@+id/button_selete_bod_user"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Birth of date"
+                    app:endIconMode="custom"
+
+                    app:endIconDrawable="@drawable/date"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
+
                         android:layout_margin="20dp"
                         android:id="@+id/input_bod_user"
                         android:layout_width="match_parent"
