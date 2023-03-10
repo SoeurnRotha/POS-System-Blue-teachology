@@ -400,32 +400,35 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
                             sumtotal += (cartTableList.get(y).getProductCost() * cartTableList.get(y).getProductQty());
 
                         }
-                        Toast.makeText(context, "" + qtyList, Toast.LENGTH_SHORT).show();
-                        Toast.makeText(context, "" + engName, Toast.LENGTH_SHORT).show();
-                        Toast.makeText(context, "" + priceList, Toast.LENGTH_SHORT).show();
-                        Toast.makeText(context, "" + amountList, Toast.LENGTH_SHORT).show();
-                        Toast.makeText(context, "" +sumtotal , Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(context, "" + qtyList, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(context, "" + engName, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(context, "" + priceList, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(context, "" + amountList, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(context, "" +sumtotal , Toast.LENGTH_SHORT).show();
 
-
-
-                        intent.putStringArrayListExtra("qty", qtyList);
-//                        intent.putExtra("qty", String.valueOf(qtyList));
-                        intent.putStringArrayListExtra("name", engName);
-                        intent.putStringArrayListExtra("price", priceList);
-                        intent.putStringArrayListExtra("amount", amountList);
-                        intent.putExtra("total", String.valueOf(sumtotal));
-
-
-
-//                        Cheackout cheackout = new Cheackout();
-//                        cheackout.setQty(qtyList);
-//                        cheackout.setPrice(priceList);
-//                        cheackout.setAmount(amountList);
-//                        cheackout.setTotal_dollar(sumtotal);
-//                        cheackout.setName(engName);
+                        //not done
 //
-//                        blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
-//                        blueTeachnology_dao.insertCheackout(cheackout);
+//
+//
+//                        intent.putStringArrayListExtra("qty", qtyList);
+////                        intent.putExtra("qty", String.valueOf(qtyList));
+//                        intent.putStringArrayListExtra("name", engName);
+//                        intent.putStringArrayListExtra("price", priceList);
+//                        intent.putStringArrayListExtra("amount", amountList);
+//                        intent.putExtra("total", String.valueOf(sumtotal));
+
+
+
+                        Cheackout cheackout = new Cheackout();
+                        cheackout.setQty(qtyList);
+                        cheackout.setPrice(priceList);
+                        cheackout.setAmount(amountList);
+                        cheackout.setTotal_dollar(sumtotal);
+                        cheackout.setName(engName);
+
+                        blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
+                        blueTeachnology_dao.insertCheackout(cheackout);
+
 
                         view.getContext().startActivity(intent);
 
@@ -516,8 +519,6 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
             @Override
             protected void onPostExecute(Void unused) {
                 super.onPostExecute(unused);
-//                Toast.makeText(context, "Delete all Record", Toast.LENGTH_SHORT).show();
-
                 if(cartTableList.size() >0){
                     cartTableList.clear();
 

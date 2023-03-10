@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 @Entity
 public class Cheackout {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     int cheackoutId;
 
     @ColumnInfo

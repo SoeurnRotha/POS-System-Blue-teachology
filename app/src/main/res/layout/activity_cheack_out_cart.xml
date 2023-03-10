@@ -71,26 +71,10 @@
         </TableRow>
      </TableLayout>
 
-
-
-
-    <LinearLayout
-        android:layout_below="@+id/table_cheackout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Total = "
-            />
-        <TextView
-            android:id="@+id/cheackout_total"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1000000"
-            />
-    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_cheack_out"
+        tools:listitem="@layout/single_item_cheackout"
+        android:layout_below="@id/table_cheackout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </RelativeLayout>
