@@ -28,6 +28,7 @@ import com.example.bluesystemwithroomdatabase.R;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import Dao.BlueTeachnology_Dao;
@@ -370,15 +371,45 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
 
 
                         //send data (qty , price , length cart )
-                        CartTable cartTable1 = new CartTable();
+
                         Intent intent = new Intent(view.getContext(), Cheack_out_cart.class);
-
-
                         //go home work tt
-                        cartTable1.setProductQty();
-                        cartTable1.setProductName_eng();
-                        cartTable1.setProductCost();
-                        blueTeachnology_dao.updateCart(cartTable1);
+                        ArrayList<String> engName = new ArrayList<>();
+                        ArrayList<String> khName = new ArrayList<>();
+                        ArrayList<String> qtyList = new ArrayList<>();
+                        ArrayList<String> priceList = new ArrayList<>();
+                        ArrayList<String> amountList = new ArrayList<>();
+                        for(int k =0 ; k<cartTableList.size() ; k++){
+                            engName.add(cartTableList.get(k).getProductName_eng());
+                            khName.add(cartTableList.get(k).getProductName_kh());
+
+
+                            qtyList.add(String.valueOf(cartTableList.get(k).getProductQty()));
+                            priceList.add(String.valueOf(cartTableList.get(k).getProductCost()));
+                            amountList.add(String.valueOf(cartTableList.get(k).getProductQty() * cartTableList.get(k).getProductCost()));
+
+
+
+
+                        }
+
+                        int sumtotal =0;
+                        for(int y=0;  y< cartTableList.size(); y++){
+
+                            sumtotal += (cartTableList.get(y).getProductCost() * cartTableList.get(y).getProductQty());
+
+                        }
+                        Toast.makeText(context, "" + qtyList, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "" + engName, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "" + priceList, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "" + amountList, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "" +sumtotal , Toast.LENGTH_SHORT).show();
+
+                        intent.putExtra("qty", String.valueOf(qtyList));
+                        intent.putExtra("name", String.valueOf(engName));
+                        intent.putExtra("price", String.valueOf(priceList));
+                        intent.putExtra("amount", String.valueOf(amountList));
+                        intent.putExtra("total", String.valueOf(sumtotal));
                         view.getContext().startActivity(intent);
 
 
@@ -421,9 +452,7 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
 
             peng = itemView.findViewById(R.id.product_name_eng);
             pkh = itemView.findViewById(R.id.product_name_kh);
-
             qty = itemView.findViewById(R.id.count_qty);
-
             price = itemView.findViewById(R.id.product_price);
             delete = itemView.findViewById(R.id.button_cart_delete);
             remove = itemView.findViewById(R.id.button_remove_qty);
