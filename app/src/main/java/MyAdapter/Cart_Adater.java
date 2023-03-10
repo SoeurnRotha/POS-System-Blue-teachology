@@ -33,6 +33,7 @@ import java.util.List;
 
 import Dao.BlueTeachnology_Dao;
 import Model.CartTable;
+import Model.Cheackout;
 import Model.Customer;
 import Model.PaymentMethod;
 import Mydatabase.BlueTeachnology_Database;
@@ -405,11 +406,27 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
                         Toast.makeText(context, "" + amountList, Toast.LENGTH_SHORT).show();
                         Toast.makeText(context, "" +sumtotal , Toast.LENGTH_SHORT).show();
 
-                        intent.putExtra("qty", String.valueOf(qtyList));
-                        intent.putExtra("name", String.valueOf(engName));
-                        intent.putExtra("price", String.valueOf(priceList));
-                        intent.putExtra("amount", String.valueOf(amountList));
+
+
+                        intent.putStringArrayListExtra("qty", qtyList);
+//                        intent.putExtra("qty", String.valueOf(qtyList));
+                        intent.putStringArrayListExtra("name", engName);
+                        intent.putStringArrayListExtra("price", priceList);
+                        intent.putStringArrayListExtra("amount", amountList);
                         intent.putExtra("total", String.valueOf(sumtotal));
+
+
+
+//                        Cheackout cheackout = new Cheackout();
+//                        cheackout.setQty(qtyList);
+//                        cheackout.setPrice(priceList);
+//                        cheackout.setAmount(amountList);
+//                        cheackout.setTotal_dollar(sumtotal);
+//                        cheackout.setName(engName);
+//
+//                        blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
+//                        blueTeachnology_dao.insertCheackout(cheackout);
+
                         view.getContext().startActivity(intent);
 
 

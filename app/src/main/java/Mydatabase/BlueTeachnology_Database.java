@@ -11,6 +11,7 @@ import androidx.room.TypeConverters;
 import Dao.BlueTeachnology_Dao;
 import Model.CartTable;
 import Model.CategoryTable;
+import Model.Cheackout;
 import Model.Customer;
 import Model.DataConverts;
 import Model.ExpanseTable;
@@ -33,7 +34,8 @@ import Relationship.ManyToMany.LocationWithProducts.LocationProductsCrossRef;
 
         LocationProductsCrossRef.class,
         Invoice.class,
-        ExpanseTable.class
+        ExpanseTable.class,
+        Cheackout.class
 
 }, version = 1)
 @TypeConverters({ DataConverts.class})

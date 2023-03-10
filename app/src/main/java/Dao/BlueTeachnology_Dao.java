@@ -13,6 +13,7 @@ import java.util.List;
 
 import Model.CartTable;
 import Model.CategoryTable;
+import Model.Cheackout;
 import Model.Customer;
 import Model.ExpanseTable;
 import Model.Invoice;
@@ -250,6 +251,13 @@ public interface BlueTeachnology_Dao {
 
     @Query("SELECT * FROM ExpanseTable")
     List<ExpanseTable> getAllExpense();
+
+
+    //cheack out
+    @Insert
+    void insertCheackout(Cheackout cheackout);
+    @Query("SELECT * FROM Cheackout")
+    List<Cheackout> getAllCheackout();
 
 
 
