@@ -65,6 +65,8 @@ public class CategoryActivity extends AppCompatActivity {
                 binding.inputCategoryNameKhmer.setText("");
 
 
+
+
                 CustomDialogDoneForAddCategoryBinding addCategoryBinding = CustomDialogDoneForAddCategoryBinding.inflate(getLayoutInflater());
                 AlertDialog.Builder builder = new AlertDialog.Builder(CategoryActivity.this);
                 builder.setView(addCategoryBinding.getRoot());

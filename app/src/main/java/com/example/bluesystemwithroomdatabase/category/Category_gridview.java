@@ -46,8 +46,6 @@ public class Category_gridview extends AppCompatActivity {
             public void onClick(View view) {
                 binding.addCaterotyVisible.setVisibility(view.VISIBLE);
                 binding.viewCategory.setVisibility(view.GONE);
-
-
             }
         });
 
@@ -90,15 +88,15 @@ public class Category_gridview extends AppCompatActivity {
                 intent.putExtra("c_id", String.valueOf(categoryTableList.get(i).getCategoryID()));
                 intent.putExtra("cname_eng", String.valueOf(categoryTableList.get(i).getCategoryname_Eng()));
                 intent.putExtra("cname_kh", String.valueOf(categoryTableList.get(i).getCategoryname_kh()));
-
                 startActivity(intent);
-
                 finish();
 
 
 
             }
         });
+
+
 
 
 

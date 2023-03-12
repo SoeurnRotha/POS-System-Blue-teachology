@@ -1,12 +1,15 @@
 package MyAdapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 
@@ -77,79 +80,42 @@ public class Category_baseAdapter extends BaseAdapter {
           delete.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View view) {
-                  BlueTeachnology_Dao blueTeachnology_dao =  BlueTeachnology_Database.getInstance(view.getContext()).blueTeachnology_dao();
+                  AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                  builder.setTitle("DELETE");
+                  builder.setMessage("Do you want to Delete Category");
+                  builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                      @Override
+                      public void onClick(DialogInterface dialogInterface, int index) {
+                          Toast.makeText(builder.getContext(), "You delete successful", Toast.LENGTH_SHORT).show();
+                          BlueTeachnology_Dao blueTeachnology_dao =  BlueTeachnology_Database.getInstance(view.getContext()).blueTeachnology_dao();
+                          blueTeachnology_dao.deleteByid(categoryTableList.get(i).getCategoryID());
+                          categoryTableList.remove(i);
+                          notifyDataSetChanged();
 
-                  blueTeachnology_dao.deleteByid(categoryTableList.get(i).getCategoryID());
-                  categoryTableList.remove(i);
-                  notifyDataSetChanged();
+                      }
+                  });
+
+                  builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                      @Override
+                      public void onClick(DialogInterface dialogInterface, int index) {
+                          Toast.makeText(builder.getContext(), "No", Toast.LENGTH_SHORT).show();
+                          dialogInterface.cancel();
+                      }
+                  });
+
+                  AlertDialog alertDialog = builder.create();
+                  alertDialog.show();
+
+
+//                  BlueTeachnology_Dao blueTeachnology_dao =  BlueTeachnology_Database.getInstance(view.getContext()).blueTeachnology_dao();
+//
+//                  blueTeachnology_dao.deleteByid(categoryTableList.get(i).getCategoryID());
+//                  categoryTableList.remove(i);
+//                  notifyDataSetChanged();
               }
           });
 
-
-//          delete.setOnClickListener(new View.OnClickListener() {
-//              @Override
-//              public void onClick(View view) {
-//                  AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-//                  builder.setTitle("DELETE");
-//                  builder.setMessage("Do you want to Delete Category");
-//                  builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//                      @Override
-//                      public void onClick(DialogInterface dialogInterface, int index) {
-//                          Toast.makeText(builder.getContext(), "You delete successful", Toast.LENGTH_SHORT).show();
-//                          Toast.makeText(builder.getContext(), "Yes", Toast.LENGTH_SHORT).show();
-//
-//                          BlueTeachnology_Dao blueTeachnology_dao =  BlueTeachnology_Database.getInstance(view.getContext()).blueTeachnology_dao();
-//
-//
-//                          blueTeachnology_dao.deleteByid(categoryTableList.get(i).getId());
-//
-//
-//                          categoryTableList.remove(i);
-//                          notifyDataSetChanged();
-//
-//                      }
-//                  });
-//
-//                  builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-//                      @Override
-//                      public void onClick(DialogInterface dialogInterface, int index) {
-//                          Toast.makeText(builder.getContext(), "No", Toast.LENGTH_SHORT).show();
-//                          dialogInterface.cancel();
-//                      }
-//                  });
-//
-//                  AlertDialog alertDialog = builder.create();
-//
-////                  alertDialog.show();
-//              }
-//          });
         return view;
     }
-//
-//    public void openDiglog(){
-//        Dialog dialog = new Dialog(context);
-//
-//
-//        dialog.setContentView(R.layout.custom_diglog_update_category);
-//        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-//
-//        Button category_no = dialog.findViewById(R.id.category_no);
-//        Button category_yes = dialog.findViewById(R.id.category_yes);
-//
-//
-//        category_no.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                dialog.dismiss();
-//            }
-//        });
-//
-//
-//        category_yes.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(context, "Hello yes", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
+
 }

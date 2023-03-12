@@ -33,6 +33,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:hint="Category id"
+            android:visibility="gone"
             android:id="@+id/update_category_id"
             android:layout_margin="20dp"
             android:layout_width="match_parent"
