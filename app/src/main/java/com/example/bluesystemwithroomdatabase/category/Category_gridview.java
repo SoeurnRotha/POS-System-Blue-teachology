@@ -1,15 +1,13 @@
 package com.example.bluesystemwithroomdatabase.category;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.bluesystemwithroomdatabase.Products.ViewProducts;
 import com.example.bluesystemwithroomdatabase.databinding.ActivityCategoryGridviewBinding;
 
 import java.text.SimpleDateFormat;
@@ -20,8 +18,7 @@ import java.util.Locale;
 
 import Dao.BlueTeachnology_Dao;
 import Model.CategoryTable;
-import Model.ProductTable;
-import MyAdapter.Category_baseAdapter;
+import MyAdapter.Category_Adapter;
 import Mydatabase.BlueTeachnology_Database;
 
 public class Category_gridview extends AppCompatActivity {
@@ -30,7 +27,7 @@ public class Category_gridview extends AppCompatActivity {
 
     BlueTeachnology_Dao blueTeachnology_dao;
 
-    int categoryID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +61,8 @@ public class Category_gridview extends AppCompatActivity {
         BlueTeachnology_Dao blueTeachnology_dao = BlueTeachnology_Database.getInstance(this).blueTeachnology_dao();
         List<CategoryTable> categoryTableList = blueTeachnology_dao.getAllCateroy();
 
-        Category_baseAdapter category_adapter = new Category_baseAdapter(categoryTableList, getApplicationContext());
-
+        Category_Adapter category_adapter = new Category_Adapter(categoryTableList, getApplicationContext());
+        binding.categoryGridview.setLayoutManager(new LinearLayoutManager(this));
         binding.categoryGridview.setAdapter(category_adapter);
 
         binding.categorySave.setOnClickListener(new View.OnClickListener() {
@@ -75,26 +72,9 @@ public class Category_gridview extends AppCompatActivity {
                 saveCategory.execute();
             }
         });
+        recreate();
 
 
-
-        binding.categoryGridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(Category_gridview.this, "Selete = " + i, Toast.LENGTH_SHORT).show();
-
-                Intent intent = new Intent(Category_gridview.this, Update_Category2.class);
-
-                intent.putExtra("c_id", String.valueOf(categoryTableList.get(i).getCategoryID()));
-                intent.putExtra("cname_eng", String.valueOf(categoryTableList.get(i).getCategoryname_Eng()));
-                intent.putExtra("cname_kh", String.valueOf(categoryTableList.get(i).getCategoryname_kh()));
-                startActivity(intent);
-                finish();
-
-
-
-            }
-        });
 
 
 

@@ -14,8 +14,6 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.bluesystemwithroomdatabase.Customer.UpdateCustomer;
-import com.example.bluesystemwithroomdatabase.Customer.ViewCustomer;
 import com.example.bluesystemwithroomdatabase.databinding.ActivityUpdateProductsBinding;
 import com.github.drjacky.imagepicker.ImagePicker;
 
@@ -28,10 +26,8 @@ import java.util.Locale;
 
 import Dao.BlueTeachnology_Dao;
 import Model.CategoryTable;
-import Model.Customer;
 import Model.LocationTable;
 import Model.ProductTable;
-import MyAdapter.Category_baseAdapter;
 import MyAdapter.Location_Bast_Adapter;
 import MyAdapter.Select_Adapter_base_category;
 import Mydatabase.BlueTeachnology_Database;

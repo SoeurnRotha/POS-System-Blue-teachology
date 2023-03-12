@@ -28,7 +28,6 @@ public class Update_Category2 extends AppCompatActivity {
         binding.updateCategoryId.setText(getIntent().getStringExtra("c_id"));
         binding.updateCategoryNameEng.setText(getIntent().getStringExtra("cname_eng"));
         binding.updateCategoryNameKh.setText(getIntent().getStringExtra("cname_kh"));
-
         binding.updateCategorySave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
