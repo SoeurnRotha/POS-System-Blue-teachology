@@ -426,11 +426,15 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
                         cheackout.setTotal_dollar(sumtotal);
                         cheackout.setName(engName);
 
+
+
                         blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
                         blueTeachnology_dao.insertCheackout(cheackout);
-
+                        deleteRecordCart(cartTableList);
 
                         view.getContext().startActivity(intent);
+
+
 
 
                     }
