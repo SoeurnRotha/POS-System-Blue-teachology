@@ -2,6 +2,7 @@ package com.example.bluesystemwithroomdatabase.CreatePDF_for_invoice;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -12,6 +13,7 @@ import android.graphics.drawable.PaintDrawable;
 import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Toast;
 
@@ -41,100 +43,93 @@ public class CreatePDF extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
-        bitmap = BitmapFactory.decodeResource(getResources() , R.drawable.blue);
-        selectBitmp = Bitmap.createScaledBitmap(bitmap , 250,200 ,false);
+
+        binding.printReceipt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bitmap = viewToBitmap(binding.pdfLayout, binding.pdfLayout.getWidth(), binding.pdfLayout.getHeight());
+                createPDF(bitmap);
+            }
+        });
+
 
 
     }
 
+    public static Bitmap viewToBitmap (View view, int width,int height){
+        Bitmap viewMap = Bitmap.createBitmap(width,height,Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(viewMap);
+        view.draw(canvas);
+        return viewMap;
+    }
 
-    public void createPDF(){
+    public void createPDF(Bitmap bitmap){
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        this.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        float width = displayMetrics.widthPixels;
+        float height = displayMetrics.heightPixels;
+
+        int mheight = (int) height, mwidth = (int) width;
+
         PdfDocument pdfDocument = new PdfDocument();
-        Paint paint = new Paint();
-        Paint titlePaint = new Paint();
-
-        date = new Date();
-        dateFormat = new SimpleDateFormat("dd/MM/yy");
-
-
-
-        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(500,1000,1).create();
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(mwidth,mheight,1).create();
         PdfDocument.Page page = pdfDocument.startPage(pageInfo);
+
         Canvas canvas = page.getCanvas();
 
+        Paint paint = new Paint();
+        canvas.drawPaint(paint);
 
-        canvas.drawBitmap(selectBitmp , pageWidth/2 -100,20,paint);
-        titlePaint.setTextAlign(Paint.Align.CENTER);
-        titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-        titlePaint.setTextSize(20f);
-        canvas.drawText("Company Name",pageWidth/2 , 300, titlePaint );
-
-        titlePaint.setTextAlign(Paint.Align.LEFT);
-        titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
-        titlePaint.setTextSize(15f);
-        canvas.drawText("Tel : 0123456789", 20,320 , titlePaint );
-
-        titlePaint.setTextAlign(Paint.Align.LEFT);
-        titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
-        titlePaint.setTextSize(15f);
-        canvas.drawText("Address : #320D, street 150 , Sengkat Boeng keng kang 1", 20,340 , titlePaint );
-
-        titlePaint.setTextAlign(Paint.Align.LEFT);
-        titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
-        titlePaint.setTextSize(15f);
-        canvas.drawText("Phnom penh , Cambodia", 20,360 , titlePaint );
-
-        titlePaint.setTextAlign(Paint.Align.CENTER);
-        titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-        titlePaint.setTextSize(20f);
-        canvas.drawText("បង្កាន់ដៃ / RECEIPT",pageWidth/2 , 400, titlePaint );
-
-
-
-        titlePaint.setTextAlign(Paint.Align.LEFT);
-        titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
-        titlePaint.setTextSize(15f);
-        canvas.drawText("Order number", 20,420 , titlePaint );
-
-
-        DateFormat time = new SimpleDateFormat("HH:mm:ss");
-        titlePaint.setTextAlign(Paint.Align.LEFT);
-        titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
-        titlePaint.setTextSize(15f);
-        canvas.drawText("Date: \t" + dateFormat.format(date) , 20,440 , titlePaint );
-        canvas.drawText( "/"+ time.format(date) , 130,440 , titlePaint );
-
-
-        titlePaint.setTextAlign(Paint.Align.LEFT);
-        titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
-        titlePaint.setTextSize(15f);
-        canvas.drawText("Cashier : Soeurn Rotha", 20,460 , titlePaint );
-
-
-
-        titlePaint.setTextAlign(Paint.Align.LEFT);
-        titlePaint.setStyle(Paint.Style.FILL);
-        titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-        titlePaint.setTextSize(18f);
-        canvas.drawText("No", 20,500 , titlePaint );
-        canvas.drawText("Description", 100,500 , titlePaint );
-        canvas.drawText("QTY", 250,500 , titlePaint );
-        canvas.drawText("Price", 330,500 , titlePaint );
-        canvas.drawText("Amount", 400,500 , titlePaint );
-
-
+        bitmap = Bitmap.createScaledBitmap(bitmap,mwidth , mheight,true);
+        paint.setColor(Color.BLUE);
+        canvas.drawBitmap(bitmap,0,0,null);
 
 
         pdfDocument.finishPage(page);
-        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "/text.pdf");
 
         try {
-            pdfDocument.writeTo(new FileOutputStream(file));
-            Toast.makeText(CreatePDF.this, ""+file, Toast.LENGTH_SHORT).show();
+            pdfDocument.writeTo(getFileName());
+
         }catch (IOException e){
             e.printStackTrace();
         }
 
-        pdfDocument.close();
+
+
+    }
+
+    public FileOutputStream getFileName(){
+        File pdfDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/PDF" );
+        if(!pdfDir.exists()){
+            pdfDir.mkdir();
+        }
+        File myPath = new File(pdfDir, "ok" + ".pdf");
+        FileOutputStream fas = null;
+
+        try {
+            fas = new FileOutputStream(myPath);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return  fas;
+
+    }
+    public void OpenCratePDF(){
+        File pdfDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/PDF" );
+        if(!pdfDir.exists()){
+            pdfDir.mkdir();
+        }
+        File myPath = new File(pdfDir, "cmlPdf" + ".pdf");
+
+        if(myPath.exists()){
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.putExtra(Intent.EXTRA_TEXT, "OpenPDF");
+            intent.setType("application.pdf");
+
+            Intent shareIntent = Intent.createChooser(intent, null);
+            startActivity(shareIntent);
+        }
+
     }
 }
