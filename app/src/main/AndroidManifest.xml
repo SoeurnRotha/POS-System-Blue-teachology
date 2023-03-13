@@ -22,6 +22,9 @@
         android:theme="@style/Theme.BlueSystemWithRoomDatabase"
         tools:targetApi="31">
         <activity
+            android:name=".CreatePDF_for_invoice.CreatePDF"
+            android:exported="false" />
+        <activity
             android:name=".Check_out.Cheack_out_cart"
             android:exported="false" />
         <activity
@@ -96,7 +99,7 @@
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".SplashScreen"
             android:exported="true">
@@ -108,7 +111,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"

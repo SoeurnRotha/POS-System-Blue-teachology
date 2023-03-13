@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.bluesystemwithroomdatabase.Cart.Cart;
+import com.example.bluesystemwithroomdatabase.CreatePDF_for_invoice.CreatePDF;
 import com.example.bluesystemwithroomdatabase.Customer.ViewCustomer;
 import com.example.bluesystemwithroomdatabase.Expanse.ViewAllExpanse;
 import com.example.bluesystemwithroomdatabase.Inventory.Inventory;
@@ -116,6 +117,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 Toast.makeText(MainActivity.this, "Reports", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, CreatePDF.class);
+                startActivity(intent);
 
             }
         });
