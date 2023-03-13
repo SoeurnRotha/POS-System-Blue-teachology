@@ -250,11 +250,7 @@
             tools:listitem="@layout/single_list_receipt"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:layout_below="@id/line2"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp" />
+            android:layout_below="@id/line2" />
 
 
         <LinearLayout

@@ -12,6 +12,9 @@ public class Cheackout {
     int cheackoutId;
 
     @ColumnInfo
+    String cashierName;
+
+    @ColumnInfo
     ArrayList<String> qty;
 
     @ColumnInfo
@@ -23,11 +26,41 @@ public class Cheackout {
     @ColumnInfo
     ArrayList<String> amount;
 
+    public String getCashierName() {
+        return cashierName;
+    }
+
+    public void setCashierName(String cashierName) {
+        this.cashierName = cashierName;
+    }
+
     @ColumnInfo
     long total_dollar;
 
     @ColumnInfo
     long total_khmer;
+
+    @ColumnInfo
+    double discount;
+
+    @ColumnInfo
+    double converDollar_to_khmer;
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
+    public double getConverDollar_to_khmer() {
+        return converDollar_to_khmer;
+    }
+
+    public void setConverDollar_to_khmer(double converDollar_to_khmer) {
+        this.converDollar_to_khmer = converDollar_to_khmer;
+    }
 
     public int getCheackoutId() {
         return cheackoutId;

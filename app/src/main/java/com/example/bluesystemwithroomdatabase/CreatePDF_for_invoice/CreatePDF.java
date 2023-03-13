@@ -1,6 +1,7 @@
 package com.example.bluesystemwithroomdatabase.CreatePDF_for_invoice;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -28,19 +29,34 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import Dao.BlueTeachnology_Dao;
+import Model.Cheackout;
+import MyAdapter.Pdf_Adapter.Pdf_Adapter;
+import Mydatabase.BlueTeachnology_Database;
 
 public class CreatePDF extends AppCompatActivity {
     ActivityCreatePdfBinding binding;
-    Bitmap bitmap , selectBitmp;
-    int pageWidth = 500;
-
+    Bitmap bitmap;
     Date date;
     DateFormat dateFormat;
+
+    Pdf_Adapter adapter;
+    BlueTeachnology_Dao blueTeachnology_dao;
+    List<Cheackout> cheackoutList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityCreatePdfBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        blueTeachnology_dao = BlueTeachnology_Database.getInstance(getApplicationContext()).blueTeachnology_dao();
+        cheackoutList = blueTeachnology_dao.getAllCheackout();
+        adapter = new Pdf_Adapter(cheackoutList, getApplicationContext());
+        binding.listReceipt.setLayoutManager(new LinearLayoutManager(this));
+        binding.listReceipt.setAdapter(adapter);
+
 
 
 

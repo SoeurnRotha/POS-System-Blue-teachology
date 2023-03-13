@@ -303,13 +303,13 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
                         ArrayList<String> khName = new ArrayList<>();
                         ArrayList<String> qtyList = new ArrayList<>();
                         ArrayList<String> priceList = new ArrayList<>();
+                        ArrayList<String> amountList = new ArrayList<>();
                         for(int k =0 ; k<cartTableList.size() ; k++){
                             engName.add(cartTableList.get(k).getProductName_eng());
                             khName.add(cartTableList.get(k).getProductName_kh());
-
-
                             qtyList.add(String.valueOf(cartTableList.get(k).getProductQty()));
                             priceList.add(String.valueOf(cartTableList.get(k).getProductCost()));
+                            amountList.add(String.valueOf(cartTableList.get(k).getProductQty() * cartTableList.get(k).getProductCost()));
                         }
 
 
@@ -333,10 +333,26 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
                             invoice.setCashierName(sharedPreferences.getString(KEY_USERNAME, null));
                             invoice.setGrand_total_dollar(discountAmount);
                             invoice.setGrand_total_khmer(grand_total);
-                            BlueTeachnology_Dao blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
-
-
+                            blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
                             blueTeachnology_dao.insertInvoice(invoice);
+
+
+
+                            //check out
+                            Cheackout cheackout = new Cheackout();
+                            cheackout.setQty(qtyList);
+                            cheackout.setPrice(priceList);
+                            cheackout.setAmount(amountList);
+                            cheackout.setTotal_dollar(discountAmount);
+                            cheackout.setName(engName);
+                            cheackout.setDiscount(discount);
+                            cheackout.setTotal_khmer(grand_total);
+                            cheackout.setCashierName(sharedPreferences.getString(KEY_USERNAME, null));
+                            cheackout.setConverDollar_to_khmer(Double.parseDouble(khmer_to_dollar.getText().toString()));
+                            blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
+                            blueTeachnology_dao.insertCheackout(cheackout);
+
+
                             //delete all products
                             deleteRecordCart(cartTableList);
 
@@ -345,10 +361,8 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
                             cal.add(Calendar.DATE, 1);
                             System.out.println(cal.getTime());
 
-
                             Invoice invoice = new Invoice();
                             invoice.setInvoice_date(String.valueOf(cal.getTime()));
-
                             invoice.setCustomerName(customerName);
                             invoice.setPaymentType(PaymentType);
                             invoice.setAmount(discountAmount );
@@ -360,9 +374,26 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
                             invoice.setCashierName(sharedPreferences.getString(KEY_USERNAME, null));
                             invoice.setGrand_total_dollar(sum);
                             invoice.setGrand_total_khmer(grand_total);
+
+
+                            //check out
+                            Cheackout cheackout = new Cheackout();
+                            cheackout.setQty(qtyList);
+                            cheackout.setPrice(priceList);
+                            cheackout.setAmount(amountList);
+                            cheackout.setTotal_dollar(sum);
+                            cheackout.setName(engName);
+                            cheackout.setDiscount(discount);
+                            cheackout.setTotal_khmer(grand_total);
+                            cheackout.setCashierName(sharedPreferences.getString(KEY_USERNAME, null));
+                            cheackout.setConverDollar_to_khmer(Double.parseDouble(khmer_to_dollar.getText().toString()));
+
+                            blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
+                            blueTeachnology_dao.insertCheackout(cheackout);
+
+
+
                             BlueTeachnology_Dao blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
-
-
                             blueTeachnology_dao.insertInvoice(invoice);
                             //delete all products
                             deleteRecordCart(cartTableList);
