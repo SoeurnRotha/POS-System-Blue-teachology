@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -24,17 +25,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.bluesystemwithroomdatabase.Check_out.Cheack_out_cart;
+import com.example.bluesystemwithroomdatabase.CreatePDF_for_invoice.CreatePDF;
 import com.example.bluesystemwithroomdatabase.R;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import Dao.BlueTeachnology_Dao;
 import Model.CartTable;
 import Model.Cheackout;
 import Model.Customer;
+import Model.Invoice;
 import Model.PaymentMethod;
 import Mydatabase.BlueTeachnology_Database;
 
@@ -81,6 +85,9 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
     long khmer_dollar , grand_total, discountAmount;
     int sum;
     BlueTeachnology_Dao blueTeachnology_dao;
+
+    private static final String SHARED_NAME = "blue";
+    private static final String KEY_USERNAME = "username";
     @NonNull
     @Override
     public ViewCart onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -281,7 +288,8 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
         paynow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                SharedPreferences sharedPreferences;
+                sharedPreferences = context.getSharedPreferences(SHARED_NAME, Context.MODE_PRIVATE);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                 builder.setTitle("Pay to invoice");
@@ -290,96 +298,11 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
                 builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-//
-//                        ArrayList<String> engName = new ArrayList<>();
-//                        ArrayList<String> khName = new ArrayList<>();
-//                        ArrayList<String> qtyList = new ArrayList<>();
-//                        ArrayList<String> priceList = new ArrayList<>();
-//
-//                        String storeqt = String.valueOf(cartTableList.get(position).getProductQty());
-//                        String storepr = String.valueOf(cartTableList.get(position).getProductCost());
-//
-//                        for(int k =0 ; k<cartTableList.size() ; k++){
-//                            engName.add(cartTableList.get(k).getProductName_eng());
-//                            khName.add(cartTableList.get(k).getProductName_kh());
-//
-//
-//                            qtyList.add(String.valueOf(cartTableList.get(k).getProductQty()));
-//                            priceList.add(String.valueOf(cartTableList.get(k).getProductCost()));
-//                        }
-//
-//
-//                        if(discountAmount != 0){
-//
-//
-//
-//
-//                            Calendar cal = Calendar.getInstance();
-//                            cal.add(Calendar.DATE, 1);
-//                            System.out.println(cal.getTime());
-//
-//
-//                            Invoice invoice = new Invoice();
-//                            invoice.setInvoice_date(String.valueOf(cal.getTime()));
-//
-//                            invoice.setCustomerName(customerName);
-//                            invoice.setPaymentType(PaymentType);
-//                            invoice.setAmount(discountAmount );
-//                            invoice.setDiscount(discount);
-//                            invoice.setQty(qtyList);
-//                            invoice.setPrice(priceList);
-//                            invoice.setProduct_name_english(engName);
-//                            invoice.setProduct_name_khmer(khName);
-//                            invoice.setUserId(1);
-//                            invoice.setGrand_total_dollar(discountAmount);
-//                            invoice.setGrand_total_khmer(grand_total);
-//                            BlueTeachnology_Dao blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
-//
-//
-//                            blueTeachnology_dao.insertInvoice(invoice);
-//                            //delete all products
-//                            deleteRecordCart(cartTableList);
-//
-//                        }else{
-//                            Calendar cal = Calendar.getInstance();
-//                            cal.add(Calendar.DATE, 1);
-//                            System.out.println(cal.getTime());
-//
-//
-//                            Invoice invoice = new Invoice();
-//                            invoice.setInvoice_date(String.valueOf(cal.getTime()));
-//
-//                            invoice.setCustomerName(customerName);
-//                            invoice.setPaymentType(PaymentType);
-//                            invoice.setAmount(discountAmount );
-//                            invoice.setDiscount(discount);
-//                            invoice.setQty(qtyList);
-//                            invoice.setPrice(priceList);
-//                            invoice.setProduct_name_english(engName);
-//                            invoice.setProduct_name_khmer(khName);
-//                            invoice.setUserId(1);
-//                            invoice.setGrand_total_dollar(sum);
-//                            invoice.setGrand_total_khmer(grand_total);
-//                            BlueTeachnology_Dao blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
-//
-//
-//                            blueTeachnology_dao.insertInvoice(invoice);
-//                            //delete all products
-//                            deleteRecordCart(cartTableList);
-//
-//                        }
 
-
-
-                        //send data (qty , price , length cart )
-
-                        Intent intent = new Intent(view.getContext(), Cheack_out_cart.class);
-                        //go home work tt
                         ArrayList<String> engName = new ArrayList<>();
                         ArrayList<String> khName = new ArrayList<>();
                         ArrayList<String> qtyList = new ArrayList<>();
                         ArrayList<String> priceList = new ArrayList<>();
-                        ArrayList<String> amountList = new ArrayList<>();
                         for(int k =0 ; k<cartTableList.size() ; k++){
                             engName.add(cartTableList.get(k).getProductName_eng());
                             khName.add(cartTableList.get(k).getProductName_kh());
@@ -387,50 +310,114 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
 
                             qtyList.add(String.valueOf(cartTableList.get(k).getProductQty()));
                             priceList.add(String.valueOf(cartTableList.get(k).getProductCost()));
-                            amountList.add(String.valueOf(cartTableList.get(k).getProductQty() * cartTableList.get(k).getProductCost()));
+                        }
 
 
+                        if(discountAmount != 0){
+                            Calendar cal = Calendar.getInstance();
+                            cal.add(Calendar.DATE, 1);
+                            System.out.println(cal.getTime());
 
+
+                            Invoice invoice = new Invoice();
+                            invoice.setInvoice_date(String.valueOf(cal.getTime()));
+
+                            invoice.setCustomerName(customerName);
+                            invoice.setPaymentType(PaymentType);
+                            invoice.setAmount(discountAmount );
+                            invoice.setDiscount(discount);
+                            invoice.setQty(qtyList);
+                            invoice.setPrice(priceList);
+                            invoice.setProduct_name_english(engName);
+                            invoice.setProduct_name_khmer(khName);
+                            invoice.setCashierName(sharedPreferences.getString(KEY_USERNAME, null));
+                            invoice.setGrand_total_dollar(discountAmount);
+                            invoice.setGrand_total_khmer(grand_total);
+                            BlueTeachnology_Dao blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
+
+
+                            blueTeachnology_dao.insertInvoice(invoice);
+                            //delete all products
+                            deleteRecordCart(cartTableList);
+
+                        }else{
+                            Calendar cal = Calendar.getInstance();
+                            cal.add(Calendar.DATE, 1);
+                            System.out.println(cal.getTime());
+
+
+                            Invoice invoice = new Invoice();
+                            invoice.setInvoice_date(String.valueOf(cal.getTime()));
+
+                            invoice.setCustomerName(customerName);
+                            invoice.setPaymentType(PaymentType);
+                            invoice.setAmount(discountAmount );
+                            invoice.setDiscount(discount);
+                            invoice.setQty(qtyList);
+                            invoice.setPrice(priceList);
+                            invoice.setProduct_name_english(engName);
+                            invoice.setProduct_name_khmer(khName);
+                            invoice.setCashierName(sharedPreferences.getString(KEY_USERNAME, null));
+                            invoice.setGrand_total_dollar(sum);
+                            invoice.setGrand_total_khmer(grand_total);
+                            BlueTeachnology_Dao blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
+
+
+                            blueTeachnology_dao.insertInvoice(invoice);
+                            //delete all products
+                            deleteRecordCart(cartTableList);
 
                         }
 
-                        int sumtotal =0;
-                        for(int y=0;  y< cartTableList.size(); y++){
 
-                            sumtotal += (cartTableList.get(y).getProductCost() * cartTableList.get(y).getProductQty());
 
-                        }
-//                        Toast.makeText(context, "" + qtyList, Toast.LENGTH_SHORT).show();
-//                        Toast.makeText(context, "" + engName, Toast.LENGTH_SHORT).show();
-//                        Toast.makeText(context, "" + priceList, Toast.LENGTH_SHORT).show();
-//                        Toast.makeText(context, "" + amountList, Toast.LENGTH_SHORT).show();
-//                        Toast.makeText(context, "" +sumtotal , Toast.LENGTH_SHORT).show();
-
-                        //not done
+                        //cheack out
+//                        Intent intent = new Intent(view.getContext(), Cheack_out_cart.class);
+//                        ArrayList<String> engName = new ArrayList<>();
+//                        ArrayList<String> khName = new ArrayList<>();
+//                        ArrayList<String> qtyList = new ArrayList<>();
+//                        ArrayList<String> priceList = new ArrayList<>();
+//                        ArrayList<String> amountList = new ArrayList<>();
+//                        for(int k =0 ; k<cartTableList.size() ; k++){
+//                            engName.add(cartTableList.get(k).getProductName_eng());
+//                            khName.add(cartTableList.get(k).getProductName_kh());
+//
+//
+//                            qtyList.add(String.valueOf(cartTableList.get(k).getProductQty()));
+//                            priceList.add(String.valueOf(cartTableList.get(k).getProductCost()));
+//                            amountList.add(String.valueOf(cartTableList.get(k).getProductQty() * cartTableList.get(k).getProductCost()));
 //
 //
 //
-//                        intent.putStringArrayListExtra("qty", qtyList);
-////                        intent.putExtra("qty", String.valueOf(qtyList));
-//                        intent.putStringArrayListExtra("name", engName);
-//                        intent.putStringArrayListExtra("price", priceList);
-//                        intent.putStringArrayListExtra("amount", amountList);
-//                        intent.putExtra("total", String.valueOf(sumtotal));
+//
+//                        }
+//
+//                        int sumtotal =0;
+//                        for(int y=0;  y< cartTableList.size(); y++){
+//
+//                            sumtotal += (cartTableList.get(y).getProductCost() * cartTableList.get(y).getProductQty());
+//
+//                        }
 
 
+                        //check out
 
-                        Cheackout cheackout = new Cheackout();
-                        cheackout.setQty(qtyList);
-                        cheackout.setPrice(priceList);
-                        cheackout.setAmount(amountList);
-                        cheackout.setTotal_dollar(sumtotal);
-                        cheackout.setName(engName);
+//                        Cheackout cheackout = new Cheackout();
+//                        cheackout.setQty(qtyList);
+//                        cheackout.setPrice(priceList);
+//                        cheackout.setAmount(amountList);
+//                        cheackout.setTotal_dollar(sumtotal);
+//                        cheackout.setName(engName);
+//
+//                        blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
+//                        blueTeachnology_dao.insertCheackout(cheackout);
+//                        deleteRecordCart(cartTableList);
 
-                        blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
-                        blueTeachnology_dao.insertCheackout(cheackout);
-                        deleteRecordCart(cartTableList);
+                        Intent intent = new Intent(view.getContext() , CreatePDF.class);
 
                         view.getContext().startActivity(intent);
+
+
 
 
 

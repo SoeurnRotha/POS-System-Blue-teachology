@@ -6,6 +6,7 @@
     app:cardCornerRadius="10dp"
     app:cardElevation="10dp"
     android:layout_margin="10dp"
+    android:id="@+id/card_check_invoice"
     android:layout_height="wrap_content">
 
     <LinearLayout
@@ -13,20 +14,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="150dp"
-            android:orientation="vertical"
-            >
-            <androidx.constraintlayout.utils.widget.ImageFilterView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/blue"
-                android:layout_margin="20dp"
-                />
 
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -76,6 +64,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -102,6 +91,7 @@
 
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -152,6 +142,7 @@
 
 
         <LinearLayout
+            android:visibility="visible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -187,6 +178,7 @@
 
 
         <LinearLayout
+            android:visibility="visible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -222,6 +214,7 @@
 
 
         <LinearLayout
+            android:visibility="visible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -252,6 +245,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:visibility="visible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -281,21 +275,29 @@
                 android:padding="10dp"
                 />
         </LinearLayout>
-        <ImageButton
-            android:id="@+id/invoice_delete"
-            android:padding="10dp"
-            android:layout_marginLeft="10dp"
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/delete"/>
+            android:orientation="horizontal"
+            >
+            <ImageButton
+                android:id="@+id/invoice_delete"
+                android:padding="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/delete"/>
 
-        <ImageView
-            android:layout_margin="20dp"
-            android:layout_gravity="center"
-            android:id="@+id/invoice_qr_code"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            />
+            <ImageView
+
+
+                android:id="@+id/invoice_qr_code"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/baseline_qr_code_2_24"
+                />
+        </LinearLayout>
 
     </LinearLayout>
 

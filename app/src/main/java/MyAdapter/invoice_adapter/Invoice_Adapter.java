@@ -1,7 +1,9 @@
 package MyAdapter.invoice_adapter;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.text.Layout;
@@ -37,6 +39,8 @@ public class Invoice_Adapter extends RecyclerView.Adapter<Invoice_Adapter.ViewIn
 
     List<Invoice> invoiceList;
 
+    Context context;
+
     public Invoice_Adapter(List<Invoice> invoiceList) {
         this.invoiceList = invoiceList;
     }
@@ -51,6 +55,7 @@ public class Invoice_Adapter extends RecyclerView.Adapter<Invoice_Adapter.ViewIn
 
     @Override
     public void onBindViewHolder(@NonNull ViewInvoice holder, @SuppressLint("RecyclerView") int position) {
+
 
         holder.invoice_id.setText(String.valueOf(invoiceList.get(position).getInvoiceId()));
 
@@ -69,7 +74,7 @@ public class Invoice_Adapter extends RecyclerView.Adapter<Invoice_Adapter.ViewIn
         holder.discountAmount.setText(numberFormat(String.valueOf(invoiceList.get(position).getAmount())));
 
 
-        holder.cashier.setText(String.valueOf(invoiceList.get(position).getQty()));
+        holder.cashier.setText(String.valueOf(invoiceList.get(position).getCashierName()));
 
 
 
@@ -85,27 +90,16 @@ public class Invoice_Adapter extends RecyclerView.Adapter<Invoice_Adapter.ViewIn
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Toast.makeText(builder.getContext(), "You delete successful", Toast.LENGTH_SHORT).show();
-                        Toast.makeText(builder.getContext(), "Yes", Toast.LENGTH_SHORT).show();
-
-
-                        //delete
-
-
                         BlueTeachnology_Dao blueTeachnology_dao =  BlueTeachnology_Database.getInstance(view.getContext()).blueTeachnology_dao();
-
                         blueTeachnology_dao.deleteInvoiceByid(invoiceList.get(position).getInvoiceId());
-
                         invoiceList.remove(position);
-
                         notifyDataSetChanged();
-
                     }
                 });
 
                 builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(builder.getContext(), "No", Toast.LENGTH_SHORT).show();
                         dialogInterface.cancel();
                     }
                 });
@@ -124,7 +118,7 @@ public class Invoice_Adapter extends RecyclerView.Adapter<Invoice_Adapter.ViewIn
                         "Date " +String.valueOf(invoiceList.get(position).getInvoice_date()) + "\n" +
                         "Customer : " +String.valueOf(invoiceList.get(position).getCustomerName()) + "\n"+
                          "Payment method :" + String.valueOf(invoiceList.get(position).getPaymentType())
-                        +"Cashier" + "\n" + String.valueOf(invoiceList.get(position).getUserId())
+                        +"Cashier" + "\n" + String.valueOf(invoiceList.get(position).getCashierName())
                         + "Product name english : " + "\n" + String.valueOf(invoiceList.get(position).getProduct_name_english())
                         + "Product name khmer : "+ "\n" + String.valueOf( invoiceList.get(position).getProduct_name_khmer())
                         + "SubTotal" + "\n" + String.valueOf( invoiceList.get(position).getGrand_total_dollar())
@@ -148,7 +142,6 @@ public class Invoice_Adapter extends RecyclerView.Adapter<Invoice_Adapter.ViewIn
         ImageButton invoice_delete;
         public ViewInvoice(@NonNull View itemView) {
             super(itemView);
-
             invoice_id = itemView.findViewById(R.id.invoice_id_order);
             date = itemView.findViewById(R.id.invoice_date_time);
             customerName = itemView.findViewById(R.id.invoice_customer_name);
@@ -157,12 +150,8 @@ public class Invoice_Adapter extends RecyclerView.Adapter<Invoice_Adapter.ViewIn
             subTotal = itemView.findViewById(R.id.invoice_subtotal);
             discount = itemView.findViewById(R.id.invoice_discount);
             discountAmount = itemView.findViewById(R.id.invoice_discount_amount);
-
             grand_total_khmer = itemView.findViewById(R.id.invoice_grand_total_real);
-
-
             image_qr_code = itemView.findViewById(R.id.invoice_qr_code);
-
             invoice_delete= itemView.findViewById(R.id.invoice_delete);
 
         }

@@ -276,14 +276,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         userRoles.setText(sharedPreferences.getString(KEY_USERROLES, null));
         String path = sharedPreferences.getString(KEY_PROFILE, null);
         Glide.with(this).load(path).into(profileUser);
-
-
-//        sharedPreferences = getSharedPreferences("default", MODE_PRIVATE);
-//        profileUser.setImageResource(R.drawable.user);
-//        Glide.with(this).load(path).into(profileUser);
-//
-//        username.setText(sharedPreferences.getString(KEY_USERNAME, null));
-//        userRoles.setText(sharedPreferences.getString(KEY_USERROLES, null));
     }
 
 

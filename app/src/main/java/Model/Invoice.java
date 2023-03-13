@@ -19,8 +19,7 @@ public class Invoice {
     String customerName;
 
     @ColumnInfo
-    int userId;
-
+    String cashierName;
     @ColumnInfo (name ="product_eng_list" )
     ArrayList<String> product_name_english;
 
@@ -84,12 +83,12 @@ public class Invoice {
         this.customerName = customerName;
     }
 
-    public int getUserId() {
-        return userId;
+    public String getCashierName() {
+        return cashierName;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setCashierName(String cashierName) {
+        this.cashierName = cashierName;
     }
 
     public ArrayList<String> getProduct_name_english() {
