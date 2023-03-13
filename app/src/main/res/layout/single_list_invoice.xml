@@ -168,7 +168,7 @@
                 android:layout_height="wrap_content"
                 android:text="SubTotal"
                 android:padding="10dp"
-                android:textColor="@color/black"
+                android:textColor="@color/green"
                 android:textStyle="bold"
                 />
 
@@ -204,7 +204,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Discount"
-                android:textColor="@color/black"
+                android:textColor="@color/red"
                 android:textStyle="bold"
                 android:padding="10dp"
                 />
@@ -238,7 +238,7 @@
                 android:layout_height="wrap_content"
                 android:text="Discount amount"
                 android:padding="10dp"
-                android:textColor="@color/black"
+                android:textColor="@color/red"
                 android:textStyle="bold"
 
                 />
@@ -270,7 +270,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Grand total(Real)"
-                android:textColor="@color/black"
+                android:textColor="@color/purple_700"
                 android:textStyle="bold"
                 android:padding="10dp"
                 />
