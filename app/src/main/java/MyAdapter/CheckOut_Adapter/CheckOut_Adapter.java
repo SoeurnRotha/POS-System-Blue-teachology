@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.LongDef;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,6 +22,11 @@ public class CheckOut_Adapter extends RecyclerView.Adapter<CheckOut_Adapter.View
 
 
     List<Cheackout> cheackoutList;
+    ArrayList<String> arrayListQTY ;
+    ArrayList<String> arrayListPrice;
+    ArrayList<String> arrayListAmount;
+    ArrayList<String> arrayListDescription;
+    ArrayList<String> arrayListNo;
 
     public CheckOut_Adapter(List<Cheackout> cheackoutList) {
         this.cheackoutList = cheackoutList;
@@ -35,11 +41,58 @@ public class CheckOut_Adapter extends RecyclerView.Adapter<CheckOut_Adapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewCheckout holder, int position) {
-        holder.qty.setText(String.valueOf(cheackoutList.get(position).getQty()));
-        holder.description.setText(String.valueOf(cheackoutList.get(position).getName()));
-        holder.price.setText(String.valueOf(cheackoutList.get(position).getPrice()));
-        holder.amount.setText(String.valueOf(cheackoutList.get(position).getAmount()));
-        holder.no.setText(String.valueOf(cheackoutList.get(position).getCheackoutId()));
+
+        arrayListQTY = new ArrayList<>();
+        arrayListQTY = cheackoutList.get(position).getQty();
+
+        arrayListPrice = new ArrayList<>();
+        arrayListPrice = cheackoutList.get(position).getPrice();
+
+
+        arrayListAmount = new ArrayList<>();
+        arrayListAmount = cheackoutList.get(position).getAmount();
+
+        arrayListDescription = new ArrayList<>();
+        arrayListDescription = cheackoutList.get(position).getName();
+
+        arrayListNo = new ArrayList<>();
+        arrayListNo = cheackoutList.get(position).getName();
+
+
+        String storeQTY = "";
+        String storePRICE = "";
+        String storeAMOUNT = "";
+        String storeDESCRIPTION = "";
+        String storeNo = "";
+        for (int i=0;i<arrayListQTY.size(); i++){
+            storeQTY += "" + arrayListQTY.get(i) +"\n";
+        }
+
+        for (int i=0;i<arrayListPrice.size(); i++){
+            storePRICE += "" + arrayListPrice.get(i) +"\n";
+        }
+
+        for (int i=0;i<arrayListAmount.size(); i++){
+            storeAMOUNT += "" + arrayListAmount.get(i) +"\n";
+        }
+        for (int i=0;i<arrayListDescription.size(); i++){
+            storeDESCRIPTION += "" + arrayListDescription.get(i) +"\n";
+
+        }
+
+        for (int i=1; i<=arrayListNo.size() ;i++){
+            storeNo += i +"\n";
+        }
+
+        holder.no.setText(String.valueOf(storeNo));
+        holder.qty.setText(String.valueOf(storeQTY));
+        holder.description.setText(String.valueOf(storeDESCRIPTION));
+        holder.price.setText(String.valueOf(storePRICE));
+        holder.amount.setText(String.valueOf(storeAMOUNT));
+
+
+
+
 
 
     }

@@ -6,7 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".Check_out.Cheack_out_cart">
 
+    <View
+        android:id="@+id/view_checkout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/purple_700"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cheack out"
+        android:textSize="10pt"
+        android:textColor="@color/white"
+        android:fontFamily="@font/fontone"
+        android:layout_centerHorizontal="true"
+        android:padding="20dp"/>
+
     <TableLayout
+        android:layout_below="@+id/view_checkout"
         android:stretchColumns="*"
         android:layout_centerHorizontal="true"
         android:layout_width="match_parent"
@@ -77,4 +93,5 @@
         android:layout_below="@id/table_cheackout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
 </RelativeLayout>
