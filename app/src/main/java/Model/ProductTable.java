@@ -54,6 +54,9 @@ public class ProductTable implements Serializable {
 
 
 
+
+
+
     public int getLocationId() {
         return locationId;
     }

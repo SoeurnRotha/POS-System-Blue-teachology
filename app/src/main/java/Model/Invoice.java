@@ -26,8 +26,6 @@ public class Invoice {
     @ColumnInfo (name ="product_kh_list" )
     ArrayList<String> product_name_khmer;
 
-
-
     @ColumnInfo
     double amount;
 
@@ -59,38 +57,6 @@ public class Invoice {
 
     @ColumnInfo
     String invoice_date;
-
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
-    public double getSubtotal() {
-        return subtotal;
-    }
-
-    public void setSubtotal(double subtotal) {
-        this.subtotal = subtotal;
-    }
-
-    public void setGrand_total_dollar(double grand_total_dollar) {
-        this.grand_total_dollar = grand_total_dollar;
-    }
-
-    public void setGrand_total_khmer(double grand_total_khmer) {
-        this.grand_total_khmer = grand_total_khmer;
-    }
-
-    public void setSubtotal(long subtotal) {
-        this.subtotal = subtotal;
-    }
-
-    public ArrayList<String> getPrice() {
-        return price;
-    }
-
-    public void setPrice(ArrayList<String> price) {
-        this.price = price;
-    }
 
     public int getInvoiceId() {
         return invoiceId;
@@ -136,7 +102,9 @@ public class Invoice {
         return amount;
     }
 
-
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
 
     public double getDiscount() {
         return discount;
@@ -144,6 +112,14 @@ public class Invoice {
 
     public void setDiscount(double discount) {
         this.discount = discount;
+    }
+
+    public double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
     }
 
     public String getPaymentType() {
@@ -158,23 +134,15 @@ public class Invoice {
         return grand_total_dollar;
     }
 
-
+    public void setGrand_total_dollar(double grand_total_dollar) {
+        this.grand_total_dollar = grand_total_dollar;
+    }
 
     public double getGrand_total_khmer() {
         return grand_total_khmer;
     }
 
-    public void setAmount(long amount) {
-        this.amount = amount;
-    }
-
-    public void setGrand_total_dollar(long grand_total_dollar) {
-        this.grand_total_dollar = grand_total_dollar;
-    }
-
-
-
-    public void setGrand_total_khmer(long grand_total_khmer) {
+    public void setGrand_total_khmer(double grand_total_khmer) {
         this.grand_total_khmer = grand_total_khmer;
     }
 
@@ -184,6 +152,14 @@ public class Invoice {
 
     public void setQty(ArrayList<String> qty) {
         this.qty = qty;
+    }
+
+    public ArrayList<String> getPrice() {
+        return price;
+    }
+
+    public void setPrice(ArrayList<String> price) {
+        this.price = price;
     }
 
     public String getInvoice_date() {

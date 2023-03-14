@@ -260,7 +260,6 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
 
                 khmer_dollar = Long.parseLong(khmer_to_dollar.getText().toString());
                 grand_total = khmer_dollar * sum;
-
                 discount =0;
                 if(discount_input.getText().toString().isEmpty()){
                     totalPrice.setText("$ " + numberFormat(String.valueOf(sum)));
