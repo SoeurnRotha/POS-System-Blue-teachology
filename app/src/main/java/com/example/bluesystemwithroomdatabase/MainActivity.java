@@ -35,6 +35,7 @@ import com.example.bluesystemwithroomdatabase.PaymentMethod.ViewPaymentMethod;
 import com.example.bluesystemwithroomdatabase.Pos.Pos;
 import com.example.bluesystemwithroomdatabase.Products.ViewProducts;
 
+import com.example.bluesystemwithroomdatabase.Unit.UnitProducts;
 import com.example.bluesystemwithroomdatabase.User.View_User;
 import com.example.bluesystemwithroomdatabase.category.Category_gridview;
 import com.example.bluesystemwithroomdatabase.databinding.ActivityMainBinding;
@@ -233,6 +234,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_logout:
                 Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
                 logout();
+                break;
+
+            case R.id.nav_unit:
+                Intent intent = new Intent(MainActivity.this, UnitProducts.class);
+                startActivity(intent);
                 break;
         }
         return true;

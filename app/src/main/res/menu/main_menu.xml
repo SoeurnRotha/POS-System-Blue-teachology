@@ -11,6 +11,10 @@
             android:title="Setting"
             android:icon="@drawable/setting"/>
         <item
+            android:id="@+id/nav_unit"
+            android:title="Unit products"
+            android:icon="@drawable/cash"/>
+        <item
             android:id="@+id/nav_logout"
             android:title="Loout"
             android:icon="@drawable/logout"/>
