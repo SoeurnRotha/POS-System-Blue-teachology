@@ -40,6 +40,7 @@ import com.example.bluesystemwithroomdatabase.User.View_User;
 import com.example.bluesystemwithroomdatabase.category.Category_gridview;
 import com.example.bluesystemwithroomdatabase.databinding.ActivityMainBinding;
 
+import com.example.bluesystemwithroomdatabase.databinding.CustomDiglogCheangLanguageBinding;
 import com.github.drjacky.imagepicker.ImagePicker;
 import com.google.android.material.navigation.NavigationView;
 
@@ -224,7 +225,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.nav_language:
-                Toast.makeText(this, "Language", Toast.LENGTH_SHORT).show();
+
+                CustomDiglogCheangLanguageBinding alertbinding;
+                alertbinding = CustomDiglogCheangLanguageBinding.inflate(getLayoutInflater());
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setView(alertbinding.getRoot());
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+
                 break;
             case R.id.nav_setting:
                 Toast.makeText(this, "Setting", Toast.LENGTH_SHORT).show();

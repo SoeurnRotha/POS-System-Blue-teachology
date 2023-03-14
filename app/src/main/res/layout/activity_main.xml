@@ -83,7 +83,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/lottie_invoice"
                             android:layout_centerHorizontal="true"
-                            android:text="Invoice"
+                            android:text="@string/english_main_name_invoice"
                             android:textColor="@color/black"
                             android:textSize="20dp" />
 
@@ -126,7 +126,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/lottie_report"
                             android:layout_centerHorizontal="true"
-                            android:text="Report"
+                            android:text="@string/english_main_name_report"
                             android:textColor="@color/black"
                             android:textSize="20dp" />
 
@@ -182,7 +182,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/lottie_user"
                             android:layout_centerHorizontal="true"
-                            android:text="User"
+                            android:text="@string/english_main_name_User"
                             android:textColor="@color/black"
                             android:textSize="20dp" />
 
@@ -225,7 +225,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/lottie_category"
                             android:layout_centerHorizontal="true"
-                            android:text="Category"
+                            android:text="@string/english_main_name_Category"
                             android:textColor="@color/black"
                             android:textSize="20dp" />
 
@@ -279,7 +279,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/lottie_about"
                             android:layout_centerHorizontal="true"
-                            android:text="About us"
+                            android:text="@string/english_main_name_Aboutus"
                             android:textColor="@color/black"
                             android:textSize="20dp" />
 
@@ -321,7 +321,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/lottie_add"
                             android:layout_centerHorizontal="true"
-                            android:text="Customer"
+                            android:text="@string/english_main_name_customer"
                             android:textColor="@color/black"
                             android:textSize="20dp" />
 
@@ -376,7 +376,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:text="Products"
+                            android:text="@string/english_main_name_products"
                             android:textColor="@color/black"
                             android:textSize="20dp" />
 
@@ -418,7 +418,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:text="Cart"
+                            android:text="@string/english_main_name_cart"
                             android:textColor="@color/black"
                             android:textSize="20dp" />
 
@@ -478,7 +478,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/lottie_sele"
                             android:layout_centerHorizontal="true"
-                            android:text="Location"
+                            android:text="@string/english_main_name_inverntory"
                             android:textColor="@color/black"
                             android:textSize="20dp" />
 
@@ -521,7 +521,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/lottie_pos"
                             android:layout_centerHorizontal="true"
-                            android:text="POS"
+                            android:text="@string/english_main_name_pos"
                             android:textColor="@color/black"
                             android:textSize="20dp" />
 
@@ -581,7 +581,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/lottie_payment"
                             android:layout_centerHorizontal="true"
-                            android:text="Payment method"
+                            android:text="@string/english_main_name_payment_method"
                             android:textColor="@color/black"
                             android:textSize="20dp" />
 
@@ -623,7 +623,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/lottie_expanse"
                             android:layout_centerHorizontal="true"
-                            android:text="Expanse"
+                            android:text="@string/english_main_name_expanse"
                             android:textColor="@color/black"
                             android:textSize="20dp" />
 
@@ -639,7 +639,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-condensed-medium"
-                android:text="Welcome"
+                android:text="@string/english_main_name_welcome"
                 android:textColor="@color/black"
                 android:textSize="15pt"
                 app:layout_constraintEnd_toEndOf="parent"

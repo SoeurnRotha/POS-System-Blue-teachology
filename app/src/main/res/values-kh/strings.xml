@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Blue Technology</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="open_nav">Open drawer</string>
+    <string name="close_nav">Close drawer</string>
+
+
+    <!--    //main english-->
+    <string name="english_main_name_invoice">វិក្កយបត្រ</string>
+    <string name="english_main_name_report">រាយការណ៍</string>
+    <string name="english_main_name_User">អ្នកប្រើ</string>
+    <string name="english_main_name_Category">ប្រភេទ</string>
+    <string name="english_main_name_Aboutus">អំពីពួកយើង</string>
+    <string name="english_main_name_customer">អតិថិជន</string>
+    <string name="english_main_name_products">ផលិតផល</string>
+    <string name="english_main_name_cart">រទេះ</string>
+    <string name="english_main_name_inverntory">សារពើភ័ណ្ឌ</string>
+    <string name="english_main_name_pos">កន្លែងលក់ផលិតផល</string>
+    <string name="english_main_name_payment_method">វិធីសាស្រ្តទូទាត់</string>
+    <string name="english_main_name_expanse">ការចំណាយ</string>
+    <string name="english_main_name_welcome">សូមស្វាគមន៍</string>
+    <string name="english_main_name_language">ភាសា</string>
+    <string name="english_main_name_payment_setting">ការកំណត់</string>
+    <string name="english_main_name_unit">ផលិតផលឯកតា</string>
+    <string name="english_main_name_logout">Logout</string>
+
+
+
+
+</resources>

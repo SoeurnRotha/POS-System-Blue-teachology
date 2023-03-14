@@ -2,7 +2,28 @@
     <string name="app_name">Blue Technology</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string name="open_nav">Open drawer</string>
     <string name="close_nav">Close drawer</string>
+
+
+<!--    //main english-->
+    <string name="english_main_name_invoice">Invoice</string>
+    <string name="english_main_name_report">Report</string>
+    <string name="english_main_name_User">User</string>
+    <string name="english_main_name_Category">Category</string>
+    <string name="english_main_name_Aboutus">About us</string>
+    <string name="english_main_name_customer">Customer</string>
+    <string name="english_main_name_products">Products</string>
+    <string name="english_main_name_cart">Cart</string>
+    <string name="english_main_name_inverntory">Inverntory</string>
+    <string name="english_main_name_pos">POS</string>
+    <string name="english_main_name_payment_method">Payment method</string>
+    <string name="english_main_name_expanse">Expanse</string>
+    <string name="english_main_name_welcome">Welcome</string>
+    <string name="english_main_name_language">Language</string>
+    <string name="english_main_name_payment_setting">Setting</string>
+    <string name="english_main_name_unit">Unit products</string>
+    <string name="english_main_name_logout">Logout</string>
+
+
 </resources>
