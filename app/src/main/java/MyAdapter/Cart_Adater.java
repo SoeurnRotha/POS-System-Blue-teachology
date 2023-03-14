@@ -323,17 +323,16 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
 
                             Invoice invoice = new Invoice();
                             invoice.setInvoice_date(String.valueOf(cal.getTime()));
-
+                            invoice.setSubtotal(sum);
                             invoice.setCustomerName(customerName);
                             invoice.setPaymentType(PaymentType);
-                            invoice.setAmount(discountAmount );
+                            invoice.setAmount(caculate_discountAmount );
                             invoice.setDiscount(discount);
                             invoice.setQty(qtyList);
                             invoice.setPrice(priceList);
                             invoice.setProduct_name_english(engName);
                             invoice.setProduct_name_khmer(khName);
                             invoice.setCashierName(sharedPreferences.getString(KEY_USERNAME, null));
-
                             invoice.setGrand_total_dollar(discountAmount);
                             invoice.setGrand_total_khmer(grand_total);
                             blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
@@ -372,8 +371,9 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
                             invoice.setInvoice_date(String.valueOf(cal.getTime()));
                             invoice.setCustomerName(customerName);
                             invoice.setPaymentType(PaymentType);
-                            invoice.setAmount(discountAmount );
+                            invoice.setAmount(caculate_discountAmount );
                             invoice.setDiscount(discount);
+                            invoice.setSubtotal(sum);
                             invoice.setQty(qtyList);
                             invoice.setPrice(priceList);
                             invoice.setProduct_name_english(engName);

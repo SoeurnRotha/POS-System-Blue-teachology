@@ -252,6 +252,38 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Grand tottal($)"
+                android:padding="10dp"
+                />
+
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/invoice_grand_total_dollar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Grand total($)"
+                android:textColor="@color/purple_700"
+                android:textStyle="bold"
+                android:padding="10dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="visible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Grand tottal(Real)"
                 android:padding="10dp"
                 />

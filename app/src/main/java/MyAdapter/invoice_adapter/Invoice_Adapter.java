@@ -55,25 +55,15 @@ public class Invoice_Adapter extends RecyclerView.Adapter<Invoice_Adapter.ViewIn
 
     @Override
     public void onBindViewHolder(@NonNull ViewInvoice holder, @SuppressLint("RecyclerView") int position) {
-
-
         holder.invoice_id.setText(String.valueOf(invoiceList.get(position).getInvoiceId()));
-
         holder.date.setText(String.valueOf(invoiceList.get(position).getInvoice_date()));
-
         holder.customerName.setText(String.valueOf(invoiceList.get(position).getCustomerName()));
-
         holder.paymentType.setText(String.valueOf(invoiceList.get(position).getPaymentType()));
-
-        holder.subTotal.setText(numberFormat(String.valueOf(invoiceList.get(position).getGrand_total_dollar())));
-
+        holder.subTotal.setText(numberFormat(String.valueOf(invoiceList.get(position).getSubtotal())));
         holder.grand_total_khmer.setText(numberFormat(String.valueOf(invoiceList.get(position).getGrand_total_khmer())));
-
         holder.discount.setText(String.valueOf(invoiceList.get(position).getDiscount()));
-
         holder.discountAmount.setText(numberFormat(String.valueOf(invoiceList.get(position).getAmount())));
-
-
+        holder.grand_total_dollar.setText(String.valueOf(invoiceList.get(position).getGrand_total_dollar()));
         holder.cashier.setText(String.valueOf(invoiceList.get(position).getCashierName()));
 
 

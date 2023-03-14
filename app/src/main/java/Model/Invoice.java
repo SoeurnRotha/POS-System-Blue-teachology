@@ -35,6 +35,9 @@ public class Invoice {
     @ColumnInfo
     double discount;
 
+
+    @ColumnInfo
+    long subtotal;
     @ColumnInfo
     String paymentType;
 
@@ -58,6 +61,13 @@ public class Invoice {
     @ColumnInfo
     String invoice_date;
 
+    public long getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(long subtotal) {
+        this.subtotal = subtotal;
+    }
 
     public ArrayList<String> getPrice() {
         return price;
