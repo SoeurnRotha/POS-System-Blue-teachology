@@ -181,7 +181,7 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
 //                int qty =cartTableList.get(position).getProductQty();
                 int qty = Integer.parseInt(holder.qty.getText().toString());
 
-                if(qty >=1){
+                if(qty >1){
                     qty--;
                     cartTableList.get(position).setProductQty(qty);
                     notifyDataSetChanged();

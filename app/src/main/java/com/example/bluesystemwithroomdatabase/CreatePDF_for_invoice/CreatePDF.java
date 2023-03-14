@@ -138,7 +138,7 @@ public class CreatePDF extends AppCompatActivity {
         if(!pdfDir.exists()){
             pdfDir.mkdir();
         }
-        File myPath = new File(pdfDir, "ok" + ".pdf");
+        File myPath = new File(pdfDir, "no" + ".pdf");
         FileOutputStream fas = null;
 
         try {

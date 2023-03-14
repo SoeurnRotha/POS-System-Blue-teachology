@@ -253,7 +253,7 @@
             android:id="@+id/list_receipt"
             tools:listitem="@layout/single_list_receipt"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/line2" />
 
 
