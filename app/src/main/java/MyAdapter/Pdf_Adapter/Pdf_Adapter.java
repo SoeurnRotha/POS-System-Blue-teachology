@@ -111,8 +111,8 @@ public class Pdf_Adapter extends RecyclerView.Adapter<Pdf_Adapter.ViewPdf>{
         grandTotalKhmer.setText(numberFormat(String.valueOf(cheackoutList.get(position).getTotal_khmer())));
         subtotal.setText(numberFormat(String.valueOf(cheackoutList.get(position).getSubtotal())));
         discountAmount.setText(numberFormat(String.valueOf(cheackoutList.get(position).getDiscountAmount())));
-        discount.setText(numberFormat(String.valueOf(cheackoutList.get(position).getDiscount())));
-        payment_method.setText(numberFormat(String.valueOf(cheackoutList.get(position).getPayment_method())));
+        discount.setText(String.valueOf(cheackoutList.get(position).getDiscount()));
+        payment_method.setText(String.valueOf(cheackoutList.get(position).getPayment_method()));
 
 
 

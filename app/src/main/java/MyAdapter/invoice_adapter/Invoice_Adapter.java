@@ -111,11 +111,11 @@ public class Invoice_Adapter extends RecyclerView.Adapter<Invoice_Adapter.ViewIn
                         +"Cashier" + "\n" + String.valueOf(invoiceList.get(position).getCashierName())
                         + "Product name english : " + "\n" + String.valueOf(invoiceList.get(position).getProduct_name_english())
                         + "Product name khmer : "+ "\n" + String.valueOf( invoiceList.get(position).getProduct_name_khmer())
-                        + "SubTotal" + "\n" + numberFormat(String.valueOf( invoiceList.get(position).getSubtotal()))
-                        + "Discount :" +"\n" + numberFormat(String.valueOf(invoiceList.get(position).getDiscount()))
-                        + "Discount amount :" +"\n" + numberFormat(String.valueOf( invoiceList.get(position).getAmount()))
-                        + "Grand Total($) : " +"\n" + numberFormat(String.valueOf(invoiceList.get(position).getGrand_total_dollar()))
-                        + "Grand Total(៛) : " +"\n" + numberFormat(String.valueOf(invoiceList.get(position).getGrand_total_khmer()))
+                                + "SubTotal" + "\n" + numberFormat(String.valueOf( invoiceList.get(position).getSubtotal()))
+                                + "Discount :" +"\n" + numberFormat(String.valueOf(invoiceList.get(position).getDiscount()))
+                                + "Discount amount :" +"\n" + numberFormat(String.valueOf( invoiceList.get(position).getAmount()))
+                                + "Grand Total($) : " +"\n" + numberFormat(String.valueOf(invoiceList.get(position).getGrand_total_dollar()))
+                                + "Grand Total(៛) : " +"\n" + numberFormat(String.valueOf(invoiceList.get(position).getGrand_total_khmer()))
                 ;
 
         QRGEncoder qrgEncoder = new QRGEncoder(textQrCode, null, QRGContents.Type.TEXT, 800);
@@ -144,6 +144,7 @@ public class Invoice_Adapter extends RecyclerView.Adapter<Invoice_Adapter.ViewIn
             grand_total_khmer = itemView.findViewById(R.id.invoice_grand_total_real);
             image_qr_code = itemView.findViewById(R.id.invoice_qr_code);
             invoice_delete= itemView.findViewById(R.id.invoice_delete);
+            grand_total_dollar = itemView.findViewById(R.id.invoice_grand_total_dollar);
 
         }
     }
