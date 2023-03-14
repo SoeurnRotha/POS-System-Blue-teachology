@@ -82,8 +82,8 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
 
 
     double discount;
-    long khmer_dollar , grand_total, discountAmount,caculate_discountAmount;
-    long sum;
+    double khmer_dollar , grand_total, discountAmount,caculate_discountAmount;
+    double sum;
     BlueTeachnology_Dao blueTeachnology_dao;
 
     private static final String SHARED_NAME = "blue";
@@ -270,13 +270,13 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
                 }else{
                     discount = Double.parseDouble(discount_input.getText().toString());
                     double p = discount /100;
-                    discountAmount = (long) (sum - (sum * p));
+                    discountAmount =(sum - (sum * p));
                     Toast.makeText(submit.getContext(), "discountAmount = " + discountAmount, Toast.LENGTH_SHORT).show();
                     totalPrice.setText("$ " + numberFormat(String.valueOf(discountAmount)));
 
                     grand_total = khmer_dollar * discountAmount;
 
-                    caculate_discountAmount = (long) (sum * p);
+                    caculate_discountAmount = (sum * p);
 
 
 

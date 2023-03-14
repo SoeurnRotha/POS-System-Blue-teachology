@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bluesystemwithroomdatabase.R;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,18 +101,18 @@ public class Pdf_Adapter extends RecyclerView.Adapter<Pdf_Adapter.ViewPdf>{
         holder.no.setText(String.valueOf(storeNo));
         holder.qty.setText(String.valueOf(storeQTY));
         holder.description.setText(String.valueOf(storeDESCRIPTION));
-        holder.price.setText(String.valueOf(storePRICE));
-        holder.amount.setText(String.valueOf(storeAMOUNT));
+        holder.price.setText(numberFormat(String.valueOf(storePRICE)));
+        holder.amount.setText(numberFormat(String.valueOf(storeAMOUNT)));
 
 
-
-        convertKhmerTodollar.setText(String.valueOf(cheackoutList.get(position).getConverDollar_to_khmer()));
-        grandTotalDollar.setText(String.valueOf(cheackoutList.get(position).getTotal_dollar()));
-        grandTotalKhmer.setText(String.valueOf(cheackoutList.get(position).getTotal_khmer()));
-        subtotal.setText(String.valueOf(cheackoutList.get(position).getSubtotal()));
-        discountAmount.setText(String.valueOf(cheackoutList.get(position).getDiscountAmount()));
-        discount.setText(String.valueOf(cheackoutList.get(position).getDiscount()));
-        payment_method.setText(String.valueOf(cheackoutList.get(position).getPayment_method()));
+        //show data
+        convertKhmerTodollar.setText(numberFormat(String.valueOf(cheackoutList.get(position).getConverDollar_to_khmer())));
+        grandTotalDollar.setText(numberFormat(String.valueOf(cheackoutList.get(position).getTotal_dollar())));
+        grandTotalKhmer.setText(numberFormat(String.valueOf(cheackoutList.get(position).getTotal_khmer())));
+        subtotal.setText(numberFormat(String.valueOf(cheackoutList.get(position).getSubtotal())));
+        discountAmount.setText(numberFormat(String.valueOf(cheackoutList.get(position).getDiscountAmount())));
+        discount.setText(numberFormat(String.valueOf(cheackoutList.get(position).getDiscount())));
+        payment_method.setText(numberFormat(String.valueOf(cheackoutList.get(position).getPayment_method())));
 
 
 
@@ -139,6 +140,11 @@ public class Pdf_Adapter extends RecyclerView.Adapter<Pdf_Adapter.ViewPdf>{
             no = itemView.findViewById(R.id.receipt_no);
 
         }
+    }
+
+    private static String numberFormat(String number){
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,##0.00");
+        return decimalFormat.format(Double.parseDouble(number));
     }
 
 }

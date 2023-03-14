@@ -29,26 +29,25 @@ public class Invoice {
 
 
     @ColumnInfo
-    public
-    long amount;
+    double amount;
 
     @ColumnInfo
     double discount;
 
 
     @ColumnInfo
-    long subtotal;
+    double subtotal;
     @ColumnInfo
     String paymentType;
 
 
     @ColumnInfo
-    public
-    long grand_total_dollar;
+
+    double grand_total_dollar;
 
     @ColumnInfo
-    public
-    long grand_total_khmer;
+
+    double grand_total_khmer;
 
     @ColumnInfo
     ArrayList<String> qty;
@@ -61,8 +60,24 @@ public class Invoice {
     @ColumnInfo
     String invoice_date;
 
-    public long getSubtotal() {
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public double getSubtotal() {
         return subtotal;
+    }
+
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public void setGrand_total_dollar(double grand_total_dollar) {
+        this.grand_total_dollar = grand_total_dollar;
+    }
+
+    public void setGrand_total_khmer(double grand_total_khmer) {
+        this.grand_total_khmer = grand_total_khmer;
     }
 
     public void setSubtotal(long subtotal) {

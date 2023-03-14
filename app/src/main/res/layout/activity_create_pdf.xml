@@ -277,15 +277,17 @@
                     android:layout_height="wrap_content"
                     android:text="Total $"
                     android:padding="10dp"
+                    android:textColor="@color/black"
                     />
                 <TextView
                     android:id="@+id/pdf_subtotal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5.99"
-                    android:layout_marginLeft="80dp"
+                    android:layout_marginLeft="10dp"
                     android:padding="10dp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/green"
+                   />
             </LinearLayout>
 
 
@@ -300,15 +302,16 @@
                     android:layout_height="wrap_content"
                     android:text="Discount (%)"
                     android:padding="10dp"
+                    android:textColor="@color/black"
                     />
                 <TextView
                     android:id="@+id/pdf_discount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5.99"
-                    android:layout_marginLeft="80dp"
+                    android:layout_marginLeft="10dp"
                     android:padding="10dp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/red"/>
             </LinearLayout>
 
 
@@ -323,15 +326,16 @@
                     android:layout_height="wrap_content"
                     android:text="Discount Amount $"
                     android:padding="10dp"
+                    android:textColor="@color/black"
                     />
                 <TextView
                     android:id="@+id/pdf_discountAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5.99"
-                    android:layout_marginLeft="80dp"
+                    android:layout_marginLeft="10dp"
                     android:padding="10dp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/blue"/>
             </LinearLayout>
 
 
@@ -402,7 +406,7 @@
                             android:layout_height="wrap_content"
                             android:padding="5dp"
                             android:text="99999"
-                            android:textColor="@color/black"
+                            android:textColor="@color/green"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -424,7 +428,7 @@
                             android:layout_height="wrap_content"
                             android:padding="5dp"
                             android:text="99999"
-                            android:textColor="@color/black"
+                            android:textColor="@color/green"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
@@ -462,7 +466,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4,100"
-                    android:textColor="@color/black"
+                    android:textColor="@color/purple_700"
                     />
             </LinearLayout>
 
@@ -485,7 +489,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Cash"
-                    android:textColor="@color/black"
+                    android:textColor="@color/purple_700"
                     />
 
             </LinearLayout>

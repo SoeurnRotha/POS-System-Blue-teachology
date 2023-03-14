@@ -61,9 +61,9 @@ public class Invoice_Adapter extends RecyclerView.Adapter<Invoice_Adapter.ViewIn
         holder.paymentType.setText(String.valueOf(invoiceList.get(position).getPaymentType()));
         holder.subTotal.setText(numberFormat(String.valueOf(invoiceList.get(position).getSubtotal())));
         holder.grand_total_khmer.setText(numberFormat(String.valueOf(invoiceList.get(position).getGrand_total_khmer())));
-        holder.discount.setText(String.valueOf(invoiceList.get(position).getDiscount()));
+        holder.discount.setText(numberFormat(String.valueOf(invoiceList.get(position).getDiscount())));
         holder.discountAmount.setText(numberFormat(String.valueOf(invoiceList.get(position).getAmount())));
-        holder.grand_total_dollar.setText(String.valueOf(invoiceList.get(position).getGrand_total_dollar()));
+        holder.grand_total_dollar.setText(numberFormat(String.valueOf(invoiceList.get(position).getGrand_total_dollar())));
         holder.cashier.setText(String.valueOf(invoiceList.get(position).getCashierName()));
 
 
@@ -111,10 +111,11 @@ public class Invoice_Adapter extends RecyclerView.Adapter<Invoice_Adapter.ViewIn
                         +"Cashier" + "\n" + String.valueOf(invoiceList.get(position).getCashierName())
                         + "Product name english : " + "\n" + String.valueOf(invoiceList.get(position).getProduct_name_english())
                         + "Product name khmer : "+ "\n" + String.valueOf( invoiceList.get(position).getProduct_name_khmer())
-                        + "SubTotal" + "\n" + String.valueOf( invoiceList.get(position).getGrand_total_dollar())
-                        + "Discount :" +"\n" + String.valueOf(invoiceList.get(position).getDiscount())
-                        + "Discount amount :" +"\n" + String.valueOf( invoiceList.get(position).getAmount())
-                        + "Grand Total(Real) : " +"\n" + String.valueOf(invoiceList.get(position).getGrand_total_khmer())
+                        + "SubTotal" + "\n" + numberFormat(String.valueOf( invoiceList.get(position).getSubtotal()))
+                        + "Discount :" +"\n" + numberFormat(String.valueOf(invoiceList.get(position).getDiscount()))
+                        + "Discount amount :" +"\n" + numberFormat(String.valueOf( invoiceList.get(position).getAmount()))
+                        + "Grand Total($) : " +"\n" + numberFormat(String.valueOf(invoiceList.get(position).getGrand_total_dollar()))
+                        + "Grand Total(៛) : " +"\n" + numberFormat(String.valueOf(invoiceList.get(position).getGrand_total_khmer()))
                 ;
 
         QRGEncoder qrgEncoder = new QRGEncoder(textQrCode, null, QRGContents.Type.TEXT, 800);
