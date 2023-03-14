@@ -267,7 +267,7 @@
             >
 
             <LinearLayout
-                android:layout_marginLeft="100dp"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -290,7 +290,7 @@
 
 
             <LinearLayout
-                android:layout_marginLeft="100dp"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -313,7 +313,7 @@
 
 
             <LinearLayout
-                android:layout_marginLeft="100dp"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -357,89 +357,85 @@
                     android:textColor="@color/black"/>
             </LinearLayout>
             <com.google.android.material.divider.MaterialDivider
-                android:layout_width="200dp"
+                android:layout_width="400dp"
                 android:layout_height="1dp"
                 app:dividerColor="@color/black"
-                android:layout_marginLeft="100dp"/>
-
-
-
-
-
-
+              />
 
 
             <LinearLayout
 
-                android:layout_marginLeft="40dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
+
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
                     android:text="Grand Total "
+                    android:textColor="@color/black"
                     android:textSize="8pt"
-                    />
+                    android:textStyle="bold" />
+
                 <LinearLayout
-                    android:layout_marginLeft="30dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    >
+                    android:layout_marginLeft="30dp"
+                    android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        >
+                        android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="$"
                             android:padding="5dp"
-                            android:textColor="@color/black"/>
+                            android:text="$"
+                            android:textColor="@color/black" />
+
                         <TextView
                             android:id="@+id/pdf_grand_total_dollar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="99999"
-                            android:textStyle="bold"
                             android:padding="5dp"
-                            android:textColor="@color/black"/>
+                            android:text="99999"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        >
+                        android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="៛"
                             android:padding="5dp"
-                            android:textColor="@color/black"/>
+                            android:text="៛"
+                            android:textColor="@color/black" />
+
                         <TextView
                             android:id="@+id/pdf_grand_total_khmer"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="99999"
-                            android:textStyle="bold"
                             android:padding="5dp"
-                            android:textColor="@color/black"/>
+                            android:text="99999"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
 
             <com.google.android.material.divider.MaterialDivider
-                android:layout_width="200dp"
+                android:layout_width="400dp"
                 android:layout_height="1dp"
                 app:dividerColor="@color/black"
-                android:layout_marginLeft="100dp"/>
+          />
 
 
             <LinearLayout

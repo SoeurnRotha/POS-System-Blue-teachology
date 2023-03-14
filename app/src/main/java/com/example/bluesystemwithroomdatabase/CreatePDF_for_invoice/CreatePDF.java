@@ -63,12 +63,16 @@ public class CreatePDF extends AppCompatActivity {
                 binding.pdfSubtotal,
                 binding.pdfGrandTotalDollar,
                 binding.pdfGrandTotalKhmer,
-                binding.pdfKhmerConvertDollarToKhmer
+                binding.pdfKhmerConvertDollarToKhmer,
+                binding.pdfPaymentMethod,
+                binding.pdfDiscount,
+                binding.pdfDiscountAmount
         );
         binding.listReceipt.setLayoutManager(new LinearLayoutManager(this));
         binding.listReceipt.setAdapter(adapter);
         binding.dateTime.setText("" + dateFormat.format(date) + "--" + time.format(date));
         binding.pdfCashier.setText(sharedPreferences.getString(KEY_USERNAME, null));
+
 
 
 //        binding.pdfLayout;

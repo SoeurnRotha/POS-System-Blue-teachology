@@ -32,6 +32,17 @@ public class Cheackout {
     @ColumnInfo
     String payment_method;
 
+    @ColumnInfo
+    double discountAmount;
+
+    public double getDiscountAmount() {
+        return discountAmount;
+    }
+
+    public void setDiscountAmount(double discountAmount) {
+        this.discountAmount = discountAmount;
+    }
+
     public String getPayment_method() {
         return payment_method;
     }

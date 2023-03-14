@@ -82,8 +82,8 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
 
 
     double discount;
-    long khmer_dollar , grand_total, discountAmount;
-    int sum;
+    long khmer_dollar , grand_total, discountAmount,caculate_discountAmount;
+    long sum;
     BlueTeachnology_Dao blueTeachnology_dao;
 
     private static final String SHARED_NAME = "blue";
@@ -276,6 +276,8 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
 
                     grand_total = khmer_dollar * discountAmount;
 
+                    caculate_discountAmount = (long) (sum * p);
+
 
 
                     totalAmount_khmer.setText("(Real) "+ numberFormat(String.valueOf(grand_total)));
@@ -331,6 +333,7 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
                             invoice.setProduct_name_english(engName);
                             invoice.setProduct_name_khmer(khName);
                             invoice.setCashierName(sharedPreferences.getString(KEY_USERNAME, null));
+
                             invoice.setGrand_total_dollar(discountAmount);
                             invoice.setGrand_total_khmer(grand_total);
                             blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
@@ -348,6 +351,10 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
                             cheackout.setDiscount(discount);
                             cheackout.setTotal_khmer(grand_total);
                             cheackout.setCashierName(sharedPreferences.getString(KEY_USERNAME, null));
+                            cheackout.setSubtotal(sum);
+                            cheackout.setPayment_method(PaymentType);
+                            cheackout.setDiscountAmount(caculate_discountAmount);
+
                             cheackout.setConverDollar_to_khmer(Double.parseDouble(khmer_to_dollar.getText().toString()));
                             blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
                             blueTeachnology_dao.insertCheackout(cheackout);
@@ -387,15 +394,14 @@ public class Cart_Adater extends RecyclerView.Adapter<Cart_Adater.ViewCart> {
                             cheackout.setTotal_khmer(grand_total);
                             cheackout.setCashierName(sharedPreferences.getString(KEY_USERNAME, null));
                             cheackout.setConverDollar_to_khmer(Double.parseDouble(khmer_to_dollar.getText().toString()));
+                            cheackout.setSubtotal(sum);
+                            cheackout.setPayment_method(PaymentType);
+                            cheackout.setDiscountAmount(caculate_discountAmount);
 
                             blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
                             blueTeachnology_dao.insertCheackout(cheackout);
-
-
-
                             BlueTeachnology_Dao blueTeachnology_dao = BlueTeachnology_Database.getInstance(context).blueTeachnology_dao();
                             blueTeachnology_dao.insertInvoice(invoice);
-                            //delete all products
                             deleteRecordCart(cartTableList);
 
                         }

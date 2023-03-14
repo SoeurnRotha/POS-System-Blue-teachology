@@ -29,10 +29,10 @@ public class Pdf_Adapter extends RecyclerView.Adapter<Pdf_Adapter.ViewPdf>{
     ArrayList<String> arrayListNo;
 
 
-    TextView pdfCashier, subtotal,grandTotalDollar,grandTotalKhmer, convertKhmerTodollar;
+    TextView pdfCashier, subtotal,grandTotalDollar,grandTotalKhmer, convertKhmerTodollar, payment_method,discount,discountAmount;
 
 
-    public Pdf_Adapter(List<Cheackout> cheackoutList, Context context, TextView pdfCashier, TextView subtotal, TextView grandTotalDollar, TextView grandTotalKhmer, TextView convertKhmerTodollar) {
+    public Pdf_Adapter(List<Cheackout> cheackoutList, Context context, TextView pdfCashier, TextView subtotal, TextView grandTotalDollar, TextView grandTotalKhmer, TextView convertKhmerTodollar,TextView payment_method,TextView discount, TextView discountAmount) {
         this.cheackoutList = cheackoutList;
         this.context = context;
         this.pdfCashier =pdfCashier;
@@ -40,6 +40,9 @@ public class Pdf_Adapter extends RecyclerView.Adapter<Pdf_Adapter.ViewPdf>{
         this.grandTotalDollar = grandTotalDollar;
         this.grandTotalKhmer = grandTotalKhmer;
         this.convertKhmerTodollar = convertKhmerTodollar;
+        this.payment_method = payment_method;
+        this.discount = discount;
+        this.discountAmount = discountAmount;
     }
 
     @NonNull
@@ -105,7 +108,12 @@ public class Pdf_Adapter extends RecyclerView.Adapter<Pdf_Adapter.ViewPdf>{
         convertKhmerTodollar.setText(String.valueOf(cheackoutList.get(position).getConverDollar_to_khmer()));
         grandTotalDollar.setText(String.valueOf(cheackoutList.get(position).getTotal_dollar()));
         grandTotalKhmer.setText(String.valueOf(cheackoutList.get(position).getTotal_khmer()));
-        subtotal.setText(String.valueOf(cheackoutList.get(position).get));
+        subtotal.setText(String.valueOf(cheackoutList.get(position).getSubtotal()));
+        discountAmount.setText(String.valueOf(cheackoutList.get(position).getDiscountAmount()));
+        discount.setText(String.valueOf(cheackoutList.get(position).getDiscount()));
+        payment_method.setText(String.valueOf(cheackoutList.get(position).getPayment_method()));
+
+
 
 
 
