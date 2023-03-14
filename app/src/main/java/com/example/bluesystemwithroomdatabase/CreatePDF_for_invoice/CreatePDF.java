@@ -3,34 +3,29 @@ package com.example.bluesystemwithroomdatabase.CreatePDF_for_invoice;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Typeface;
-import android.graphics.drawable.PaintDrawable;
+
 import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.widget.Toast;
-
-import com.example.bluesystemwithroomdatabase.R;
 import com.example.bluesystemwithroomdatabase.databinding.ActivityCreatePdfBinding;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import Dao.BlueTeachnology_Dao;
 import Model.Cheackout;
 import MyAdapter.Pdf_Adapter.Pdf_Adapter;
@@ -45,19 +40,39 @@ public class CreatePDF extends AppCompatActivity {
     Pdf_Adapter adapter;
     BlueTeachnology_Dao blueTeachnology_dao;
     List<Cheackout> cheackoutList;
+    private static final String SHARED_NAME = "blue";
+    private static final String KEY_USERNAME = "username";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        date = new Date();
+        dateFormat = new SimpleDateFormat("dd/MM/yy");
+        DateFormat time =new SimpleDateFormat("HH:mm:ss");
+
+        SharedPreferences sharedPreferences;
+        sharedPreferences = getSharedPreferences(SHARED_NAME,MODE_PRIVATE);
+
         super.onCreate(savedInstanceState);
         binding = ActivityCreatePdfBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         blueTeachnology_dao = BlueTeachnology_Database.getInstance(getApplicationContext()).blueTeachnology_dao();
         cheackoutList = blueTeachnology_dao.getAllCheackout();
-        adapter = new Pdf_Adapter(cheackoutList, getApplicationContext());
+        adapter = new Pdf_Adapter(cheackoutList,
+                getApplicationContext(),
+                binding.pdfCashier,
+                binding.pdfSubtotal,
+                binding.pdfGrandTotalDollar,
+                binding.pdfGrandTotalKhmer,
+                binding.pdfKhmerConvertDollarToKhmer
+        );
         binding.listReceipt.setLayoutManager(new LinearLayoutManager(this));
         binding.listReceipt.setAdapter(adapter);
+        binding.dateTime.setText("" + dateFormat.format(date) + "--" + time.format(date));
+        binding.pdfCashier.setText(sharedPreferences.getString(KEY_USERNAME, null));
 
 
+//        binding.pdfLayout;
+//        binding.pdf
 
 
         binding.printReceipt.setOnClickListener(new View.OnClickListener() {

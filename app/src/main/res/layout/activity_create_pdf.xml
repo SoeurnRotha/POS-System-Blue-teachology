@@ -20,6 +20,7 @@
             android:layout_centerHorizontal="true"
             />
         <TextView
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -58,6 +59,7 @@
                     android:text="Tel :"
                     />
                 <TextView
+                    android:id="@+id/pdf_phonenumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0123456789"
@@ -80,6 +82,7 @@
                     android:text="Address :"
                     />
                 <TextView
+                    android:id="@+id/pdf_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" #320D, street 150 , Sengkat Boeng keng kang 1 ,Phnom penh , Cambodia"
@@ -144,6 +147,7 @@
                     android:text="Date : "
                     />
                 <TextView
+                    android:id="@+id/dateTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" 11-11-11 / 11-11-55:00"
@@ -276,6 +280,52 @@
                     />
                 <TextView
                     android:id="@+id/pdf_subtotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5.99"
+                    android:layout_marginLeft="80dp"
+                    android:padding="10dp"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginLeft="100dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Discount (%)"
+                    android:padding="10dp"
+                    />
+                <TextView
+                    android:id="@+id/pdf_discount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5.99"
+                    android:layout_marginLeft="80dp"
+                    android:padding="10dp"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginLeft="100dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Discount Amount $"
+                    android:padding="10dp"
+                    />
+                <TextView
+                    android:id="@+id/pdf_discountAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5.99"
@@ -434,6 +484,7 @@
                     android:textColor="@color/black"
                     />
                 <TextView
+                    android:id="@+id/pdf_payment_method"
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

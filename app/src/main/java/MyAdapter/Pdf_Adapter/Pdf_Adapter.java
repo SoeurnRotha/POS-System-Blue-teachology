@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Model.Cheackout;
-import MyAdapter.CheckOut_Adapter.CheckOut_Adapter;
 
 public class Pdf_Adapter extends RecyclerView.Adapter<Pdf_Adapter.ViewPdf>{
 
@@ -31,9 +29,17 @@ public class Pdf_Adapter extends RecyclerView.Adapter<Pdf_Adapter.ViewPdf>{
     ArrayList<String> arrayListNo;
 
 
-    public Pdf_Adapter(List<Cheackout> cheackoutList, Context context) {
+    TextView pdfCashier, subtotal,grandTotalDollar,grandTotalKhmer, convertKhmerTodollar;
+
+
+    public Pdf_Adapter(List<Cheackout> cheackoutList, Context context, TextView pdfCashier, TextView subtotal, TextView grandTotalDollar, TextView grandTotalKhmer, TextView convertKhmerTodollar) {
         this.cheackoutList = cheackoutList;
         this.context = context;
+        this.pdfCashier =pdfCashier;
+        this.subtotal = subtotal;
+        this.grandTotalDollar = grandTotalDollar;
+        this.grandTotalKhmer = grandTotalKhmer;
+        this.convertKhmerTodollar = convertKhmerTodollar;
     }
 
     @NonNull
@@ -61,7 +67,6 @@ public class Pdf_Adapter extends RecyclerView.Adapter<Pdf_Adapter.ViewPdf>{
 
         arrayListNo = new ArrayList<>();
         arrayListNo = cheackoutList.get(position).getName();
-
 
         String storeQTY = "";
         String storePRICE = "";
@@ -94,6 +99,15 @@ public class Pdf_Adapter extends RecyclerView.Adapter<Pdf_Adapter.ViewPdf>{
         holder.description.setText(String.valueOf(storeDESCRIPTION));
         holder.price.setText(String.valueOf(storePRICE));
         holder.amount.setText(String.valueOf(storeAMOUNT));
+
+
+
+        convertKhmerTodollar.setText(String.valueOf(cheackoutList.get(position).getConverDollar_to_khmer()));
+        grandTotalDollar.setText(String.valueOf(cheackoutList.get(position).getTotal_dollar()));
+        grandTotalKhmer.setText(String.valueOf(cheackoutList.get(position).getTotal_khmer()));
+        subtotal.setText(String.valueOf(cheackoutList.get(position).get));
+
+
 
 
 

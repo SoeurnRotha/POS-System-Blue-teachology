@@ -10,6 +10,8 @@
         android:orientation="horizontal"
         >
         <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:padding="10dp"
             android:id="@+id/receipt_no"
             android:layout_width="wrap_content"
@@ -18,6 +20,8 @@
             android:textColor="@color/black"
             />
         <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:padding="10dp"
             android:id="@+id/receipt_desctiption"
             android:layout_width="100dp"
@@ -28,6 +32,8 @@
             />
 
         <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:padding="10dp"
             android:id="@+id/receipt_qty"
             android:layout_width="50dp"
@@ -37,6 +43,8 @@
             android:textColor="@color/black"
             />
         <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:padding="10dp"
             android:id="@+id/receipt_price"
             android:layout_width="50dp"
@@ -47,6 +55,8 @@
             android:textColor="@color/black"
             />
         <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:padding="10dp"
             android:id="@+id/receipt_amount"
             android:layout_width="wrap_content"
