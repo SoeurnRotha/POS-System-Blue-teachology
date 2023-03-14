@@ -20,6 +20,7 @@ import Model.Invoice;
 import Model.LocationTable;
 import Model.PaymentMethod;
 import Model.ProductTable;
+import Model.UnitModel;
 import Model.UserTable;
 import Relationship.ManyToMany.CategoryWithProduct;
 import Relationship.ManyToMany.LocationWithProducts.LocationWithProducts;
@@ -258,6 +259,24 @@ public interface BlueTeachnology_Dao {
     void insertCheackout(Cheackout cheackout);
     @Query("SELECT * FROM Cheackout")
     List<Cheackout> getAllCheackout();
+
+
+    @Delete
+    void deleteAllCheackOut(List<Cheackout> cheackoutList);
+
+
+    //unit
+    @Insert
+    void insertUnit (UnitModel unitModel);
+
+    @Update
+    void updateUnit(UnitModel unitModel);
+
+    @Query("SELECT * FROM UnitModel")
+    List<UnitModel> getAllUnit();
+
+    @Query("DELETE FROM UnitModel WHERE unitId=:unitid")
+    void deleteUnitByid(int unitid);
 
 
 

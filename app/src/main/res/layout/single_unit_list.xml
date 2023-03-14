@@ -6,6 +6,7 @@
     app:cardCornerRadius="5dp"
     app:cardElevation="5dp"
     app:cardMaxElevation="5dp"
+    android:id="@+id/card_edit_unit"
     android:layout_height="wrap_content">
     <LinearLayout
 

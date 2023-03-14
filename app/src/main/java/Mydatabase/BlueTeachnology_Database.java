@@ -19,6 +19,7 @@ import Model.Invoice;
 import Model.LocationTable;
 import Model.PaymentMethod;
 import Model.ProductTable;
+import Model.UnitModel;
 import Model.UserTable;
 import Relationship.ManyToMany.CategoryProductsCrossRef;
 import Relationship.ManyToMany.LocationWithProducts.LocationProductsCrossRef;
@@ -35,7 +36,8 @@ import Relationship.ManyToMany.LocationWithProducts.LocationProductsCrossRef;
         LocationProductsCrossRef.class,
         Invoice.class,
         ExpanseTable.class,
-        Cheackout.class
+        Cheackout.class,
+        UnitModel.class
 
 }, version = 1)
 @TypeConverters({ DataConverts.class})

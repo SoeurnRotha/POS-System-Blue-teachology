@@ -48,7 +48,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/unit_title"
+            android:id="@+id/boxtitle"
             android:layout_marginTop="30dp"
             android:layout_below="@id/view_unit"
             android:layout_width="match_parent"
@@ -58,6 +58,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
+                android:id="@+id/unit_title"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 />
@@ -65,8 +66,8 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/unit_type"
-            android:layout_below="@+id/unit_title"
+            android:id="@+id/box_code"
+            android:layout_below="@+id/boxtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Unit type"
@@ -74,6 +75,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
+                android:id="@+id/unit_type"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 />
@@ -83,9 +85,10 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/unit_type"
+            android:layout_below="@+id/box_code"
             android:layout_centerHorizontal="true"
             android:text="Save"
+            android:id="@+id/save_unit"
             android:background="@color/red"
             android:fontFamily="@font/fontone"
             android:textSize="8pt"
