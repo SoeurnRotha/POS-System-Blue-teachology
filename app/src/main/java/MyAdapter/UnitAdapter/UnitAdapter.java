@@ -3,6 +3,7 @@ package MyAdapter.UnitAdapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +16,14 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bluesystemwithroomdatabase.Customer.UpdateCustomer;
 import com.example.bluesystemwithroomdatabase.R;
+import com.example.bluesystemwithroomdatabase.Unit.UpdateUnit;
 
 import java.util.List;
 
 import Dao.BlueTeachnology_Dao;
+import Model.Customer;
 import Model.UnitModel;
 import Mydatabase.BlueTeachnology_Database;
 
@@ -44,6 +48,11 @@ public class UnitAdapter extends RecyclerView.Adapter<UnitAdapter.ViewUnit>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewUnit holder, @SuppressLint("RecyclerView") int position) {
+        final UnitModel unitModel = unitModelList.get(position);
+
+        if(unitModel == null){
+            return;
+        }
 
         holder.unitTitle.setText(String.valueOf(unitModelList.get(position).getUnitName()));
 
@@ -53,6 +62,10 @@ public class UnitAdapter extends RecyclerView.Adapter<UnitAdapter.ViewUnit>{
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Intent intent = new Intent(view.getContext(), UpdateUnit.class);
+                intent.putExtra("unit",unitModel);
+                view.getContext().startActivity(intent);
 
             }
         });
@@ -65,12 +78,8 @@ public class UnitAdapter extends RecyclerView.Adapter<UnitAdapter.ViewUnit>{
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        //delete
-
                         BlueTeachnology_Dao blueTeachnology_dao = BlueTeachnology_Database.getInstance(view.getContext()).blueTeachnology_dao();
-
                         blueTeachnology_dao.deleteUnitByid(unitModelList.get(position).getUnitId());
-
                         unitModelList.remove(position);
                         notifyDataSetChanged();
 

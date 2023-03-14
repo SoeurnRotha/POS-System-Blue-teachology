@@ -1,11 +1,15 @@
 package Model;
 
+import android.service.autofill.Sanitizer;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity
-public class UnitModel {
+public class UnitModel implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     int unitId;
