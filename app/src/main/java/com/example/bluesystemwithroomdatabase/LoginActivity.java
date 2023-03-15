@@ -27,9 +27,6 @@ import Mydatabase.BlueTeachnology_Database;
 
 
 public class LoginActivity extends AppCompatActivity {
-    private Button logintoMain;
-
-    SharedPreferences preferences;
     SharedPreferences sharedPreferences;
     ActivityLoginBinding binding;
 
@@ -64,17 +61,17 @@ public class LoginActivity extends AppCompatActivity {
                 String username = binding.loginUsername.getText().toString();
                 String password = binding.loginPassword.getText().toString();
                 userTableList =blueTeachnology_dao.loginAccount(username ,password);
-                sharedPreferences = getSharedPreferences(SHARED_NAME,MODE_PRIVATE);
+
                 if((username.equals("Admin")) && (password.equals("1234"))){
                     //default user
-//                    sharedPreferences = getSharedPreferences("default",MODE_PRIVATE);
+                    sharedPreferences = getSharedPreferences("default",MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-
                     editor.putString(KEY_USERNAME,username);
                     editor.putString(KEY_USERROLES, "ADMIN");
                     editor.putBoolean("hasLogin", true);
-
                     editor.apply();
+
+
                     Intent intent = new Intent(LoginActivity.this, DefaultUser.class);
                     startActivity(intent);
                     finish();
@@ -90,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                         if(userTableList.get(i).isCashier()){
                             USER_ROLES = "Cashier";
                         }
-
+                        sharedPreferences = getSharedPreferences(SHARED_NAME,MODE_PRIVATE);
                         USER_NAME = userTableList.get(i).getUsername();
                         PATH_IMAGE = userTableList.get(i).getUserImage();
                         SharedPreferences.Editor editor = sharedPreferences.edit();

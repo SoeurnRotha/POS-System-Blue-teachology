@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
         binding.toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
+
             public void onClick(View view) {
                 binding.drawerLayout.openDrawer(GravityCompat.START);
             }
