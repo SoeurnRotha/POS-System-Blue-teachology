@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_language"
+            android:title="@string/english_main_name_language"
+            android:icon="@drawable/language"/>
+
+        <item
+            android:id="@+id/nav_setting"
+            android:title="@string/english_main_name_payment_setting"
+            android:icon="@drawable/setting"/>
+        <item
+            android:id="@+id/nav_unit"
+            android:title="@string/english_main_name_unit"
+            android:icon="@drawable/cash"/>
+        <item
+            android:id="@+id/nav_logout"
+            android:title="@string/english_main_name_logout"
+            android:icon="@drawable/close"/>
+
+    </group>
+</menu>

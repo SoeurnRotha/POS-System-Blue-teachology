@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.bluesystemwithroomdatabase.DefultUser.DefaultUser;
 import com.example.bluesystemwithroomdatabase.databinding.ActivityLoginBinding;
 import com.github.drjacky.imagepicker.ImagePicker;
 
@@ -74,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putBoolean("hasLogin", true);
 
                     editor.apply();
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, DefaultUser.class);
                     startActivity(intent);
                     finish();
                 }
