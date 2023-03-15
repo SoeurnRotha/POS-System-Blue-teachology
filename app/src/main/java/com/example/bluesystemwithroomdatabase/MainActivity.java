@@ -280,7 +280,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
     public void logout(){
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setTitle("LOGOUT");
+        builder.setTitle("");
         builder.setMessage("Do you want to logout");
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
@@ -325,10 +325,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Locale.setDefault(locale);
         Resources resources = getBaseContext().getResources();
         Configuration configuration = resources.getConfiguration();
+        configuration.setLocale(locale);
         resources.updateConfiguration(configuration, resources.getDisplayMetrics());
-
         SharedPreferences.Editor editor = getSharedPreferences("Setting", MODE_PRIVATE).edit();
-        editor.putString("My_lenguage", language);
+        editor.putString("My_language", language);
         editor.apply();
 
     }

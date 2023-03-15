@@ -24,7 +24,7 @@
     <string name="english_main_name_language">ភាសា</string>
     <string name="english_main_name_payment_setting">ការកំណត់</string>
     <string name="english_main_name_unit">ផលិតផលឯកតា</string>
-    <string name="english_main_name_logout">Logout</string>
+    <string name="english_main_name_logout">ចាកចេញ</string>
 
 
     <string name="view_invoice">មើលវិក្កយបត្រ</string>
@@ -38,4 +38,10 @@
     <string name="view_pos">មើលកន្លែងលក់</string>
     <string name="view_payment">មើលពីសេវាកម្មបង់ប្រាក់</string>
     <string name="view_expanse">មើលពីការចំណាយ</string>
+
+
+    <string name="logout">ចាកចេញ</string>
+    <string name="logout_say">តើអ្នកចង់ចាកចេញពីកម្មវិធីដែរឬទេ ?</string>
+    <string name="logout_no">ទេ</string>
+    <string name="logout_yes">យល់ព្រម</string>
 </resources>

@@ -43,6 +43,13 @@
 
 
 
+<!--    logout-->
+
+    <string name="logout">Logout</string>
+    <string name="logout_say">Do you want to logout?</string>
+    <string name="logout_no">No</string>
+    <string name="logout_yes">Yes</string>
+
 
 
 </resources>
