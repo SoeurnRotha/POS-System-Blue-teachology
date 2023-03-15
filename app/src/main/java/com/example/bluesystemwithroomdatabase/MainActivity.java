@@ -10,9 +10,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -45,6 +48,7 @@ import com.github.drjacky.imagepicker.ImagePicker;
 import com.google.android.material.navigation.NavigationView;
 
 import java.io.File;
+import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -66,10 +70,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-
-
-
+        //language
+        loadLocale();
+        //set app bar
         binding.toolbar.setTitle("Blue Teachnology");
         binding.toolbar.setTitleTextColor(Color.WHITE);
         View headerView = binding.navigationView.getHeaderView(0);
@@ -225,11 +228,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.nav_language:
+//
+//                CustomDiglogCheangLanguageBinding alertbinding;
+//                alertbinding = CustomDiglogCheangLanguageBinding.inflate(getLayoutInflater());
+//                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//                builder.setView(alertbinding.getRoot());
+//
+//
+//                AlertDialog alertDialog = builder.create();
+//                alertDialog.show();
 
-                CustomDiglogCheangLanguageBinding alertbinding;
-                alertbinding = CustomDiglogCheangLanguageBinding.inflate(getLayoutInflater());
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setView(alertbinding.getRoot());
+                final String[] listItem = {"English", "Khmer"};
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Choose Language....");
+                builder.setSingleChoiceItems(listItem, -1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if(i==0){
+                            setLocale("en");
+                            recreate();
+                        }
+                        if(i==1){
+                            setLocale("km");
+                            recreate();
+                        }
+
+                        dialogInterface.dismiss();
+                    }
+                });
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
 
@@ -293,6 +319,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Glide.with(this).load(path).into(profileUser);
     }
 
+
+    public void setLocale(String language){
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Resources resources = getBaseContext().getResources();
+        Configuration configuration = resources.getConfiguration();
+        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
+
+        SharedPreferences.Editor editor = getSharedPreferences("Setting", MODE_PRIVATE).edit();
+        editor.putString("My_lenguage", language);
+        editor.apply();
+
+    }
+
+    public void loadLocale(){
+        sharedPreferences = getSharedPreferences("Setting", Activity.MODE_PRIVATE);
+        String language = sharedPreferences.getString("My_language", "");
+        setLocale(language);
+    }
 
 
 

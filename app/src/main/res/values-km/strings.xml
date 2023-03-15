@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Blue Technology</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -8,7 +9,7 @@
 
     <!--    //main english-->
     <string name="english_main_name_invoice">វិក្កយបត្រ</string>
-    <string name="english_main_name_report">រាយការណ៍</string>
+    <string name="english_main_name_report">របាយការណ៍</string>
     <string name="english_main_name_User">អ្នកប្រើ</string>
     <string name="english_main_name_Category">ប្រភេទ</string>
     <string name="english_main_name_Aboutus">អំពីពួកយើង</string>
@@ -26,6 +27,15 @@
     <string name="english_main_name_logout">Logout</string>
 
 
-
-
+    <string name="view_invoice">មើលវិក្កយបត្រ</string>
+    <string name="view_report">មើលរបាយការណ៍</string>
+    <string name="view_user">មើលអ្នកប្រើប្រាស់</string>
+    <string name="view_category">មើលពីប្រភេទ</string>
+    <string name="view_customer">មើលអតិថិជន</string>
+    <string name="view_product">មើលពីផលិតផល</string>
+    <string name="view_cart">មើល រទេះ</string>
+    <string name="view_inventory">មើលពីទីតាំង</string>
+    <string name="view_pos">មើលកន្លែងលក់</string>
+    <string name="view_payment">មើលពីសេវាកម្មបង់ប្រាក់</string>
+    <string name="view_expanse">មើលពីការចំណាយ</string>
 </resources>

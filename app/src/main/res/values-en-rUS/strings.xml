@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Blue Technology</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -6,7 +7,7 @@
     <string name="close_nav">Close drawer</string>
 
 
-<!--    //main english-->
+    <!--    //main english-->
     <string name="english_main_name_invoice">Invoice</string>
     <string name="english_main_name_report">Report</string>
     <string name="english_main_name_User">User</string>
@@ -27,7 +28,7 @@
 
 
 
-<!--    in activity -->
+    <!--    in activity -->
     <string name="view_invoice">View invoice</string>
     <string name="view_report">View report</string>
     <string name="view_user">View user</string>
@@ -39,12 +40,6 @@
     <string name="view_pos">View pos</string>
     <string name="view_payment">View payment method</string>
     <string name="view_expanse">View expanse</string>
-
-
-
-
-
-
 
 
 
