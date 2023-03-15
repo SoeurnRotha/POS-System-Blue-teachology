@@ -267,8 +267,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(i);
                 break;
             case R.id.nav_logout:
-                Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
-                logout();
+//                logout();
+                showDialogBox();
                 break;
 
             case R.id.nav_unit:
@@ -339,6 +339,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setLocale(language);
     }
 
+    public void showDialogBox(){
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.design_alert_dialog, null);
+        builder.setView(view);
+
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.setCancelable(false);
+
+        view.findViewById(R.id.no).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
+
+        view.findViewById(R.id.yes).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.apply();
+                finish();
+            }
+        });
+
+        alertDialog.show();
+    }
 
 
 }

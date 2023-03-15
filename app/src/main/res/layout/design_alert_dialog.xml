@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_margin="10dp"
+        android:layout_width="80dp"
+        android:layout_height="100dp"
+        android:src="@drawable/close"
+        android:layout_gravity="center"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/logout_say"
+        android:layout_gravity="center"
+        android:textSize="8pt"
+        android:fontFamily="@font/fontone"
+        android:textColor="@color/black"
+        android:padding="10dp"
+
+        />
+
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/no"
+            android:textColor="@color/white"
+            android:fontFamily="@font/fontone"
+            android:background="@drawable/design_button_no"
+            android:layout_margin="10dp"
+            android:text="@string/logout_no"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/yes"
+            android:fontFamily="@font/fontone"
+
+            android:background="@drawable/desgin_button_yes"
+            android:layout_margin="10dp"
+            android:text="@string/logout_yes"
+            android:layout_width="100dp"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
