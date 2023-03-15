@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
+
         <item
-            android:id="@+id/nav_language"
+            android:id="@+id/nav_home"
+            android:title="Home"
+            android:icon="@drawable/home_svg"/>
+        <item
+            android:id="@+id/nav_user"
+            android:title="User"
+            android:icon="@drawable/user_svg"/>
+        <item
+            android:id="@+id/nav_language_default"
             android:title="@string/english_main_name_language"
             android:icon="@drawable/language"/>
 
+
+
         <item
-            android:id="@+id/nav_setting"
-            android:title="@string/english_main_name_payment_setting"
-            android:icon="@drawable/setting"/>
-        <item
-            android:id="@+id/nav_unit"
-            android:title="@string/english_main_name_unit"
-            android:icon="@drawable/cash"/>
-        <item
-            android:id="@+id/nav_logout"
+            android:id="@+id/nav_logout_default"
             android:title="@string/english_main_name_logout"
             android:icon="@drawable/close"/>
 

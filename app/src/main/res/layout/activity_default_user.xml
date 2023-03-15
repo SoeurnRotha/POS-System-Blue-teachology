@@ -34,14 +34,14 @@
             app:layout_constraintTop_toTopOf="parent"
 
             app:navigationIcon="@drawable/menu" />
-        <ScrollView
-            android:layout_below="@id/default_toolbar"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@id/default_toolbar"
+            android:id="@+id/fragment_default_user"
             >
 
-
-        </ScrollView>
+        </FrameLayout>
     </RelativeLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>

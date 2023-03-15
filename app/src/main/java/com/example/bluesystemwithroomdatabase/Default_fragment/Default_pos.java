@@ -1,4 +1,4 @@
-package com.example.bluesystemwithroomdatabase.DefultUser;
+package com.example.bluesystemwithroomdatabase.Default_fragment;
 
 import android.os.Bundle;
 
@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import com.example.bluesystemwithroomdatabase.R;
 
 
-public class default_pos extends Fragment {
+public class Default_pos extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
