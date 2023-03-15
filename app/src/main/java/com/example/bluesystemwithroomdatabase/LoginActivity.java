@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString(KEY_USERNAME,username);
                     editor.putString(KEY_USERROLES, "ADMIN");
-                    editor.putBoolean("hasLogin", true);
+                    editor.putBoolean("hasLogin_default", true);
                     editor.apply();
 
 

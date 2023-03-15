@@ -229,15 +229,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.nav_language:
-//
-//                CustomDiglogCheangLanguageBinding alertbinding;
-//                alertbinding = CustomDiglogCheangLanguageBinding.inflate(getLayoutInflater());
-//                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//                builder.setView(alertbinding.getRoot());
-//
-//
-//                AlertDialog alertDialog = builder.create();
-//                alertDialog.show();
 
                 final String[] listItem = {"English", "Khmer"};
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -279,34 +270,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         return true;
     }
-    public void logout(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setTitle("");
-        builder.setMessage("Do you want to logout");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.clear();
-                editor.apply();
-                finish();
-            }
-        });
-
-
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(MainActivity.this, "No", Toast.LENGTH_SHORT).show();
-                dialogInterface.cancel();
-            }
-        });
-
-        AlertDialog alertDialog = builder.create();
-
-        alertDialog.show();
-    }
-
 
     public void updateHeader(View headerView){
 
